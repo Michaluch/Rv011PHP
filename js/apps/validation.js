@@ -1,3 +1,4 @@
+// TODO document.getElementById use jQuery
 function validation(event){
 	if(! validName() || ! validPass()){
 		event.preventDefault();
