@@ -1,4 +1,8 @@
-
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
 header {
 	height: 80px;
 	color: white;
@@ -32,4 +36,7 @@ header {
 	background-color: #c84157;
 	cursor: pointer;
 	border:1px;
+}
+#page, #main-container, #map-canvas {
+	height: 100%;
 }
