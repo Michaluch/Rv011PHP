@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id"
+		content="118922838722-t3n5vbl6hk8tsgqeg1kd4krop0hk42gj.apps.googleusercontent.com">
     <title>Login form</title>
     <link rel="stylesheet" href="../js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../styles/form.css">
+	<link rel="stylesheet" href="../styles/social-networks.css">
     </head>
 <body>
     <div class="form-wrapper">
@@ -26,9 +29,24 @@
     </div>
 	<p><a href="#">I forgot my password</a></p>				
     </form>
+	
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+		</div>
+		<div class="col-xs-6 text-center">
+			<div id="fb-root"></div>
+			<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
+				data-show-faces="false" data-auto-logout-link="true"></div>
+		</div>
 	</div>
+	
+	</div>
+
     <script src="../js/libs/jquery/jquery-2.1.4.js"></script>
     <script src="../js/apps/validation.js"></script>
     <script src="../js/libs/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="../js/apps/social-networks-buttons.js"></script>
 </body>
 </html>
