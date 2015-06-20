@@ -1,0 +1,71 @@
+/* Styles for Signform*/
+
+label {
+  float: left;
+  padding-right: 10px;
+  margin: 0 auto;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.res {
+  width: 180px;
+  float: left;
+  border-radius: 0;
+  height: 25px;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+#blah {
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#over {
+  width: 128px;
+  max-height: 128px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+ul.social-buttons {
+    margin-bottom: 0;
+}
+
+ul.social-buttons li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    outline: 0;
+    color:#fff ;
+    background-color: #d9534f;
+    text-align: center;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+ul.social-buttons li a:hover,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:active {
+    background-color: #c12e2a;
+}
+
+.butconf {    
+  width: 100%;
+  height: 30px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.0; 
+  border: 1px solid #ccc;
+  border-radius: 0pxt;
+}
+
