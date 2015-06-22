@@ -1,27 +1,23 @@
 .form-wrapper {
-  width: 260px;
-  margin-left: 10px;
+  width: 300px;
+  margin-left: 30px;
   font-size: 12px;
 }
-.form-wrapper input {
-  width: 180px;
-  float: right;
+.form-wrapper .form-group input {
   margin-left: 5px;
-  padding-left: 5px;
+  border-radius: 0;
 }
-.form-wrapper label {
+.form-wrapper .form-group label {
   font-size: 12px;
   font-weight: normal;
+  margin-right: 10px;
 }
-.form-wrapper input[type=checkbox] {
-  margin-left: -100px;
-}
-.form-wrapper #login_btn {
-  margin-left: 79px;
+.form-wrapper .form-group #login_btn {
   border-radius: 0;
   font-size: 12px;
   border-color: #489a37;
+  margin-left: 15px;
 }
-.form-wrapper .login-form-bottom {
-  margin-left: 79px;
+#login-warn {
+  display: inline-block;
 }
