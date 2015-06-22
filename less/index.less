@@ -1,0 +1,43 @@
+@header-background-color: #ea556f;
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+header {
+	height: 80px;
+	color: white;
+	background-color: @header-background-color;
+	font-size: 24;
+	width: 100%;
+	text-align: center;
+}
+#main-banner, #cry-out-button {
+	float:left;
+	width: 100px;
+	height: 80px;	
+	line-height: 70px;
+}
+#about-button, #login-button {
+	float: right;
+	width: 100px;
+	height: 80px;
+	line-height: 70px;
+}
+#main-banner {
+	font-style: italic;
+	background-color:#d5445c
+}
+#about-button:hover, #login-button:hover, #cry-out-button:hover {
+	background-color: #e04c65;
+	cursor: pointer;
+	border:1px;
+}
+#main-banner:hover {
+	background-color: #c84157;
+	cursor: pointer;
+	border:1px;
+}
+#page, #main-container, #map-canvas {
+	height: 100%;
+}
