@@ -7,7 +7,7 @@ header {
 	height: 80px;
 	color: white;
 	background-color: #ea556f;
-	font-size: 24;
+	font-size: 16pt;
 	width: 100%;
 	text-align: center;
 }
@@ -36,6 +36,15 @@ header {
 	background-color: #c84157;
 	cursor: pointer;
 	border:1px;
+}
+#login-container {
+	display:none;
+	border: 1px solid red;
+	height: 100%;
+	padding-top: 25px;
+}
+#sign-up-container {
+	display: none;
 }
 #page, #main-container, #map-canvas {
 	height: 100%;
