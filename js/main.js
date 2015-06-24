@@ -112,4 +112,19 @@
         
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    $("#login-button").click(function() {
+        if($("#login-container").css("display") == "none") {
+            $("#login-container").css("display", "block").addClass("col-xs-3");
+            $("#map-canvas").addClass("col-xs-9");
+        } else {
+             $("#login-container").css("display", "none").removeClass("col-xs-3");
+            $("#map-canvas").removeClass("col-xs-9");
+        }
+    });
+    $("#sign-up-button").click(function() {
+            $("#login-container").css("display", "none").removeClass("col-xs-3");
+            $("#sign-up-container").css("display", "block").addClass("col-xs-3");
+    });
+   // loginButtonClick = 
 }(jQuery));
