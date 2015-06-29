@@ -1,16 +1,18 @@
+/*
+* Function which puts validation functions on appropriate fields and buttons.
+*/
+
 function addIvent(){
-    var log_form = $("#login_form")[0];
-    if(log_form){
-        log_form.find('#login_btn').addEventListener("click",function(event){ validation(event)});
-        log_form.find("#email").addEventListener("input", realTimeEmailValid);
-        log_form.find("#password").addEventListener("input", realTimePassValid);
+    if($("#login_form")[0]){
+        $("#login_btn")[0].addEventListener("click",function(event){ validation(event)});
+        $("#email")[0].addEventListener("input", realTimeEmailValid);
+        $("#password")[0].addEventListener("input", realTimePassValid);
     }
-    var sign_form = $("#sign_up_form")[0];
-    if(sign_form){
-        sign_form.find("#signup_btn").addEventListener("click",function(event){ signUpValidation(event)});
-        sign_form.find("#email").addEventListener("input", realTimeEmailValid);
-        sign_form.find("#password").addEventListener("input", realTimePassValid);
-        sign_form.find("#confpass").addEventListener("input", checkConfirm);
+    else if($("#sign_up_form")[0]){
+        $("#signup_btn")[0].addEventListener("click",function(event){ signUpValidation(event)});
+        $("#email")[0].addEventListener("input", realTimeEmailValid);
+        $("#password")[0].addEventListener("input", realTimePassValid);
+        $("#confpass")[0].addEventListener("input", checkConfirm);
     }
 }
 

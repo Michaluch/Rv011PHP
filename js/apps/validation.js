@@ -1,4 +1,6 @@
-
+/*
+* Function which is checking password and e-mail when the login button is pressed.
+*/
 function validation(event){
     if(! validName() || ! validPass()){
         event.preventDefault();
@@ -18,7 +20,10 @@ function validation(event){
     
 }
 
-
+/*
+* Function which is checking value of e-mail field while user is entering data. 
+* If data is not valid - puts red border on field. 
+*/
 function realTimeEmailValid(){
     if(! validName()){
         $('#email')[0].style.border = "0.5px solid red";
@@ -29,6 +34,10 @@ function realTimeEmailValid(){
     }
 }
 
+/*
+* Function which is checking value of password field while user is entering data. 
+* If data is not valid - puts red border on field.
+*/
 function realTimePassValid(){
     if(! validPass()){
         $('#password')[0].style.border = "0.5px solid red";
@@ -40,6 +49,9 @@ function realTimePassValid(){
 }
 
 
+/*
+* Function which checks data of e-mail field by the following pattern.
+*/
 function validName(){
     var email = $('#email')[0].value;
     var filter = /^\w(\w|\.|\-|\_)+@\w+(.(\w)+){0,3}\.(\w){2,6}$/g;
@@ -53,6 +65,10 @@ function validName(){
     }
 }
 
+
+/*
+* Function which checks data of e-mail field by the following pattern.
+*/
 function validPass(){
     var pass = $('#password')[0].value;
     var filter = /^(([\w\W_]+)?[A-Z]([\w\W_]+)?)$/g;
@@ -71,13 +87,19 @@ function validPass(){
     }
 }
 
-
+/*
+* Function which is checking password and e-mail when the sign up button is pressed.
+*/
 function signUpValidation(event){
      if( (! validName() || ! validPass()) || ! confirmPass()){
         event.preventDefault();
      }
 }
 
+
+/*
+* Function which checks value of password and confirmation fields.
+*/
 function confirmPass(){
     if($('#password')[0].value == $('#confpass')[0].value){
         return true;
@@ -87,6 +109,10 @@ function confirmPass(){
     }
 }
 
+
+/*
+* Function which puts red border if confirmation is not valid and green if valid.
+*/
 function checkConfirm(){
      if(! confirmPass()){
         $('#confpass')[0].style.border = "0.5px solid red";
