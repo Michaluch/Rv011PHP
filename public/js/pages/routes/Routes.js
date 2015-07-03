@@ -1,11 +1,12 @@
 define([
 	//libs
-	'backbone'
+	'backbone',
+	'SignInView'
 
 
     ],
 
-    function(Backbone) {
+    function(Backbone, SignInView) {
         return Backbone.Router.extend({
 
 
@@ -22,7 +23,11 @@ define([
             },
 
             register: function() {
-             
+        	console.log('Реєстрація');
+        	if(typeof userView === "undefined"){
+                    signInView = new SignInView();
+                    };
+                signInView.render();
             },
         });
     });
