@@ -1,0 +1,27 @@
+.form-wrapper {
+  width: 300px;
+  margin-left: 30px;
+  font-size: 12px;
+}
+.form-wrapper .form-group input {
+  margin-left: 5px;
+  border-radius: 0;
+}
+.form-wrapper .form-group label {
+  font-size: 12px;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.form-wrapper .form-group #login_btn {
+  border-radius: 0;
+  font-size: 12px;
+  border-color: #489a37;
+  margin-left: 15px;
+}
+#login-warn {
+  display: inline-block;
+}
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
