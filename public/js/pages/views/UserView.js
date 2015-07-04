@@ -1,7 +1,8 @@
 define([
         "underscore",
         "backbone",
-        "jquery"
+        "jquery",
+        "hash"
        
     ],
     function(_, Backbone, $) {

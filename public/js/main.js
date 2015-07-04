@@ -10,6 +10,9 @@ requirejs.config({
         markerClusterer : 'libs/gmaps/markerclusterer',
         backbone        : 'libs/backbone/backbone',
         fonts           : '../css/font-awesome/css/font-awesone.min', 
+        // Libs for hash
+        hash            : 'libs/encrypt/sha512',
+        //'http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512',
 
         //models
         User            : 'pages/models/User',
@@ -17,10 +20,10 @@ requirejs.config({
         AppRouter       : 'pages/routes/Routes'
     },
 });
-
+    
 require(["application"],
     function(application) {
        application.start();
     }
 );
-
+    
