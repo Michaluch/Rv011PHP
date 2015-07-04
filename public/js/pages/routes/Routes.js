@@ -1,18 +1,19 @@
 define([
 	//libs
+    'jquery',
+    'bootstrap',
 	'backbone',
-	'SignInView'
+    //deps
+	'SignInView',
+    'Users',
+    
 
 
     ],
 
-<<<<<<< HEAD
-    function(Backbone) {
-        return Backbone.Router.extend({ 
-=======
-    function(Backbone, SignInView) {
+    function($,boot,Backbone, SignInView,Users) {
         return Backbone.Router.extend({
->>>>>>> 9a58b583d2140075dd136979501304b370c1b804
+
 
 
             routes: {
@@ -30,7 +31,7 @@ define([
             register: function() {
         	console.log('Реєстрація');
         	if(typeof userView === "undefined"){
-                    signInView = new SignInView();
+                    signInView = new SignInView({collection :new Users});
                     };
                 signInView.render();
             },

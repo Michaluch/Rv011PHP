@@ -17,6 +17,7 @@ requirejs.config({
 
         //models
         User            : 'pages/models/User',
+        Users           : 'pages/collections/Users', 
         UserView        : 'pages/views/UserView',
         SignInView      : 'pages/views/SignInView',
         AppRouter       : 'pages/routes/Routes'

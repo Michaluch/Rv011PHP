@@ -1,17 +1,17 @@
 define([
+        //libs
+        'jquery',
+        'bootstrap', 
         //dep 
-        "AppRouter",
-        "hash"
+        'AppRouter',
+        'hash'
     ],
 
-    function(AppRouter,h) {
+    function($,boot,AppRouter,h) {
         var _public={};
         _public.start =  function  () {
             router = new AppRouter();
             Backbone.history.start();
-            var str= "Hello world";
-            var hash = CryptoJS.SHA512("str");
-            alert(hash);
         }
        
     return _public; 

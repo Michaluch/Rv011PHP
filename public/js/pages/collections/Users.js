@@ -2,12 +2,11 @@ define([
 	//libs
 	'backbone',
   //deps
-  'User'
+    'User'
 ], function  (Backbone,User) {
 	var Collection = Backbone.Collection.extend({
 		model  :User,
-   
-	})
+	});
 	return Collection;
 }
 )
