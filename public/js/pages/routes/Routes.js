@@ -6,9 +6,8 @@ define([
 
     ],
 
-    function(Backbone, SignInView, LoginView) {
+        function(Backbone, SignInView, LoginView) {
         return Backbone.Router.extend({
-
 
             routes: {
                 "": "index",

@@ -1,17 +1,20 @@
 define([
         //dep 
-        "AppRouter"
+        "AppRouter",
+        "hash"
     ],
 
-    function(AppRouter) {
+    function(AppRouter,h) {
         var _public={};
         _public.start =  function  () {
             router = new AppRouter();
             Backbone.history.start();
-            alert(router.toJSON);
+            var str= "Hello world";
+            var hash = CryptoJS.SHA512("str");
+            alert(hash);
         }
        
-        return _public; 
-        
+    return _public; 
+            
     }
 );

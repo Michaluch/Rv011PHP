@@ -11,7 +11,9 @@ requirejs.config({
         backbone        : 'libs/backbone/backbone',
         text            : 'libs/requirejs/text',
         fonts           : '../css/font-awesome/css/font-awesone.min', 
-        images: '',
+        hash            : 'libs/encrypt/sha512',
+        images          : '',
+
 
         //models
         User            : 'pages/models/User',
@@ -20,10 +22,10 @@ requirejs.config({
         AppRouter       : 'pages/routes/Routes'
     },
 });
-
+    
 require(["application"],
     function(application) {
        application.start();
     }
 );
-
+    
