@@ -5,27 +5,26 @@ define([
 	'backbone',
     //deps
 	'SignInView',
-    'Users',
-    
-
+    "pages/views/LoginView",
+    'Users'
 
     ],
 
-    function($,boot,Backbone, SignInView,Users) {
+        function($,boot,Backbone, SignInView, LoginView,Users) {
         return Backbone.Router.extend({
-
-
 
             routes: {
                 "": "index",
-                "register": "register",
+                "register": "register"
                
             },
 
 
             index: function() {
-              
-              
+            if(typeof loginView==="undefined"){
+                loginView=new LoginView();
+                };
+                loginView.render(); 
             },
 
             register: function() {
