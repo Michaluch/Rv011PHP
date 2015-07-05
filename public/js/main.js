@@ -13,8 +13,11 @@ requirejs.config({
         fonts           : '../css/font-awesome/css/font-awesone.min', 
         hash            : 'libs/encrypt/sha512',
         images          : '',
-
-
+        //I've added other our scripts, but I am not sure
+        main            : 'apps/main.js',
+        valid           : 'apps/addValid.js',
+        validation      : 'apps/validation.js',
+        signinform      : 'apps/signform.js',
         //models
         User            : 'pages/models/User',
         UserView        : 'pages/views/UserView',

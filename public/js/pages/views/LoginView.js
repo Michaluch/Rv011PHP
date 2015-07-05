@@ -6,7 +6,7 @@ define([
     ],
     function(_, Backbone, $, LoginTemplate){
         return Backbone.View.extend({
-        el:$("#content"),
+        el:$("#login-container"),
          initialize:function(){
             
          },
