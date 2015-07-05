@@ -7,8 +7,7 @@ define([
     ], function  (Backbone, HASH) {
         var Model = Backbone.Model.extend({
         defaults: {
-            id          :0,
-            name:       :"NoName",	
+            id          :0,	
             email       :"test@test.com",
             password    :"",
             facebook_id :"",
@@ -22,7 +21,7 @@ define([
         initialize: function(){
             
         },
-        
+
         });
     return Model;
     }
