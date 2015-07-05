@@ -4,10 +4,10 @@ define([
         'bootstrap', 
         //dep 
         'AppRouter',
-        'hash'
+       
     ],
 
-    function($,boot,AppRouter,h) {
+    function($,boot,AppRouter) {
         var _public={};
         _public.start =  function  () {
             router = new AppRouter();
