@@ -47,7 +47,6 @@ header {
 #map-canvas {
   height: 100%;
 }
-#login-container,
-#sign-up-container {
-  display: none;
+#sidebar{
+  display:block;
 }

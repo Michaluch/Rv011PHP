@@ -6,12 +6,14 @@ define([
     ],
     function(_, Backbone, $, LoginTemplate){
         return Backbone.View.extend({
-        el:$("#login-container"),
+        el:$("#sidebar"),
          initialize:function(){
             
          },
   
          render:function(){
+            this.$el.css("display", "block").addClass("col-xs-3");
+             $("#map-canvas").addClass("col-xs-9");
             this.$el.html(LoginTemplate);
          }
        });

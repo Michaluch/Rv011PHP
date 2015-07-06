@@ -15,16 +15,13 @@ define([
 
             routes: {
                 "": "index",
-                "register": "register"
-               
+                "register": "register",
+                "login":"login"
             },
 
 
             index: function() {
-            if(typeof loginView==="undefined"){
-                loginView=new LoginView();
-                };
-                loginView.render(); 
+
             },
 
             register: function() {
@@ -34,5 +31,13 @@ define([
                     };
                 signInView.render();
             },
+
+            login: function(){
+                console.log('Login');
+                if(typeof loginView==="undefined"){
+                loginView=new LoginView();
+                };
+                loginView.render(); 
+            }
         });
     });
