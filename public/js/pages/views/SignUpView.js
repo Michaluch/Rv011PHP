@@ -2,13 +2,13 @@ define([
         "underscore",
         "backbone",
         "jquery",
-        "text!pages/templates/SignInFormTemplate.html",
+        "text!pages/templates/SignUpFormTemplate.html",
         "User",
         "hash",
         "bootstrap"
        
     ],
-    function(_, Backbone, $, SignInFormTemplate,User,hash,boot) {
+    function(_, Backbone, $, SignUpFormTemplate,User,hash,boot) {
         var View = Backbone.View.extend({
             el: $('#sidebar'), 
             initialize: function(){	
@@ -16,8 +16,8 @@ define([
             },
             
             render: function() {
-        	var template = _.template(SignInFormTemplate);
-                this.$el.html(SignInFormTemplate);
+        	var template = _.template(SignUpFormTemplate);
+                this.$el.html(SignUpFormTemplate);
             },
 
             events: {
