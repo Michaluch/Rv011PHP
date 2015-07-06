@@ -14,7 +14,8 @@ requirejs.config({
         hash            : 'libs/encrypt/sha512',
         images          : '',
         //I've added other our scripts, but I am not sure
-        main            : 'apps/main.js',
+        //main            : 'apps/main.js',
+        application     : 'application',
         valid           : 'apps/addValid.js',
         validation      : 'apps/validation.js',
         signinform      : 'apps/signform.js',

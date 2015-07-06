@@ -4,7 +4,7 @@ define([
     'bootstrap',
 	'backbone',
     //deps
-	'SignInView',
+	'SignUpView',
     "pages/views/LoginView",
     'Users'
 
