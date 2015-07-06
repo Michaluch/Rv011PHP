@@ -23,7 +23,7 @@ requirejs.config({
         User            : 'pages/models/User',
         Users           : 'pages/collections/Users', 
         UserView        : 'pages/views/UserView',
-        SignInView      : 'pages/views/SignInView',
+        SignUpView      : 'pages/views/SignUpView',
         AppRouter       : 'pages/routes/Routes'
     },
 });
