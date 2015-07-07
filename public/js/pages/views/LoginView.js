@@ -33,7 +33,7 @@ define([
                 document.login_form.submit();
             };
         });
-        */
         }
+        */
        });
        });        
