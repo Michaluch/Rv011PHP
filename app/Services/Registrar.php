@@ -1,6 +1,6 @@
-<?php namespace Test\Services;
+<?php namespace App\Services;
 
-use Test\User;
+use App\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
