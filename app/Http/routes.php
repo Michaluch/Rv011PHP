@@ -26,3 +26,27 @@ Route::get('get/{id}', function($id){
     return 'Hello world this is test';
   }
 })->where('id', '^\d{2}-\d{2}-\d{4}$');
+
+Route::get('fb', function ($facebook = "facebook")
+{
+    $provider = \Socialize::with($facebook);      
+    if (Input::has('code'))
+    {
+        $user = $provider->user();
+        return var_dump($user);
+    } else {
+        return $provider->scopes(['email'])->redirect();
+    }
+});
+
+Route::get('gp', function ($google = "google")
+{
+    $provider = \Socialize::with($google);      
+    if (Input::has('code'))
+    {
+        $user = $provider->user();
+        return var_dump($user);
+    } else {
+        return $provider->scopes(['email'])->redirect();
+    }
+});

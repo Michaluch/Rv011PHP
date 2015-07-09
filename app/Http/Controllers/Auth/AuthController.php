@@ -79,4 +79,8 @@ class AuthController extends Controller {
 				}
 	}
 
+	public function postLogged()
+	{
+		return (int)$this->auth->check();
+	}
 }
