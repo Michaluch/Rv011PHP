@@ -24,7 +24,8 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected function excludedRoutes($request)  
 {
     $routes = [
-            'auth/login'
+            'auth/login',
+            'auth/register'
     ];
 
     foreach($routes as $route)

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -16,13 +16,23 @@ class Users extends Model implements AuthenticatableContract, CanResetPasswordCo
      * @var string
      */
     protected $table = 'Users';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'email',
+        'password',   
+        'facebook_id,',
+        'google_id',  
+        'role_id',   
+        'status_id', 
+        'avatar_url', 
+        'language_id' 
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

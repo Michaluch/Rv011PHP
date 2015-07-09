@@ -14,6 +14,7 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+Route::any('/auth/register', 'UserController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -26,3 +27,5 @@ Route::get('get/{id}', function($id){
     return 'Hello world this is test';
   }
 })->where('id', '^\d{2}-\d{2}-\d{4}$');
+
+
