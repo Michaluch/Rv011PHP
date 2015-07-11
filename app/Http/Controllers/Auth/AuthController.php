@@ -78,9 +78,17 @@ class AuthController extends Controller {
 					]);
 				}
 	}
+	public function postLogout()
+	{
+		$this->auth->logout();
+		$result=array(
+			'status' => 'ok'
+			);
+		return $result;
+	}
 
 	public function postLogged()
 	{
-		return (int)$this->auth->check();
+		return array('user' => $this->auth->user());
 	}
 }

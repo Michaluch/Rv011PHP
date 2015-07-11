@@ -20,6 +20,10 @@ header a:hover {
   color: #ffffff;
   text-decoration: none;
 }
+header a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
 #main-banner,
 #cry-out-button {
   float: left;
@@ -28,7 +32,8 @@ header a:hover {
   line-height: 70px;
 }
 #about-button,
-#login-button {
+#login-button,
+#logout-button {
   float: right;
   width: 100px;
   height: 80px;
@@ -40,7 +45,8 @@ header a:hover {
 }
 #about-button:hover,
 #login-button:hover,
-#cry-out-button:hover {
+#cry-out-button:hover,
+#logout-button:hover {
   background-color: #e04c65;
   cursor: pointer;
   border: 1px;

@@ -6,11 +6,12 @@ define([
     //deps
 	'SignUpView',
     "pages/views/LoginView",
-    'Users'
+    'Users',
+    'UserView'
 
     ],
 
-        function($,boot,Backbone, SignInView, LoginView,Users) {
+    function($,boot,Backbone, SignInView, LoginView, Users, UserView) {
         return Backbone.Router.extend({
 
             routes: {
@@ -21,12 +22,11 @@ define([
 
 
             index: function() {
-
             },
 
             register: function() {
-        	console.log('Реєстрація');
-        	if(typeof userView === "undefined"){
+            	console.log('Реєстрація');
+            	if(typeof userView === "undefined"){
                     signInView = new SignInView({collection :new Users});
                     };
                 signInView.render();
@@ -35,7 +35,7 @@ define([
             login: function(){
                 console.log('Login');
                 if(typeof loginView==="undefined"){
-                loginView=new LoginView();
+                    loginView=new LoginView();
                 };
                 loginView.render(); 
             }

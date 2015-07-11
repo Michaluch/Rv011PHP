@@ -24,7 +24,8 @@ requirejs.config({
         Users           : 'pages/collections/Users', 
         UserView        : 'pages/views/UserView',
         SignUpView      : 'pages/views/SignUpView',
-        AppRouter       : 'pages/routes/Routes'
+        AppRouter       : 'pages/routes/Routes',
+        SessionModel    : 'pages/models/SessionModel'
     },
 });
     

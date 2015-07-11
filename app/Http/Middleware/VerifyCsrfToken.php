@@ -25,7 +25,8 @@ class VerifyCsrfToken extends BaseVerifier {
 {
     $routes = [
             'auth/login',
-            'auth/logged'
+            'auth/logged',
+            'auth/logout'
     ];
 
     foreach($routes as $route)

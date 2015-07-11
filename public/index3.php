@@ -16,8 +16,7 @@
 		<div id="main-banner" class="header-elements"><span>bawl</span></div>
 		<div id="cry-out-button" class="header-elements"><span>Cry out</span></div>
 		<div id="about-button" class="header-elements"><span>About</span></div>
-		<div id="logout-button" class="header-elements" ><span><a href="#" id="logout-btn">Logout</a></span></div>
-		<div id="login-button" class="header-elements" ><span><a href="#login">Login</a></span></div>		
+		<div id="login-button" class="header-elements" ><span><a href="#login">Login</a></span></div>
 	</header>
 	<div id="main-container" class="row">
 		<div id="map-canvas"></div>

@@ -1,14 +1,14 @@
-
 define([
 //libs
 //
+    "underscore",
     'backbone',
     'hash'
-    ], function  (Backbone, HASH) {
-        var Model = Backbone.Model.extend({
+    ], function  (_, Backbone, HASH) {
+        var User = Backbone.Model.extend({
         defaults: {
             id          :0,	
-            email       :"test@test.com",
+            email       :"",
             password    :"",
             facebook_id :"",
             google_id   :"",
@@ -17,12 +17,15 @@ define([
             avatar_url  :"",
             language_id :0
         },
-        url:"/user",
+
         initialize: function(){
-            
+         //   _.bindAll(this);
         },
 
+        url:"/user",
+
+
         });
-    return Model;
+    return User;
     }
 )
