@@ -32,27 +32,23 @@ class UserController extends Controller {
 		//dd(request);
 	
 			//throw 
-		Users::create(array (
-            "email"       =>$request->email,
-			"password"    =>"bla",
-            "facebook_id" =>"",
-            "google_id"   =>"",
-            "role_id"     =>1,
-            "status_id"   =>1,
-            "avatar_url"  =>"",
-            "language_id" =>1
-			)); 
-	
-		
-	
-		
-		
-		
-			$result = array(
-				'status' => 'error',
-				'errors' => 'hi'//$this->getFailedLoginMessage(),
-				);
-			return $result; 
+			try {
+			   Users::create(array (
+               "email"       =>$request->email,
+			   "password"    =>$request->password,
+               "facebook_id" =>"",
+               "google_id"   =>"",
+               "role_id"     =>1,
+               "status_id"   =>1,
+               "avatar_url"  =>"",
+               "language_id" =>1
+			   )); 
+			}
+			catch (Exception $e) {
+				
+			}	
+			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully'],200);
+			
 		
 	}
 
