@@ -2,7 +2,9 @@ define([
     "underscore",
     "backbone",
     "jquery",
-    "text!pages/templates/LoginTemplate.html"
+    "text!pages/templates/LoginTemplate.html",
+    "validation",
+    "valid"
     ],
     function(_, Backbone, $, LoginTemplate){
         return Backbone.View.extend({

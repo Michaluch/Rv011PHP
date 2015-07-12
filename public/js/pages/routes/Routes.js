@@ -7,11 +7,13 @@ define([
 	'SignUpView',
     "pages/views/LoginView",
     'Users',
-    'UserView'
+    'UserView',
+    'HeaderView',
+    "SessionModel"
 
     ],
 
-    function($,boot,Backbone, SignInView, LoginView, Users, UserView) {
+    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel) {
         return Backbone.Router.extend({
 
             routes: {
@@ -22,11 +24,10 @@ define([
 
 
             index: function() {
-                console.log('Logout');
-                if(typeof userView==="undefined"){
-                    userView=new UserView();
-                };
-                userView.render(); 
+                if(!this.HeaderView){
+                    this.HeaderView=new HeaderView({});
+                    this.HeaderView.setElement($("header")).render();
+                }
             },
 
             register: function() {
@@ -38,11 +39,16 @@ define([
             },
 
             login: function(){
+                if(session.get("logged_in")===false){
                 console.log('Login');
                 if(typeof loginView==="undefined"){
                     loginView=new LoginView();
                 };
-                loginView.render(); 
+                loginView.render();
+                }
+                else{
+                window.location.href="/public/index3.html";
+                }
             }
         });
     });
