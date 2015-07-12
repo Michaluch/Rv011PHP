@@ -27,7 +27,9 @@ requirejs.config({
         SignUpView      : 'pages/views/SignUpView',
         AppRouter       : 'pages/routes/Routes',
         SessionModel    : 'pages/models/SessionModel',
-        HeaderView      : 'pages/views/HeaderView'
+        HeaderView      : 'pages/views/HeaderView',
+        CryOutView      : 'pages/views/CryOutView',
+        Issue           : 'pages/models/Issue',
     },
 });
     

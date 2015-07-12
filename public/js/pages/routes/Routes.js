@@ -9,17 +9,18 @@ define([
     'Users',
     'UserView',
     'HeaderView',
-    "SessionModel"
-
+    "SessionModel",
+    "CryOutView"
     ],
 
-    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel) {
+    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel, CryOutView) {
         return Backbone.Router.extend({
 
             routes: {
                 "": "index",
                 "register": "register",
-                "login":"login"
+                "login":"login",
+                "issue": "issue",
             },
 
 
@@ -31,23 +32,38 @@ define([
             },
 
             register: function() {
-            	console.log('Реєстрація');
-            	if(typeof userView === "undefined"){
+                console.log('Реєстрація');
+                if(typeof userView === "undefined"){
                     signInView = new SignInView({collection :new Users});
-                    };
+                };
                 signInView.render();
             },
-
+            
+            issue: function(){
+                var oCryOutView = null;
+                console.log('New issue');
+                if(typeof CryOutView !== "undefined"){
+                    if (CryOutView instanceof Backbone.View){
+                        oCryOutView = CryOutView;
+                    } else {
+                        console.log(123);
+                        oCryOutView = new CryOutView();
+                    }
+                    console.log(oCryOutView);
+                oCryOutView.render();
+                }
+            },
+            
             login: function(){
                 if(session.get("logged_in")===false){
-                console.log('Login');
-                if(typeof loginView==="undefined"){
-                    loginView=new LoginView();
-                };
-                loginView.render();
+                    console.log('Login');
+                    if(typeof loginView==="undefined"){
+                        loginView=new loginView();
+                    };
+                    loginView.render();
                 }
                 else{
-                window.location.href="/public/index3.html";
+                    window.location.href="/public/index3.html";
                 }
             }
         });
