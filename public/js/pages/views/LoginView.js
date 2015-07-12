@@ -15,8 +15,7 @@ define([
          },
   
          render:function(){
-            this.$el.css("display", "block").addClass("col-xs-3");
-             $("#map-canvas").addClass("col-xs-9");
+            sidebar.turnOn();
             this.$el.html(LoginTemplate);
          },
 
