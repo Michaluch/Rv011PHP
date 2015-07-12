@@ -58,7 +58,7 @@ define([
                 if(session.get("logged_in")===false){
                     console.log('Login');
                     if(typeof loginView==="undefined"){
-                        loginView=new loginView();
+                        loginView=new LoginView();
                     };
                     loginView.render();
                 }
