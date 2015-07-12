@@ -55,3 +55,4 @@ Route::get('gp', function ($google = "google")
 });
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
+Route::resource('issue', 'IssueController');

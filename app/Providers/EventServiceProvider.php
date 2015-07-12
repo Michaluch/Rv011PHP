@@ -2,6 +2,8 @@
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use App\Models\Issues as Issues;
+use App\Observers\IssuesObserver as IssueObserver;
 
 class EventServiceProvider extends ServiceProvider {
 
@@ -25,6 +27,7 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
+		Issues::observe( new IssueObserver );
 
 		//
 	}

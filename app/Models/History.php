@@ -1,14 +1,9 @@
-<?php namespace App;
+<?php namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class History extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class History extends Model {
 
-    use Authenticatable, CanResetPassword;
 
     /**
      * The database table used by the model.
@@ -23,7 +18,14 @@ class History extends Model implements AuthenticatableContract, CanResetPassword
      * @var array
      */
    // protected $fillable = ['name', 'email', 'password'];
-
+    public function issue()
+    {
+    	return $this->hasOne('App\Models\Issues', 'id');
+    }
+    public function status()
+    {
+    	return $this->hasOne('App\Models\IssueStatus', 'id');
+    }
    
 
 }

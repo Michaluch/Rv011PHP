@@ -1,14 +1,8 @@
-<?php namespace App;
+<?php namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Issues extends Model implements AuthenticatableContract, CanResetPasswordContract {
-
-    use Authenticatable, CanResetPassword;
+class Issues extends Model {
 
     /**
      * The database table used by the model.
@@ -16,15 +10,26 @@ class Issues extends Model implements AuthenticatableContract, CanResetPasswordC
      * @var string
      */
     protected $table = 'Issues';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'map_pointer'];
-
-   
-
-
+    //protected $fillable = ['name', 'description', 'map_pointer'];
+    public function category()
+    {
+    	return $this->hasOne('App\Models\IssuesCategory', 'id');
+    }
+    
+    public function attachments()
+    {
+    	return $this->hasMany('App\Models\Attachments', 'issue_id');
+    }
+    
+    public function history()
+    {
+    	return $this->hasOne('App\Models\History', 'issue_id');
+    }
 }
