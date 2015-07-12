@@ -5,14 +5,16 @@ define([
         "text!pages/templates/SignUpFormTemplate.html",
         "User",
         "hash",
-        "bootstrap"
+        "bootstrap",
+        "signinform"
        
     ],
-    function(_, Backbone, $, SignUpFormTemplate,User,hash,boot) {
+    function(_, Backbone, $, SignUpFormTemplate,User,hash,boot,signinform) {
         var View = Backbone.View.extend({
             el: $('#sidebar'), 
             initialize: function(){	
                 //console.log(this.collection.toJSON());
+                
             },
             
             render: function() {
@@ -21,26 +23,49 @@ define([
             },
 
             events: {
-                'submit' : 'addUser'
+                'submit' : 'addUser',
+                'change input#imgInp': 'setAvatar'
+
+                
+                
             },
 
-            
+            setAvatar: function(){
+                readURL(this.$("#imgInp"));
+            },
+
 
             addUser: function  (e) {
                 e.preventDefault(); // reset default settings
                 var hash = CryptoJS.SHA512(this.$('#password').val());
+               
+                // Backbone.emulateHTTP = true ;
                 // create send model to server
+            
+    
                 this.collection.create({
-                id          :0,  
-                email       :this.$('#email').val(),
-                password    :hash,
-                //facebook_id :this.$('#').val(),
-                //google_id   :this.$('#').val(),
-                role_id     :0,
-                status_id   :0,
-                avatar_url  :this.$('#imgInp').val(),
-                language_id :0
-                });         
+                    email       :this.$('#email').val(),
+                    password    :hash.toString(),
+                    avatar_url  :this.$('#imgInp').val()
+                    //,}, 
+                    //{   
+                    //    success: function (model, response) {
+                    //    console.log("success");
+                    //    },
+                    //    error: function (model, response) {
+                    //    console.log("error");
+                    //    }
+                    //}
+                    }, {
+                        success:function(model,response){
+                            alert(response.message);
+                        },
+                        error:function(model,response){     
+                            var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
+                            alert(obj.message);
+                        } 
+                    }); 
+      
             }
         });
     return View;

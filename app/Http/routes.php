@@ -14,6 +14,7 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+Route::any('/auth/register', 'UserController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

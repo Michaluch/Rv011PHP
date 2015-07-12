@@ -16,9 +16,9 @@ requirejs.config({
         //I've added other our scripts, but I am not sure
         //main            : 'apps/main.js',
         application     : 'application',
-        valid           : 'apps/addValid.js',
-        validation      : 'apps/validation.js',
-        signinform      : 'apps/signform.js',
+        valid           : 'apps/addValid',
+        validation      : 'apps/validation',
+        signinform      : 'apps/signform',
         //models
         User            : 'pages/models/User',
         Users           : 'pages/collections/Users', 

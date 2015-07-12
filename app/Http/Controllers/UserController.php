@@ -1,85 +1,99 @@
 <?php namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models\Users;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 class UserController extends Controller {
-
-    /**
-     * [index description]
-     * Fetch all user from DB
-     * @return [type] [description]
-     * json all users attr
-     */
-    public function index()
-    {
-        /**
-         * Fetch all Users from DB
-         */
-        $fetchedAllUsers=User::all();
-        $fetchedAllAttributes=array();
-        /**
-         * As we fetched not necessery data, lets take
-         * onle attr
-         */
-        foreach ($fetchedAllUsers as $model) {
-            $fetchedAllAttributes[]=$model->attributes;
-        }
-        
-        return json_encode($fetchedAllAttributes);
-    }
-
-    /**
-     * Show the profile for the given user.
-     */
-    public function showProfile($id)
-    {
-        $user = User::find($id);
-
-        return View::make('user.profile', array('user' => $user));
-    }
-
-    /**
-    * 
-    */
-    public function createUser()
-    {
-        //$input = Input::json();
-        $salt = function ()
-            {
-               return 0;
-            };
-        $passw = function ()
-            {
-                return 0;
-            };
-            User::create(array(
-                
-                'email'      =>'TEST@DD.DD', //=>$input->email,
-                'password'   =>'TEST', //=>$input->password,
-                'facebook_id'=>'TEST', //=>$input->facebook_id,
-                'google_id'  =>'TEST', //=>$input->google_id  ,
-                'role_id'    =>1, //=>1,
-                'status_id'  =>1, //=>1,
-                'avatar_url' =>'TEST', //=>$input->avatar_url ,
-                'language_id'=>1, //=>1,
-                'salt'       =>'TEST' //=>"blabla"       
-        ));
-    }
-  /**
-   * 
-   */
-    public function editUser($id)
-    {
-        $user = User::find($id);
-        return View::make('user.profile', array('user' => $user));
-    }
-   /**
-     * 
-     */
-
-
-    public function hi()
-    {
-        return 'hi';
-    }
-
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$fetchAll = Users::all();
+		$fetchAllAttr = array ();
+		foreach ($fetchAll as $model) {
+			$fetchAllAttr[]=$model->attriutes;
+		}
+		return json_encode($fetchAll);
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create(Request $request)
+	{
+		//dd(request);
+	
+			//throw 
+			try {
+			   Users::create(array (
+               "email"       =>$request->email,
+			   "password"    =>$request->password,
+               "facebook_id" =>"",
+               "google_id"   =>"",
+               "role_id"     =>1,
+               "status_id"   =>1,
+               "avatar_url"  =>"",
+               "language_id" =>1
+			   )); 
+			}
+			catch (Exception $e) {
+				
+			}	
+			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully'],200);
+			
+		
+	}
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
+	}
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
 }

@@ -16,9 +16,9 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('email',80)->unique();
-			$table->string('password', 256);
+			$table->string('password', 550);
 			$table->string('facebook_id',256)->nullable()->default(null);
-			$table->string('googlek_id',256)->nullable()->default(null);
+			$table->string('google_id',256)->nullable()->default(null);
 			$table->integer('role_id')->unsigned();
 			$table->integer('status_id')->unsigned();
 			$table->string('avatar_url',500)->nullable()->default(null);

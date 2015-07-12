@@ -1,31 +1,28 @@
+
 define([
 //libs
 //
-    "underscore",
     'backbone',
     'hash'
-    ], function  (_, Backbone, HASH) {
-        var User = Backbone.Model.extend({
+    ], function  (Backbone, HASH) {
+        var Model = Backbone.Model.extend({
         defaults: {
-            id          :0,	
-            email       :"",
+            id          :null,	
+            email       :"test@test.com",
             password    :"",
-            facebook_id :"",
-            google_id   :"",
-            role_id     :0,
-            status_id   :0,
+            facebook_id :null,
+            google_id   :null,
+            role_id     :null,
+            status_id   :null,
             avatar_url  :"",
-            language_id :0
+            language_id :null
         },
-
+        urlRoot:"/auth/register",
         initialize: function(){
-         //   _.bindAll(this);
+            
         },
-
-        url:"/user",
-
 
         });
-    return User;
+    return Model;
     }
 )
