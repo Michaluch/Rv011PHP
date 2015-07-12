@@ -1,3 +1,4 @@
+if (typeof DEBUG==="undefined") DEBUG=true;
 requirejs.config({
     baseUrl: "js",
     waitSeconds: 200,

@@ -22,6 +22,11 @@ define([
 
 
             index: function() {
+                console.log('Logout');
+                if(typeof userView==="undefined"){
+                    userView=new UserView();
+                };
+                userView.render(); 
             },
 
             register: function() {

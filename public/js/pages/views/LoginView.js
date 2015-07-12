@@ -24,7 +24,7 @@ define([
 
         logIn:function(e){
         e.preventDefault();
-        console.log("login");
+        if(DEBUG) console.log("login");
         var email=$("input[name=email]").val();
         var password=$("input[name=password]").val();
         $.post("/auth/login", {email:email, password:password, remember:true},function(data){
