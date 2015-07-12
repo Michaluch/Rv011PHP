@@ -31,7 +31,8 @@ class Users extends Model implements AuthenticatableContract, CanResetPasswordCo
         'role_id',   
         'status_id', 
         'avatar_url', 
-        'language_id' 
+        'language_id',
+        'salt' 
     ];
 
     /**

@@ -36,10 +36,10 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		 if($request->route()->getAction()["controller"] == "App\Http\Controllers\UserController@create"){
-        return response()->json(["code" =>"11400", "message" => "Sorry operation is failed"],400);
-    	}
-    	else
+		// if($request->route()->getAction()["controller"] == "App\Http\Controllers\UserController@create"){
+        //return response()->json(["code" =>"11400", "message" => "Sorry operation is failed"],400);
+    	//}
+    	//else
 		return parent::render($request, $e);
 	}
 

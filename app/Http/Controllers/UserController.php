@@ -3,6 +3,7 @@ use App\Models\Users;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller {
 	/**
 	 * Display a listing of the resource.
@@ -26,18 +27,20 @@ class UserController extends Controller {
 	public function create(Request $request)
 	{
 		//dd(request);
-	
+		$salt=str_random(8);
+		$pass=Hash::make($request->password.$salt);
 			//throw 
 			try {
 			   Users::create(array (
                "email"       =>$request->email,
-			   "password"    =>$request->password,
+			   "password"    =>$pass,
                "facebook_id" =>"",
                "google_id"   =>"",
                "role_id"     =>1,
                "status_id"   =>1,
                "avatar_url"  =>"",
-               "language_id" =>1
+               "language_id" =>1,
+               "salt"		 =>$salt
 			   )); 
 			}
 			catch (Exception $e) {
