@@ -2,7 +2,9 @@ define([
     "underscore",
     "backbone",
     "jquery",
-    "text!pages/templates/LoginTemplate.html"
+    "text!pages/templates/LoginTemplate.html",
+    "validation",
+    "valid"
     ],
     function(_, Backbone, $, LoginTemplate){
         return Backbone.View.extend({
@@ -15,8 +17,7 @@ define([
          },
   
          render:function(){
-            this.$el.css("display", "block").addClass("col-xs-3");
-             $("#map-canvas").addClass("col-xs-9");
+            sidebar.turnOn();
             this.$el.html(LoginTemplate);
          },
 
@@ -24,7 +25,7 @@ define([
 
         logIn:function(e){
         e.preventDefault();
-        console.log("login");
+        if(DEBUG) console.log("login");
         var email=$("input[name=email]").val();
         var password=$("input[name=password]").val();
         $.post("/auth/login", {email:email, password:password, remember:true},function(data){

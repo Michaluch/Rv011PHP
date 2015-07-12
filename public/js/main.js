@@ -1,3 +1,4 @@
+if (typeof DEBUG==="undefined") DEBUG=true;
 requirejs.config({
     baseUrl: "js",
     waitSeconds: 200,
@@ -25,7 +26,8 @@ requirejs.config({
         UserView        : 'pages/views/UserView',
         SignUpView      : 'pages/views/SignUpView',
         AppRouter       : 'pages/routes/Routes',
-        SessionModel    : 'pages/models/SessionModel'
+        SessionModel    : 'pages/models/SessionModel',
+        HeaderView      : 'pages/views/HeaderView'
     },
 });
     

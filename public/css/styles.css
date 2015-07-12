@@ -33,7 +33,8 @@ header a:visited {
 }
 #about-button,
 #login-button,
-#logout-button {
+#logout-button,
+#profile {
   float: right;
   width: 100px;
   height: 80px;
@@ -46,7 +47,8 @@ header a:visited {
 #about-button:hover,
 #login-button:hover,
 #cry-out-button:hover,
-#logout-button:hover {
+#logout-button:hover,
+#profile:hover {
   background-color: #e04c65;
   cursor: pointer;
   border: 1px;
