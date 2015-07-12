@@ -1,0 +1,50 @@
+
+
+
+
+<div id="cry-out-container">
+  <h1>Додати проблему</h1>
+  <div class="text-center">
+    <ul class="nav nav-tabs center-pills" role="tablist">
+      <li role="presentation" class="active"><a href="#point" aria-controls="home" role="tab" data-toggle="tab">Точка</a></li>
+      <li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Опис</a></li>
+      <li role="presentation"><a href="#photo" aria-controls="messages" role="tab" data-toggle="tab">Фото</a></li>
+    </ul>
+  </div>
+ 
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="point">
+      <p>Відмітьте на карті місце розташування проблеми</p>
+      <button>Далі</button>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="description">
+      <div class="form-group">
+      <label for="issue-name">Коротка назва проблеми</label>
+      <input type="text" id="issue-name" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="issue-type">Tип проблеми</label>
+      <input type="text" id="issue-type" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="issue-description">Опис проблеми</label>
+      <input type="text" id="issue-description" class="form-control">
+      </div>
+      <div class="form-group">
+      <label for="issue-recomendations">Пропозиції щодо вирішення</label>
+      <input type="text" id="issue-recomendations" class="form-control">
+      </div>
+      <div class="form-group">
+      <button>Далі</button>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="photo">
+      <p id="photo-container">Клікніть або перенесіть фото, щоб завантажити</p>
+      <button id="add-photo-button">Додати</button>
+    </div>
+  </div>
+</div>
