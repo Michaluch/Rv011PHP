@@ -14,7 +14,9 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
-Route::any('/auth/register', 'UserController@create');
+Route::post('/auth/register', 'UserController@create');
+
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -51,3 +53,5 @@ Route::get('gp', function ($google = "google")
         return $provider->scopes(['email'])->redirect();
     }
 });
+
+Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');

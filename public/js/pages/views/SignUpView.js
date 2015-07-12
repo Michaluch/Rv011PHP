@@ -25,9 +25,7 @@ define([
             events: {
                 'submit' : 'addUser',
                 'change input#imgInp': 'setAvatar'
-
-                
-                
+      
             },
 
             setAvatar: function(){
@@ -38,24 +36,10 @@ define([
             addUser: function  (e) {
                 e.preventDefault(); // reset default settings
                 var hash = CryptoJS.SHA512(this.$('#password').val());
-               
-                // Backbone.emulateHTTP = true ;
-                // create send model to server
-            
-    
                 this.collection.create({
                     email       :this.$('#email').val(),
                     password    :hash.toString(),
                     avatar_url  :this.$('#imgInp').val()
-                    //,}, 
-                    //{   
-                    //    success: function (model, response) {
-                    //    console.log("success");
-                    //    },
-                    //    error: function (model, response) {
-                    //    console.log("error");
-                    //    }
-                    //}
                     }, {
                         success:function(model,response){
                             alert(response.message);

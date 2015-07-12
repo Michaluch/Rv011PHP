@@ -4,6 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
+
+
 class UserController extends Controller {
 	/**
 	 * Display a listing of the resource.
@@ -27,8 +31,9 @@ class UserController extends Controller {
 	public function create(Request $request)
 	{
 		//dd(request);
+		
 		$salt=str_random(8);
-		$pass=Hash::make($request->password.$salt);
+		$pass=Crypt::encrypt($request->password.$salt);
 			//throw 
 			try {
 			   Users::create(array (
@@ -45,10 +50,15 @@ class UserController extends Controller {
 			}
 			catch (Exception $e) {
 				
-			}	
-			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully'],200);
+			}
+
+			$toEmail=$request->email;
 			
-		
+			Mail::send('emails.email', array('msg'=>$salt), function($message)use($toEmail){
+			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+            $message->to($toEmail)->subject('Verify your email address');
+        	});	
+			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
 	}
 	/**
 	 * Store a newly created resource in storage.

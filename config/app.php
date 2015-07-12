@@ -137,6 +137,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Laravel\Socialite\SocialiteServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
+		
 
 
 		/*
@@ -191,11 +192,12 @@ return [
 		'Route'     => 'Illuminate\Support\Facades\Route',
 		'Schema'    => 'Illuminate\Support\Facades\Schema',
 		'Session'   => 'Illuminate\Support\Facades\Session',
+		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 		'Storage'   => 'Illuminate\Support\Facades\Storage',
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
-		'View'      => 'Illuminate\Support\Facades\View',
-		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+		'View'      => 'Illuminate\Support\Facades\View'
+		
 	],
 
 ];
