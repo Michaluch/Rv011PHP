@@ -5,5 +5,5 @@
 <div id="logout-button" class="header-elements" ><span><a href="#" id="logout-btn">Logout</a></span></div> 
 <div id="profile" class="header-elements" ><span><a href="#myprofile" id="profile-lnk">Hello, <%=session.get("user").email%></a></span></div>
 <% } else{ %>
-<div id="login-button" class="header-elements" ><span><a href="#login" id="login">Login</a></span></div>
+<a href="#login"><div id="login-button" class="header-elements" ><span>Login</span></div></a>
 <% } %>       
