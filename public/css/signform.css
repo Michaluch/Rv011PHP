@@ -9,10 +9,15 @@ label {
 }
 
 .res {
-  width: 180px;
-  float: left;
+  width: 128px;
+  float: right;
   border-radius: 0;
   height: 25px;
+}
+
+.image-upload > label{
+  float: right;
+  padding: 0;
 }
 
 .image-upload > input {
