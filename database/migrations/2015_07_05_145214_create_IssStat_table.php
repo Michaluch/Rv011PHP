@@ -12,7 +12,7 @@ class CreateIssStatTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('IssueStatus', function(Blueprint $table)
+		Schema::create('issuestatus', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name',32);
@@ -26,7 +26,7 @@ class CreateIssStatTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('IssueStatus');
+		Schema::drop('issuestatus');
 	}
 
 }

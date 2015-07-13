@@ -13,7 +13,7 @@ class CreateIssuesTable extends Migration {
 	public function up()
 	{
 		
-		Schema::create('Issues', function(Blueprint $table){
+		Schema::create('issues', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('name', 256);
 			$table->text('description')->nullable();
@@ -22,10 +22,10 @@ class CreateIssuesTable extends Migration {
 			$table->smallInteger('severity')->nullable()->default(null);
 
 			// foreign keys
-			//$table->foreign('category_id')->references('id')->on('IssuesCategory');
+			//$table->foreign('category_id')->references('id')->on('issuescategory');
 		});
-		Schema::table('Issues', function(Blueprint $table) {
-			$table->foreign('category_id')->references('id')->on('IssuesCategory');
+		Schema::table('issues', function(Blueprint $table) {
+			$table->foreign('category_id')->references('id')->on('issuescategory');
    		});   
 	}
 
@@ -36,7 +36,7 @@ class CreateIssuesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Issues');
+		Schema::drop('issues');
 	}
 
 }
