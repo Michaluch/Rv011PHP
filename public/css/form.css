@@ -2,6 +2,12 @@
   width: 300px;
   font-size: 12px;
 }
+.form-wrapper p {
+  margin: 0 0 10px 15px;
+}
+.form-wrapper .form-group {
+  margin-left: 0px;
+}
 .form-wrapper .form-group input {
   margin-left: 5px;
   border-radius: 0;
@@ -23,4 +29,7 @@
 .row {
   margin-right: 0px;
   margin-left: 0px;
+}
+#sb {
+  padding-left: 0px;
 }

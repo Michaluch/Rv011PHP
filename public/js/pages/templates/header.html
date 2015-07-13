@@ -2,8 +2,9 @@
 <div id="cry-out-button" class="header-elements"><span><a href="#issue">Cry out</a></span></div>
 <div id="about-button" class="header-elements"><span>About</span></div>
 <% if(logged_in){ %>
-<div id="logout-button" class="header-elements" ><span><a href="#" id="logout-btn">Logout</a></span></div> 
-<div id="profile" class="header-elements" ><span><a href="#myprofile" id="profile-lnk">Hello, <%=session.get("user").email%></a></span></div>
+<a href="#" id="logout-btn"><div id="logout-button" class="header-elements" ><span>Logout</span></div></a>
+<a href="#myprofile" id="profile-lnk"><div id="profile" class="header-elements" ><span>Hello,</br> <%=session.get("user").email%></span></div></a>
 <% } else{ %>
-<div id="login-button" class="header-elements" ><span><a href="#login" id="login">Login</a></span></div>
+<a href="#login" id="login">
+<div id="login-button" class="header-elements" ><span>Login</span></div></a>
 <% } %>       

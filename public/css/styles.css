@@ -33,12 +33,18 @@ header a:visited {
 }
 #about-button,
 #login-button,
-#logout-button,
-#profile {
+#logout-button {
   float: right;
   width: 100px;
   height: 80px;
   line-height: 70px;
+}
+#profile {
+  float: right;
+  max-width: 150px;
+  height: 80px;
+  line-height: 20px;
+  padding-top: 15px;
 }
 #main-banner {
   font-style: italic;
@@ -65,4 +71,7 @@ header a:visited {
 }
 #sidebar {
   display: block;
+}
+#sidebar p {
+  margin: 0 0 10px 12px;
 }

@@ -13,7 +13,7 @@ define([
             onLoginStatusChange:function(e){
                 this.render();
                 if(session.get("logged_in")) showAlert("Success", "Logged in as "
-                    +session.get("user").name);
+                    +session.get("user").email);
                 else showAlert("Logged out seccessfully");    
             },
             onLogoutClick:function(e){

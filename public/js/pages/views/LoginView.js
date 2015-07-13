@@ -28,7 +28,7 @@ define([
         if(DEBUG) console.log("login");
         var email=$("input[name=email]").val();
         var password=$("input[name=password]").val();
-        $.post("/auth/login", {email:email, password:password, remember:true},function(data){
+        $.post("/auth/login", {email:email, password:password, remember:false},function(data){
             if(data.status=="error"){
                 alert("You entered wrong data");
             }
