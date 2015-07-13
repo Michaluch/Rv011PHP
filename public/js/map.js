@@ -1,12 +1,12 @@
 define(
-    'map',
     [
-        'async!https://maps.googleapis.com/maps/api/js?v=3.exp',
-        'markerClusterer'
+        'markerClusterer',
+        'async!http://maps.google.com/maps/api/js?v=3&sensor=false'
     ],
-    function(){
-       function initialize() {
-        var map,
+    function(markerClusterer){
+        var oMap = null;
+        function GMap(){
+            var map,
             marker = false,
             // Only if user want to add new issue  ""
             form_active = true, /*form is active*/
@@ -23,30 +23,31 @@ define(
                 mapTypeControl: false,
                 center: new google.maps.LatLng(50.624, 26.260)
             };
-        
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        markerClusterer = new MarkerClusterer(map, [], {gridSize: 30, maxZoom: 20});
-        google.maps.event.addListener(map, 'click', function(e) {
-            if (marker){
-                marker.setMap(null);
-            }
-            if (form_active){
-                marker = new google.maps.Marker({
-                    position: e.latLng,
-                    map: map,
-                    animation: google.maps.Animation.BOUNCE,
-                    title: 'New Problem'
-                });
-                console.log(getMarkerPossition());
-            }
-        });
+        this.init = function(){
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            markerClusterer = new MarkerClusterer(map, [], {gridSize: 30, maxZoom: 20});
+            google.maps.event.addListener(map, 'click', function(e) {
+                if (marker){
+                    marker.setMap(null);
+                }
+                if (form_active){
+                    marker = new google.maps.Marker({
+                        position: e.latLng,
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE,
+                        title: 'New Problem'
+                    });
+                    console.log(getMarkerPossition());
+                }
+            });         
+        }
         
         /**
          * Function getMarkerPossition() - gets marker position
          *
          * @returns {object} - object contains marker lat and lng.
          */
-        function getMarkerPossition(){
+        this.getMarkerPossition = function(){
             var coor;
             if(marker){
                 // If you need to get current marker location you need to call marker.getPosition() method;
@@ -65,7 +66,7 @@ define(
          * Map coordinates object constains of two parameters: marker 
          * latitude and marker longtitude. 
          */
-        function setMarkers(markers){
+        this.setMarkers = function(markers){
             $.each(markers, function(k, e){
                 map_markers.push(new google.maps.Marker({
                         position: e,
@@ -85,7 +86,7 @@ define(
          * Map coordinates object constains of two parameters: marker 
          * latitude and marker longtitude. 
          */    
-        function disableMarkers(markers){
+        this.disableMarkers = function (markers){
             var filtered_markers = new Array();
             if (typeof markers !== 'undefined'){
                 $.each(markers, function(k, e){
@@ -105,18 +106,15 @@ define(
 
         
         // This array we will get from backend
-        markers = [{lat: 50.6764460817145, lng: 26.215438842773438},
-           {lat: 50.61331032168081, lng: 26.256637573242188},
-           {lat: 50.614290662525036, lng: 26.253376007080078}];
-        
-        
-        //-------------------
-        setMarkers(markers);
+       /*
         setTimeout(function(){
-            disableMarkers([{lat: 50.6764460817145, lng: 26.215438842773438}]);
+            this.disableMarkers([{lat: 50.6764460817145, lng: 26.215438842773438}]);
         }, 5000);
-        
+       */
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    oMap = new GMap();
+    oMap.init();
+    //google.maps.event.addDomListener(window, 'load', function(){oMap.init()});
+    return oMap;
     }
 );

@@ -1,7 +1,9 @@
 define([
     "text!pages/templates/header.html",
+    "underscore",
+    "backbone",
     "bootstrap"
-    ], function(header){
+    ], function(header, _, Backbone){
         var HeaderView=Backbone.View.extend({
             template:_.template(header),
             initialize:function(){

@@ -22,16 +22,19 @@ define([
                 "login":"login",
                 "issue": "issue",
             },
-
-
-            index: function() {
+            loadHeader: function(){
+                var issues = null;
                 if(!this.HeaderView){
                     this.HeaderView=new HeaderView({});
                     this.HeaderView.setElement($("header")).render();
                 }
             },
+            index: function(){
+                this.loadHeader();
+            },
 
             register: function() {
+                this.loadHeader();
                 console.log('Реєстрація');
                 if(typeof userView === "undefined"){
                     signInView = new SignInView({collection :new Users});
@@ -41,12 +44,12 @@ define([
             
             issue: function(){
                 var oCryOutView = null;
+                this.loadHeader();
                 console.log('New issue');
                 if(typeof CryOutView !== "undefined"){
                     if (CryOutView instanceof Backbone.View){
                         oCryOutView = CryOutView;
                     } else {
-                        console.log(123);
                         oCryOutView = new CryOutView();
                     }
                     console.log(oCryOutView);
@@ -55,6 +58,7 @@ define([
             },
             
             login: function(){
+                this.loadHeader();
                 if(session.get("logged_in")===false){
                     console.log('Login');
                     if(typeof loginView==="undefined"){

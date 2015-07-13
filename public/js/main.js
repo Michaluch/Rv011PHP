@@ -15,7 +15,7 @@ requirejs.config({
         hash            : 'libs/encrypt/sha512',
         images          : '',
         //I've added other our scripts, but I am not sure
-        //main            : 'apps/main.js',
+        Map             : 'map',
         application     : 'application',
         valid           : 'apps/addValid',
         validation      : 'apps/validation',
@@ -30,6 +30,7 @@ requirejs.config({
         HeaderView      : 'pages/views/HeaderView',
         CryOutView      : 'pages/views/CryOutView',
         Issue           : 'pages/models/Issue',
+        Issues          : 'pages/collections/Issues',
     },
 });
     
