@@ -7,9 +7,9 @@ class RoleTableSeeder extends Seeder {
 
     public function run()
     {
-        //DB::table('Roles')->delete();
+        //DB::table('roles')->delete();
 		
-		DB::table('Roles')->insert([
+		DB::table('roles')->insert([
 				['name' => 'admin'],
 				['name' => 'visitor'],
 			   ]);   

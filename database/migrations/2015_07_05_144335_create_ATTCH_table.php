@@ -12,15 +12,15 @@ class CreateATTCHTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Attachments', function(Blueprint $table)
+		Schema::create('attachments', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('url',500)->nullable();
 			$table->integer('issue_id')->unsigned();
 		});
 
-		Schema::table('Attachments', function(Blueprint $table) {
-			$table->foreign('issue_id')->references('id')->on('Issues');
+		Schema::table('attachments', function(Blueprint $table) {
+			$table->foreign('issue_id')->references('id')->on('issues');
    		});
 	}
 
@@ -31,7 +31,7 @@ class CreateATTCHTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Attachments');
+		Schema::drop('attachments');
 	}
 
 }

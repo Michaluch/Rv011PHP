@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Users', function(Blueprint $table)
+		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('email',80)->unique();
@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration {
 			$table->string('salt',32);
 
 			// foreign keys
-			$table->foreign('role_id')->references('id')->on('Roles');
-			$table->foreign('status_id')->references('id')->on('UserStatuses');
-			$table->foreign('language_id')->references('id')->on('Languages');
+			$table->foreign('role_id')->references('id')->on('roles');
+			$table->foreign('status_id')->references('id')->on('userstatuses');
+			$table->foreign('language_id')->references('id')->on('languages');
 		});
 	}
 
@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Users');
+		Schema::drop('users');
 	}
 
 }

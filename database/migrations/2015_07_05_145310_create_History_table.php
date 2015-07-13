@@ -12,7 +12,7 @@ class CreateHistoryTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('History', function(Blueprint $table)
+		Schema::create('history', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
@@ -21,9 +21,9 @@ class CreateHistoryTable extends Migration {
 			$table->date('date');
 
 			// foreign keys
-			$table->foreign('user_id')->references('id')->on('Users');
-			$table->foreign('issue_id')->references('id')->on('Issues');
-			$table->foreign('status_id')->references('id')->on('IssueStatus');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('issue_id')->references('id')->on('issues');
+			$table->foreign('status_id')->references('id')->on('issuestatus');
 		
 		});
 	}
@@ -35,7 +35,7 @@ class CreateHistoryTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('History');
+		Schema::drop('history');
 	}
 
 }

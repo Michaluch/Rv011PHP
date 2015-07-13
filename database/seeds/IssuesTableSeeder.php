@@ -7,9 +7,9 @@ class IssuesTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('Issues')->delete();
+        DB::table('issues')->delete();
 		
-		DB::table('Issues')->insert([
+		DB::table('issues')->insert([
 				['name' => 'Issue1',
 				'text'=>'some text',
 				'map-pointer'=>'some coordinates',
