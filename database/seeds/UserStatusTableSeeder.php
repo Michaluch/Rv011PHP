@@ -9,7 +9,7 @@ class UserStatusTableSeeder extends Seeder {
     {
         //DB::table('userstatuses')->delete();
 		
-		DB::table('userstatuses')->insert([
+		DB::table('usestatuses')->insert([
 				['name' => 'active'],
 				['name' => 'not-active'],
 			   ]);   
