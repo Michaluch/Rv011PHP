@@ -10,7 +10,7 @@ class Attachments extends Model{
      * @var string
      */
     protected $table = 'Attachments';
-
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

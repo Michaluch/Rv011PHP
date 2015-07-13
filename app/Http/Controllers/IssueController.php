@@ -22,7 +22,7 @@ class IssueController extends Controller {
 		
 		$issues_collection =  $data->filter(function($issue){
 			// show active issues only
-			if ($issue->history()->first()->status_id !== 2){
+			if ($issue->history()->first()->status_id !== 100){
 				return true;	
 			}
 			return false;
@@ -34,7 +34,7 @@ class IssueController extends Controller {
 			$issues[] = array(
 				'id' => $issue['id'],
 				'title' =>	$issue['name'],
-				'location' => $issue['map_pointer'],
+				'location' => json_decode($issue['map_pointer']),
 			);
 		};
 		return response()->json(['code' => '12200', 'data' => $issues]);
@@ -51,15 +51,15 @@ class IssueController extends Controller {
 		if (empty($data)){
 			// error
 		}
-		
+
 		$issue = new Issue;
 		$issue->name = $data['name'];
 		if (isset($data['description'])){
 			$issue->description = $data['description'];
 		}
 		$issue->map_pointer = json_encode($data['location']);
-		$issue->category_id = $data['category'];
-		$issue->severity = $data['severity'];
+		//$issue->category_id = $data['category'];
+		//$issue->severity = $data['severity'];
 		if ($issue->save()){
 			$issue_id = $issue->id;
 			
@@ -69,21 +69,10 @@ class IssueController extends Controller {
 			$history->issue_id = $issue_id;
 			// default value
 			$history->status_id = 1; 
-			$history->date = date('Y-d-m H:i:s');
+			$history->date = date('Y-m-d H:i:s');
 			$history->save();
-			
-			// attachments
-			if (isset($data['attachments'])){
-				foreach($data['attachments'] as $attachment){
-					// save attachments
-					$attachment = new Attachment;
-					$attachment->issue_id = $issue_id; 
-					$attachment->url = 'url';
-				    $attachment->save();
-				}
-			}
 		}
-		return response()->json(['code' => '12201', 'msg' => 'Created!']);
+		return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => $issue_id]);
 	}
 
 	/**
