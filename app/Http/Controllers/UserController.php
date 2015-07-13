@@ -19,7 +19,7 @@ class UserController extends Controller {
 		$fetchAll = Users::all();
 		$fetchAllAttr = array ();
 		foreach ($fetchAll as $model) {
-			$fetchAllAttr[]=$model->attriutes;
+			$fetchAllAttr[] = $model->attriutes;
 		}
 		return json_encode($fetchAll);
 	}
@@ -32,8 +32,8 @@ class UserController extends Controller {
 	{
 		//dd(request);
 		
-		$salt=str_random(8);
-		$pass=Crypt::encrypt($request->password.$salt);
+		$salt = str_random(8);
+		$pass = Crypt::encrypt($request->password.$salt);
 			//throw 
 			try {
 			   Users::create(array (
@@ -52,9 +52,9 @@ class UserController extends Controller {
 				
 			}
 
-			$toEmail=$request->email;
+			$toEmail = $request->email;
 			
-			Mail::send('emails.email', array('msg'=>$salt), function($message)use($toEmail){
+			Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
 			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
             $message->to($toEmail)->subject('Verify your email address');
         	});	

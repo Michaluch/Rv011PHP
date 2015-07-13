@@ -49,6 +49,10 @@ class AuthController extends Controller {
 		}
 
 		$this->auth->login($this->registrar->create($request->all()));
+	
+        
+		//return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
+
 
 		return redirect($this->redirectPath());
 	}

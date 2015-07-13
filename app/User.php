@@ -23,12 +23,14 @@ public $timestamps = false;
 	 * @var array
 	 */
 	protected $fillable = [	
-            'email',
-			'password', "google_id",
+            "email",
+			"password", 
+            "google_id",
             "role_id",
             "status_id",
             "avatar_url",
-            "language_id" 
+            "language_id",
+            "salt" 
 ];
 
 	/**

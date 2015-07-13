@@ -14,13 +14,17 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
-//Route::post('/auth/register', 'UserController@create');
+
 
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::post('/auth/register', 'auth@postRegister');
+
+
 Route::get('get/{id}', function($id){
   if ($id !== null){
     return $id;

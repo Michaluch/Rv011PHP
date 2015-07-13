@@ -3,6 +3,7 @@
 use App\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
+use Illuminate\Support\Facades\Mail;
 
 class Registrar implements RegistrarContract {
 
@@ -15,8 +16,9 @@ class Registrar implements RegistrarContract {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-			'email' => 'required|email|max:255|unique:users',
-			'password' => 'required|confirmed|min:6',
+			'email'       => 'required|email|max:255|unique:users',
+			'password'    => 'required|min:6'
+			
 		]);
 	}
 
@@ -28,16 +30,29 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{
-		return User::create([
+		$salt = str_random(8);
+		try
+		{
+		$user = User::create([
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
-			"facebook_id" =>"",
-            "google_id"   =>"",
-            "role_id"     =>1,
-            "status_id"   =>1,
+			"facebook_id" => "",
+            "google_id"   => "",
+            "role_id"     => 1,
+            "status_id"   =>  1,
             "avatar_url"  =>"",
-            "language_id" =>1
+            "language_id" => 1,
+            "salt"		  => $salt
 		]);
+		}
+		catch (Exception $e) {
+				
+		}
+		$toEmail = $data['email'];
+		Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
+			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+            $message->to($toEmail)->subject('Verify your email address');
+        	});	
+		return $user;
 	}
-
 }

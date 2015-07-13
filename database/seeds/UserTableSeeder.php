@@ -17,7 +17,8 @@ class UserTableSeeder extends Seeder {
 			   "role_id"     =>1,
 			   "status_id"   =>1,
 			   "avatar_url"  =>"",
-			   "language_id" =>1,],
+			   "language_id" =>1,
+			   "salt"        =>str_random(8)],
 			   [
 			   'email' => 'test@bar.com2',
 				"password"    =>"testpass2",
@@ -27,7 +28,8 @@ class UserTableSeeder extends Seeder {
 			   "status_id"   =>1,
 			   "avatar_url"  =>"",
 			   "language_id" =>1,
-			   ],
+			   "salt"        =>str_random(8)
+			   ]
 			   ]);
     }
 

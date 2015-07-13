@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('status_id')->unsigned();
 			$table->string('avatar_url',500)->nullable()->default(null);
 			$table->integer('language_id')->unsigned();
-			$table->string('salt',32);
+			$table->string('salt',32)->unique();
 
 			// foreign keys
 			$table->foreign('role_id')->references('id')->on('roles');
