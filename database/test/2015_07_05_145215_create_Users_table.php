@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('email',80)->unique();
 			$table->string('password', 550);
-			$table->rememberToken();
 			$table->string('facebook_id',256)->nullable()->default(null);
 			$table->string('google_id',256)->nullable()->default(null);
 			$table->integer('role_id')->unsigned();

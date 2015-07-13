@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
-
+public $timestamps = false;
 	use Authenticatable, CanResetPassword;
 
 	/**
@@ -24,7 +24,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $fillable = [	
             'email',
-			'password',    
+			'password', "google_id",
+            "role_id",
+            "status_id",
+            "avatar_url",
+            "language_id" 
 ];
 
 	/**
@@ -32,6 +36,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token'];
+	protected $hidden = ['password', 'remember_token', "facebook_id",
+            "google_id",
+            "role_id",
+            "status_id",
+            "avatar_url",
+            "language_id"];
 
 }
