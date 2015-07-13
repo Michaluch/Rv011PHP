@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UserStatusTableSeeder');
 		$this->call('LanguageTableSeeder');
 		$this->call('UserTableSeeder');
-		
 	}
 
 }

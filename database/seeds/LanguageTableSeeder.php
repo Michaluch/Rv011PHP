@@ -7,9 +7,9 @@ class LanguageTableSeeder extends Seeder {
 
     public function run()
     {
-        //DB::table('languages')->delete();
+        //DB::table('Languages')->delete();
 		
-		DB::table('languages')->insert([
+		DB::table('Languages')->insert([
 				['name' => 'english'],
 				['name' => 'ukranian'],
 			   ]);   

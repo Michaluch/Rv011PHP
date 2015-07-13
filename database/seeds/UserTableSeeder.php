@@ -7,9 +7,9 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
+        DB::table('Users')->delete();
 		
-		DB::table('users')->insert([
+		DB::table('Users')->insert([
 				['email' => 'foo@bar.com',
 				"password"    =>"testpass",
 			   "facebook_id" =>"",
