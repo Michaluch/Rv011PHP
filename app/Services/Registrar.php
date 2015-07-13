@@ -33,7 +33,7 @@ class Registrar implements RegistrarContract {
 			'password' => bcrypt($data['password']),
 			"facebook_id" =>"",
             "google_id"   =>"",
-            "role_id"     =>"1",
+            "role_id"     =>1,
             "status_id"   =>1,
             "avatar_url"  =>"",
             "language_id" =>1
