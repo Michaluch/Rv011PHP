@@ -10,10 +10,11 @@ define([
     'UserView',
     'HeaderView',
     "SessionModel",
-    "CryOutView"
+    "CryOutView",
+    "ProfileView",
     ],
 
-    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel, CryOutView) {
+    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
         return Backbone.Router.extend({
 
             routes: {
@@ -21,6 +22,7 @@ define([
                 "register": "register",
                 "login":"login",
                 "issue": "issue",
+                "profile":"profile"
             },
             loadHeader: function(){
                 var issues = null;
@@ -68,6 +70,16 @@ define([
                 }
                 else{
                     window.location.href="/public/index3.html";
+                }
+            },
+            
+            profile: function(){
+                if(session.get("logged_in") === true){
+                    console.log('profile');
+                    if(typeof profileView === "undefined"){
+                        profileView = new ProfileView();
+                    };
+                    profileView.render();
                 }
             }
         });
