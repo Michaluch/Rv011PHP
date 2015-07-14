@@ -9,7 +9,7 @@ class IssuesCategory extends Model {
      *
      * @var string
      */
-    protected $table = 'IssuesCategory';
+    protected $table = 'issuescategory';
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.

@@ -10,7 +10,7 @@ class History extends Model {
      *
      * @var string
      */
-    protected $table = 'History';
+    protected $table = 'history';
     public $timestamps = false;
 
     /**

@@ -15,7 +15,7 @@ class Roles extends Model implements AuthenticatableContract, CanResetPasswordCo
      *
      * @var string
      */
-    protected $table = 'Roles';
+    protected $table = 'roles';
 
     /**
      * The attributes that are mass assignable.

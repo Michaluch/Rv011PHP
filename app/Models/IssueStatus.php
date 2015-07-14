@@ -9,7 +9,7 @@ class IssueStatus extends Model {
      *
      * @var string
      */
-    protected $table = 'IssueStatus';
+    protected $table = 'issuestatus';
 
     /**
      * The attributes that are mass assignable.

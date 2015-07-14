@@ -28,7 +28,7 @@ define([
                     markers.push(item.attributes.location);
                 });
                 console.log(markers);
-                //Map.setMarkers(markers);
+                Map.setMarkers(markers);
             }});
         }
        

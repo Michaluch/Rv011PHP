@@ -15,7 +15,7 @@ class UserStatuses extends Model implements AuthenticatableContract, CanResetPas
      *
      * @var string
      */
-    protected $table = 'UserStatuses';
+    protected $table = 'userstatuses';
 
     /**
      * The attributes that are mass assignable.
