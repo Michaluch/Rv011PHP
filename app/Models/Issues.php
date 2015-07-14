@@ -9,7 +9,7 @@ class Issues extends Model {
      *
      * @var string
      */
-    protected $table = 'Issues';
+    protected $table = 'issues';
     public $timestamps = false;
 
     /**
