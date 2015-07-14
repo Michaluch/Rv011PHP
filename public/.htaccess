@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-
+	DirectoryIndex index.html index.php
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
   
