@@ -22,6 +22,7 @@ define([
                 "register": "register",
                 "login":"login",
                 "issue": "issue",
+                "profile":"profile"
             },
             loadHeader: function(){
                 var issues = null;
