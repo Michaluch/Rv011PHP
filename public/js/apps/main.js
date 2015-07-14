@@ -112,4 +112,16 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize); 
    // loginButtonClick = 
+    var types = [
+       { value: 'Natural', category_id: 1 },
+       { value: 'Trash', data: 2 },
+       { value: 'Technical', category_id: 3 },
+       { value: 'Transport', category_id: 1 }
+    ];
+$('#issue-type').autocomplete({
+lookup: types,
+onSelect: function (suggestion) {
+    alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+}
+});
 }(jQuery));

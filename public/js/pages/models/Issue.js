@@ -6,7 +6,7 @@ define([
         defaults: {
             id           : 0,	
             name         : "",
-            category_id  : "",
+            category_id  : 0,
             description  : "",
             map_pointer  : {x: 0, y:0},
             severity     : 0

@@ -75,3 +75,37 @@ header a:visited {
 #sidebar p {
   margin: 0 0 10px 12px;
 }
+.center-pills {
+    display: flex;
+    justify-content: center;
+}
+
+.center-pills li{
+    width: 33%;
+}
+
+.form-group {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-left: 5%;
+}
+.form-group label{
+  font-weight: bold;
+}
+.form-group input{
+  width:95%;
+}
+#photo p{
+  margin-left: 5%;
+  margin-top: 20px;
+  border: 1px dashed grey;
+  padding: 3px;
+  width: 90%;
+}
+#point p{
+  margin-left: 5%;
+  margin-top: 10px;
+}
+#point button, #photo button{
+  margin-left: 5%;
+}
