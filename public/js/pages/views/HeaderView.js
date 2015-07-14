@@ -27,7 +27,7 @@ define([
             }
             else{
                 console.log(data);
-                window.location.href="/public/index3.html";
+                window.location.href="/";
             };
         });
             },

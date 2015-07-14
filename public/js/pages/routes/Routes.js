@@ -69,7 +69,7 @@ define([
                     loginView.render();
                 }
                 else{
-                    window.location.href="/public/index3.html";
+                    window.location.href="/";
                 }
             },
             

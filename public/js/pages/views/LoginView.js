@@ -31,14 +31,13 @@ define([
         var email=$("input[name=email]").val();
         var password=$("input[name=password]").val();
         var hash = CryptoJS.SHA512(password).toString();
-        alert(hash);
         $.post("/auth/login", {email:email, password:hash, remember:false},function(data){
             if(data.status=="error"){
-                alert("You entered wrong data"); // get look at signup view  
+                alert("You entered wrong data. "+data.errors); 
             }
             else{
                 console.log(data);
-                window.location.href="/public/index3.html";
+                window.location.href="/";
             };
         });
         } 

@@ -89,7 +89,10 @@ class AuthController extends Controller {
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
 			if($request->ajax()) {
-				return array('status' => 'ok');
+				return array(
+					'status' => 'ok',
+					'response'=>'10200',
+					);
 			}
 			else {
 				return redirect()->intended($this->redirectPath());
@@ -100,6 +103,7 @@ class AuthController extends Controller {
 			$result = array(
 				'status' => 'error',
 				'errors' => $this->getFailedLoginMessage(),
+				'response'=>'10400',
 				);
 			
 			return $result;
