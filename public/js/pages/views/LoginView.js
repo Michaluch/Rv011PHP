@@ -3,10 +3,12 @@ define([
     "backbone",
     "jquery",
     "text!pages/templates/LoginTemplate.html",
+    "hash",
     "validation",
     "valid"
+    
     ],
-    function(_, Backbone, $, LoginTemplate){
+    function(_, Backbone, $, LoginTemplate,hash){
         return Backbone.View.extend({
         el:$("#sidebar"),
         events:{
@@ -28,9 +30,11 @@ define([
         if(DEBUG) console.log("login");
         var email=$("input[name=email]").val();
         var password=$("input[name=password]").val();
-        $.post("/auth/login", {email:email, password:password, remember:false},function(data){
+        var hash = CryptoJS.SHA512(password).toString();
+        alert(hash);
+        $.post("/auth/login", {email:email, password:hash, remember:false},function(data){
             if(data.status=="error"){
-                alert("You entered wrong data");
+                alert("You entered wrong data"); // get look at signup view  
             }
             else{
                 console.log(data);

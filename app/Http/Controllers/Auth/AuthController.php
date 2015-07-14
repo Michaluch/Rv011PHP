@@ -51,10 +51,24 @@ class AuthController extends Controller {
 		$this->auth->login($this->registrar->create($request->all()));
 	
         
-		//return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
+		return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
+		//	if($request->ajax()) {
+		//	$result = array(
+		//		'status' => 'error',
+		//		'msg' => $this->getFailedLoginMessage(),
+		//		);
+		//	
+		//	return $result;
+		//} else {
+//
+//		//	return redirect($this->loginPath())
+//		//			->withInput($request->only('email', 'remember'))
+//		//			->withErrors([
+//		//				'email' => $this->getFailedLoginMessage(),
+//		//			]);
+		//}
 
-
-		return redirect($this->redirectPath());
+		//return redirect($this->redirectPath());
 	}
 
 /**
@@ -96,7 +110,7 @@ class AuthController extends Controller {
 					->withErrors([
 						'email' => $this->getFailedLoginMessage(),
 					]);
-				}
+		}
 	}
 	public function postLogout()
 	{

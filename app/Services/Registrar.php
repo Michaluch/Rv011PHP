@@ -48,11 +48,11 @@ class Registrar implements RegistrarContract {
 		catch (Exception $e) {
 				
 		}
-		$toEmail = $data['email'];
-		Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
-			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
-            $message->to($toEmail)->subject('Verify your email address');
-        	});	
+		//$toEmail = $data['email'];
+		//Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
+		//	$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+        //    $message->to($toEmail)->subject('Verify your email address');
+        //	});	
 		return $user;
 	}
 }

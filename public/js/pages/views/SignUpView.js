@@ -37,7 +37,7 @@ define([
             addUser: function  (e) {
                 e.preventDefault(); // reset default settings
                 var hash = CryptoJS.SHA512(this.$('#password').val());
-                this.collection.create({
+                this.model.save({
                     email       :this.$('#email').val(),
                     password    :hash.toString(),
                     avatar_url  :this.$('#imgInp').val()

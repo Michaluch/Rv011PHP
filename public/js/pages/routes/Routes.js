@@ -6,7 +6,7 @@ define([
     //deps
 	'SignUpView',
     "pages/views/LoginView",
-    'Users',
+    'User', 
     'UserView',
     'HeaderView',
     "SessionModel",
@@ -14,7 +14,7 @@ define([
     "ProfileView",
     ],
 
-    function($,boot,Backbone, SignInView, LoginView, Users, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
+    function($,boot,Backbone, SignInView, LoginView, User, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
         return Backbone.Router.extend({
 
             routes: {
@@ -39,7 +39,7 @@ define([
                 this.loadHeader();
                 console.log('Реєстрація');
                 if(typeof userView === "undefined"){
-                    signInView = new SignInView({collection :new Users});
+                    signInView = new SignInView({model :new User});
                 };
                 signInView.render();
             },
