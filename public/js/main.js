@@ -20,6 +20,7 @@ requirejs.config({
         valid           : 'apps/addValid',
         validation      : 'apps/validation',
         signinform      : 'apps/signform',
+        signUpValidation: 'apps/signUpValidation',
         //models
         User            : 'pages/models/User',
         Users           : 'pages/collections/Users', 
