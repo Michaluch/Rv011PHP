@@ -25,10 +25,23 @@ define([
             issuesCollection.fetch({success: function(){
                 var markers = [];
                 _.each(issuesCollection.models, function(item){
-                    markers.push(item.attributes.location);
+                    markers.push(item.attributes);
                 });
-                console.log(markers);
+                // Initialize map
+                Map.init('map-canvas', {
+                    zoom: 12,
+                    minZoom: 8,
+                    streetViewControl: false,
+                    scaleControl: false,
+                    rotateControl: false,
+                    panControl: false,
+                    overviewMapControl: false,
+                    mapTypeControl: false,
+                    center: new google.maps.LatLng(50.624, 26.260)
+                });
                 Map.setMarkers(markers);
+                router.map = Map;
+                //window.mapa = Map;
             }});
         }
        
