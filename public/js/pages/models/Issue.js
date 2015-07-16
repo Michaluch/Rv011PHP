@@ -6,12 +6,13 @@ define([
         defaults: {
             id           : 0,	
             name         : "",
-            category_id  : 0,
+            category_id  : 1,
             description  : "",
-            map_pointer  : {x: 0, y:0},
-            severity     : 0
+            map_pointer  : {'lat': 0, 
+                            'lng': 0},
+            severity     : 1
         },
-        url:"/issue/add",
+        url:"/issue",
         initialize: function(){
             
         },
