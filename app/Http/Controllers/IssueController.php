@@ -8,6 +8,7 @@ use App\Models\History as History;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Validator;
 
 class IssueController extends Controller {
 
@@ -50,6 +51,16 @@ class IssueController extends Controller {
 		$data = $request->json()->all();
 		if (empty($data)){
 			// error
+		}
+
+		// validation block
+		$validator = validator($request->all());
+
+		if ($validator->fails())
+		{
+			$this->throwValidationException(
+				$request, $validator
+			);
 		}
 
 		$issue = new Issue;
@@ -130,6 +141,16 @@ class IssueController extends Controller {
 	{
 		 Issue::where('id', '=', $id)->delete();
 		 return response()->json(['code' => '13200', 'msg' => 'Deleted!']);
+	}
+
+	public function validator(array $data)
+	{
+		return Validator::make($data, [
+			'name'       => 'required|max:256',
+			'location'    => 'required',
+            'severity'  =>  'Integer|between:1,5'
+
+		]);
 	}
 
 }
