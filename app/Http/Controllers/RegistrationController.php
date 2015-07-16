@@ -32,6 +32,6 @@ class RegistrationController extends Controller {
         $user->status_id = 2;
         $user->save();
 
-        return redirect('/public/index3.html');
+        return redirect('/');
 	}
 }

@@ -17,8 +17,11 @@ class Registrar implements RegistrarContract {
 	{
 		return Validator::make($data, [
 			'email'       => 'required|email|max:255|unique:users',
-			'password'    => 'required|min:6'
-			
+			'password'    => 'required|min:6|unique:users',
+			"facebook_id" => 'unique:users',
+            "google_id"   => 'unique:users',
+            "avatar_url"  =>  'url'
+
 		]);
 	}
 
@@ -48,11 +51,11 @@ class Registrar implements RegistrarContract {
 		catch (Exception $e) {
 				
 		}
-		//$toEmail = $data['email'];
-		//Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
-		//	$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
-        //    $message->to($toEmail)->subject('Verify your email address');
-        //	});	
+		$toEmail = $data['email'];
+		Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
+			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+            $message->to($toEmail)->subject('Verify your email address');
+        	});	
 		return $user;
 	}
 }
