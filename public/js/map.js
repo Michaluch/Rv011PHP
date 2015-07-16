@@ -11,6 +11,7 @@ define(
                 marker = false,
                 can_set_marker = false,
                 map_markers = new Array(),
+                custom_callbacks = {},
                 geocoder = new google.maps.Geocoder(),
                 markerClusterer;
             
@@ -36,7 +37,9 @@ define(
                             animation: google.maps.Animation.BOUNCE,
                             title: 'New Problem'
                         });
-                        console.log(marker.getPosition());
+                        if (typeof custom_callbacks.onMarkerSet !== 'undefined'){
+                            custom_callbacks.onMarkerSet(marker);
+                        }
                     }
                 });         
             }
@@ -45,16 +48,27 @@ define(
              * Function setMarkerOnClick() - allows or disallows the user to set a marker on the map.
              *
              * @param {boolean} option
+             * @param {boolean} remove_marker - (optional)removes marker from map if it was set before.
              *
              */
-            this.setMarkerOnClick = function(option){
+            this.setMarkerOnClick = function(option, remove_marker){
                 if (typeof option === 'boolean'){
                     can_set_marker = option;
+                    if (typeof remove_marker === 'boolean' && remove_marker === true){
+                        marker.setMap(null);
+                    }
                 } else {
                     console.log('You can use only "boolean" arguments!');
-                }
+                } 
             } 
-             
+            
+            this.setMakerCallback = function(callback){
+                if (typeof callback === 'function'){
+                    custom_callbacks.onMarkerSet = callback;
+                } else {
+                    console.log('Callback is not a function!');
+                }
+            };
             /**
              * Function getMarkerPossition() - gets marker position
              *
@@ -68,7 +82,7 @@ define(
                     return {'lat': coor.lat(),
                             'lng': coor.lng()};
                 } else {
-                    alert('You need to set a marker on the map first!');
+                    console.log('You need to set a marker on the map first!');
                 }
             }
             
@@ -83,7 +97,7 @@ define(
                     geocoder.geocode({
                         latLng: marker.getPosition()
                     }, function(responses) {
-                        callback(responses);
+                          callback(responses);
                     })
                 } else {
                     console.log('Marker is not set or callback is not a function');

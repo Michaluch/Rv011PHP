@@ -16,7 +16,7 @@ define([
 
     function($,boot,Backbone, SignInView, LoginView, User, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
         return Backbone.Router.extend({
-
+            map: null,
             routes: {
                 "": "index",
                 "register": "register",
@@ -47,6 +47,7 @@ define([
             issue: function(){
                 var oCryOutView = null;
                 this.loadHeader();
+                
                 console.log('New issue');
                 if(typeof CryOutView !== "undefined"){
                     if (CryOutView instanceof Backbone.View){
@@ -54,7 +55,9 @@ define([
                     } else {
                         oCryOutView = new CryOutView();
                     }
-                    console.log(oCryOutView);
+                if (this.map !== null){
+                    oCryOutView.map = this.map;
+                }
                 oCryOutView.render();
                 }
             },
@@ -81,6 +84,6 @@ define([
                     };
                     profileView.render();
                 }
-            }
+            },
         });
     });

@@ -6,9 +6,9 @@
   <h1>Додати проблему</h1>
   <div class="text-center">
     <ul class="nav nav-tabs center-pills" role="tablist">
-      <li role="presentation" class="active"><a href="#point" aria-controls="home" role="tab" data-toggle="tab">Точка</a></li>
-      <li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Опис</a></li>
-      <li role="presentation"><a href="#photo" aria-controls="messages" role="tab" data-toggle="tab">Фото</a></li>
+    <li role="presentation" class="issue-tab set-location active"><a href="#point" aria-controls="home" role="tab" data-toggle="tab">Точка</a></li>
+	<li role="presentation" class="issue-tab set-description"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Опис</a></li>
+	<li role="presentation" class="issue-tab set-attachment"><a href="#photo" aria-controls="messages" role="tab" data-toggle="tab">Фото</a></li>
     </ul>
   </div>
  
@@ -17,8 +17,8 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="point">
       <div class="form-group">
-        <p>Відмітьте на карті місце розташування проблеми</p>
-        <button>Далі</button>
+        <p class="issue-address">Відмітьте на карті місце розташування проблеми</p>
+        <button class="btn-next">Далі</button>
       </div>
     </div>
 
@@ -36,13 +36,13 @@
       <input type="text" id="issue-description" class="form-control">
       </div>
       <div class="form-group">
-      <button id="AddIssueButton">Далі</button>
+      <button class="btn-next" >Далі</button>
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="photo">
       <p id="photo-container">Клікніть або перенесіть фото, щоб завантажити</p>
-      <button id="add-photo-button">Додати</button>
+      <button id="AddIssueButton">Додати</button>
     </div>
   </div>
 </div>

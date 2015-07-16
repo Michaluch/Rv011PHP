@@ -40,9 +40,9 @@ define([
                     center: new google.maps.LatLng(50.624, 26.260)
                 });
                 Map.setMarkers(markers);
-                router.map = Map;
                 //window.mapa = Map;
             }});
+            router.map = Map;
         }
        
     return _public; 
