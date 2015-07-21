@@ -97,9 +97,9 @@ define([
                     }); 
                 }
                 else{
-                    signUpValidation.checkField('email');
-                    signUpValidation.checkField('password');
-                    signUpValidation.checkField('confpass');
+                signUpValidation.checkField('email');
+                signUpValidation.checkField('password');
+                signUpValidation.checkField('confpass');
                 }
             }
         });

@@ -68,6 +68,10 @@ define( [ 'jquery' ],
                         && this.checkPassLenght('password') && this
                         .checkConfirmPass());
             }
+            this.checkAllLogin=function(){
+                return(this.checkEmail('email')
+                && this.checkPassLenght('password'));
+            }
 
             return this;
 
