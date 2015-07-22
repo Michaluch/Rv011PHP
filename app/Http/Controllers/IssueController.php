@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Issues as Issue;
 use App\Models\Atachments as Attachment;
 use App\Models\History as History;
+use App\Models\IssuesCategory as Categry;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,7 +70,19 @@ class IssueController extends Controller {
 			$issue->description = $data['description'];
 		}
 		$issue->map_pointer = json_encode($data['location']);
-		//$issue->category_id = $data['category'];
+				
+		$categoryModel = new Categry;
+		$input_cat = strtolower($data['category']);
+		$category = $categoryModel->where('name', '=', $input_cat)->first();
+		if (is_null($category)){
+			$new_cat = new Categry;
+			$new_cat->name = $input_cat;
+			$new_cat->save();
+			$cat_id = $new_cat->id;
+		} else {
+			$cat_id = $category->id;
+		}
+		$issue->category_id = $cat_id;
 		//$issue->severity = $data['severity'];
 		if ($issue->save()){
 			$issue_id = $issue->id;
@@ -83,7 +96,7 @@ class IssueController extends Controller {
 			$history->date = date('Y-m-d H:i:s');
 			$history->save();
 		}
-		return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => $issue_id]);
+		return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => array('issue_id' => $issue_id)]);
 	}
 
 	/**

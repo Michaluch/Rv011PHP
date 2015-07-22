@@ -16,6 +16,7 @@ requirejs.config({
         images          : '',
         //I've added other our scripts, but I am not sure
         Map             : 'map',
+        Sidebar         : 'sidebar',
         application     : 'application',
         valid           : 'apps/addValid',
         validation      : 'apps/validation',
