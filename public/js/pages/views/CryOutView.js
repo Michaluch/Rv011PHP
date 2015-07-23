@@ -10,7 +10,7 @@ define([
             map: null,
             issue: {},
             sidebar: null,
-            id: '#sidebar',
+            el: $('#sidebar'),
             events: {
                 "click #AddIssueButton": "cryOutButtonClick",
                 "show.bs.tab .issue-tab": "changeFormTab",
@@ -81,14 +81,13 @@ define([
             },
             cryOutButtonClick: function(e){
                 e.preventDefault();
-                console.log("add issue");
-                console.log('issue', this.issue);
+                var self = this;
                 var issue = new Issue();
                 // Maybe validate must be here
                 issue.save(this.issue, {
                     success: function(model, response, options){
                         var data = null;
-                        if (response.code === "12201"){
+                        if (response.code === "12201" && self.$el.find('#fileUpload').get(0).files.length){
                             data = new FormData($('#fileform').get(0));
                             data.append('issue_id', response.data.issue_id);
                             $.ajax({
@@ -103,6 +102,9 @@ define([
                                 }
                             });
                         }
+                        self.map.setMarkers([self.issue]);
+                        self.sidebar.turnOff();
+                        window.location.hash = '#';
                     }
                 });        
             },

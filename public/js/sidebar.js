@@ -14,6 +14,12 @@ define(
                 $("#sb").show();
                 sidebar.on = true;
             }
+            //TODO: fix reopening process
+            else {
+                if (typeof this.onCloseOnce === 'function'){
+                    this.onCloseOnce();
+                }
+            }
         };
         //Close sidebar method
         sidebar.turnOff = function(){
@@ -22,6 +28,9 @@ define(
                 $("#sb").removeClass("col-xs-3");
                 $("#sb").hide();
                 sidebar.on = false;
+                if (typeof this.onCloseOnce === 'function'){
+                    this.onCloseOnce();
+                }
             }
         };
         //If sidebar opened, than close it. Otherwise open it.
@@ -35,18 +44,15 @@ define(
          * @param {function} callback - callback function
          */
         sidebar.setOnCloseOnce = function(callback_func){
-            sidebar.onCloseOnce = function(){
+            this.onCloseOnce = function(){
                 callback_func();
-                sidebar.onCloseOnce = null;
+                this.onCloseOnce = null;
             };
         }
         
         //div-button "close sidebar"
         $("#sidebarClose").click(function(){
             sidebar.turnOff();
-            if (typeof sidebar.onCloseOnce === 'function'){
-                sidebar.onCloseOnce();
-            }
         });
 
         $("#sb").hide();
