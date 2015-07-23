@@ -126,7 +126,33 @@ class IssueController extends Controller {
 		}
 	}
 
-
+  public function showUserIssues($uid)
+	{
+		$data = Issue::whereHas('history', function($q){
+			$q->where('user_id', '=', $uid);
+		})->get()->all();	
+		
+		if (!is_null($data)){
+			$issues = array();
+			foreach($data as $issue){
+				$atach = array();
+				$category = array();
+				foreach ($data->attachments->all() as $attachment)
+				{
+					$atach[] =  $attachment->url;
+				};
+				$issue_data = $data->toArray();
+				$issue_data['attachments'] = $atach;
+				$issue_data['category'] = !is_null($cat = $data->category) ? $cat->name : null;
+				$issue_data['status'] = $data->history->status->name;
+				$issue_data['author_id'] = $data->history->user_id;
+				$issues[] = $issue_data; 
+			}
+			return response()->json(['code' => '12212', 'data' => $issues]);
+		} else {
+			return response()->json(['code' => '12511', 'msg' => 'Issue is not exist!']);
+		}
+	}
 	/**
 	 * Update the specified resource in storage.
 	 *
