@@ -107,18 +107,19 @@ class IssueController extends Controller {
 	 */
 	public function show($id)
 	{
-		$data = Issue::find($id);
+		$data = Issue::where('id', '=', $id)->first();
 		if (!is_null($data)){
 			$atach = array();
 			$category = array();
-			foreach ($data->attachments()->get()->all() as $attachment)
+			foreach ($data->attachments->all() as $attachment)
 			{
 				$atach[] =  $attachment->url;
 			};
 			$issue_data = $data->toArray();
 			$issue_data['attachments'] = $atach;
-			$issue_data['category'] = !is_null($cat = $data->category()->get()->first()) ? $cat->name : null;
-			$issue_data['status'] = $data->history()->first()->status()->first()->name;
+			$issue_data['category'] = !is_null($cat = $data->category) ? $cat->name : null;
+			$issue_data['status'] = $data->history->status->name;
+			$issue_data['author_id'] = $data->history->user_id;
 			return response()->json(['code' => '12202', 'data' => $issue_data]);
 		} else {
 			return response()->json(['code' => '12501', 'msg' => 'Issue is not exist!']);

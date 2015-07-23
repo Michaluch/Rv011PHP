@@ -21,11 +21,11 @@ class History extends Model {
    // protected $fillable = ['name', 'email', 'password'];
     public function issue()
     {
-    	return $this->hasOne('App\Models\Issues', 'id');
+    	return $this->hasOne('App\Models\Issues', 'id', 'issue_id');
     }
     public function status()
     {
-    	return $this->hasOne('App\Models\IssueStatus', 'id');
+    	return $this->hasOne('App\Models\IssueStatus', 'id', 'status_id');
     }
    
 
