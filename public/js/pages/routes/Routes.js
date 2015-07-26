@@ -42,6 +42,7 @@ define([
                 if(typeof userView === "undefined"){
                   signInView = new SignInView({model :new User});
                 };
+                signInView.sidebar = this.sidebar;
                 signInView.render();
             },
             
