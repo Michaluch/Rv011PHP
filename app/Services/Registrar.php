@@ -20,7 +20,7 @@ class Registrar implements RegistrarContract {
 			'password'    => 'required|min:6|unique:users',
 			"facebook_id" => 'unique:users',
             "google_id"   => 'unique:users',
-            "avatar_url"  =>  'url'
+            //"avatar_url"  =>  'url'
 
 		]);
 	}
