@@ -23,7 +23,7 @@ $(document).ready(function(){
 
      function uploadFile()
         {       
-            var f = document.getElementById('file-input').file;
+            var f = document.getElementById('imgInp').file;
             var reader = new FileReader();     
 
             // Keep a reference to the File in the FileReader so it can be accessed in callbacks

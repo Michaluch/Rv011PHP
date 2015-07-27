@@ -66,6 +66,26 @@ define([
             
             setAvatar: function(){
                 readURL(this.$("#imgInp"));
+                //var filename = $("#imgInp").val();
+                var uploadfile = new FormData();
+                uploadfile.append('image', this.$("#imgInp").val());
+                var xmlRequest = $.ajax({
+                type: "POST",
+                url: "attachment",
+                enctype: 'multipart/form-data', 
+                data:   {
+                            attachment: uploadfile
+                        },  
+                });
+ 
+
+                //$.post(
+                //                'attachment', 
+                //                {attachments: $("#imgInp").val()},
+                //                function(data) {
+                //               
+                //            });
+              
             },
 
 
@@ -83,6 +103,8 @@ define([
                             // router.navigate('login', {trigger: true});
                             var template = _.template(SimpleMessage);
                             $('#sidebar').html(template({message: response.message}));
+                            
+      
                             
                         },
                         error:function(model,response){     

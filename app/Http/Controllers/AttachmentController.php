@@ -36,7 +36,7 @@ class AttachmentController extends Controller {
 	    $attachment->issue_id = $request->issue_id;
 	    $attachment->save();
 		
-		return response()->json(['code' => '18200', 'msg' => 'Stored!']);
+		return response()->json(['code' => $file, 'msg' => 'Stored!']);
 	}
 
 	/**

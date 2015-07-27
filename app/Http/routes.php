@@ -65,3 +65,7 @@ Route::get('category', function(){
 	$response = new Illuminate\Http\Response;
 	return response()->json(['code' => '16200', 'data' => $categories->toArray()]);
 });
+/**
+ * Route for attachments avatar
+ */
+
