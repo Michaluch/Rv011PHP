@@ -55,7 +55,9 @@ define(
                 if (typeof option === 'boolean'){
                     can_set_marker = option;
                     if (typeof remove_marker === 'boolean' && remove_marker === true){
-                        marker.setMap(null);
+                        if (marker){
+                          marker.setMap(null);
+                        }
                     }
                 } else {
                     console.log('You can use only "boolean" arguments!');

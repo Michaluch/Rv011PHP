@@ -9,6 +9,7 @@ define([
     ],
     function(_, Backbone, $, LoginTemplate, SimpleMessage,hash, signUpValidation){
         return Backbone.View.extend({
+        sidebar: null,
         el:$("#sidebar"),
         events:{
             "click #login_btn":"logIn",
@@ -38,7 +39,7 @@ define([
         },   
   
          render:function(){
-            sidebar.turnOn();
+            this.sidebar.turnOn();
             this.$el.html(LoginTemplate);
          },
 

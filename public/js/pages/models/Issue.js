@@ -4,7 +4,6 @@ define([
     ], function  (Backbone) {
         var Model = Backbone.Model.extend({
         defaults: {
-            id           : 0,	
             name         : "",
             category_id  : 1,
             description  : "",

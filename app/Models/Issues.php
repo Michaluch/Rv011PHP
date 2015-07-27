@@ -20,16 +20,16 @@ class Issues extends Model {
     //protected $fillable = ['name', 'description', 'map_pointer'];
     public function category()
     {
-    	return $this->hasOne('App\Models\IssuesCategory', 'id');
+    	return $this->hasOne('App\Models\IssuesCategory', 'id', 'category_id');
     }
     
     public function attachments()
     {
-    	return $this->hasMany('App\Models\Attachments', 'issue_id');
+    	return $this->hasMany('App\Models\Attachments', 'issue_id', 'id');
     }
     
     public function history()
     {
-    	return $this->hasOne('App\Models\History', 'issue_id');
+    	return $this->hasOne('App\Models\History', 'issue_id', 'id');
     }
 }

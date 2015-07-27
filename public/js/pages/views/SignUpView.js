@@ -20,7 +20,7 @@ define([
             },
             
             render: function() {
-                sidebar.turnOn();
+                this.sidebar.turnOn();
                 var template = _.template(SignUpFormTemplate);
                 this.$el.html(SignUpFormTemplate);
             },

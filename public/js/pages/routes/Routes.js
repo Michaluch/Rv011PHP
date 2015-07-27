@@ -2,9 +2,10 @@ define([
 	//libs
     'jquery',
     'bootstrap',
-	'backbone',
+    'backbone',
+    'Sidebar',
     //deps
-	'SignUpView',
+    'SignUpView',
     "pages/views/LoginView",
     'User', 
     'UserView',
@@ -13,10 +14,10 @@ define([
     "CryOutView",
     "ProfileView",
     ],
-
-    function($,boot,Backbone, SignInView, LoginView, User, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
+    function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
         return Backbone.Router.extend({
             map: null,
+            sidebar: Sidebar,
             routes: {
                 "": "index",
                 "register": "register",
@@ -39,15 +40,15 @@ define([
                 this.loadHeader();
                 console.log('Реєстрація');
                 if(typeof userView === "undefined"){
-                    signInView = new SignInView({model :new User});
+                  signInView = new SignInView({model :new User});
                 };
+                signInView.sidebar = this.sidebar;
                 signInView.render();
             },
             
             issue: function(){
                 var oCryOutView = null;
                 this.loadHeader();
-                
                 console.log('New issue');
                 if(typeof CryOutView !== "undefined"){
                     if (CryOutView instanceof Backbone.View){
@@ -55,10 +56,12 @@ define([
                     } else {
                         oCryOutView = new CryOutView();
                     }
-                if (this.map !== null){
-                    oCryOutView.map = this.map;
-                }
-                oCryOutView.render();
+                    
+                    if (this.map !== null){
+                        oCryOutView.map = this.map;
+                    }
+                    oCryOutView.sidebar = this.sidebar;
+                    oCryOutView.render();                    
                 }
             },
             
@@ -69,6 +72,7 @@ define([
                     if(typeof loginView==="undefined"){
                         loginView=new LoginView();
                     };
+                    loginView.sidebar = this.sidebar;
                     loginView.render();
                 }
                 else{

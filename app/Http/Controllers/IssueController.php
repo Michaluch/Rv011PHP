@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Issues as Issue;
 use App\Models\Atachments as Attachment;
 use App\Models\History as History;
+use App\Models\IssuesCategory as Categry;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,7 +70,19 @@ class IssueController extends Controller {
 			$issue->description = $data['description'];
 		}
 		$issue->map_pointer = json_encode($data['location']);
-		//$issue->category_id = $data['category'];
+				
+		$categoryModel = new Categry;
+		$input_cat = strtolower($data['category']);
+		$category = $categoryModel->where('name', '=', $input_cat)->first();
+		if (is_null($category)){
+			$new_cat = new Categry;
+			$new_cat->name = $input_cat;
+			$new_cat->save();
+			$cat_id = $new_cat->id;
+		} else {
+			$cat_id = $category->id;
+		}
+		$issue->category_id = $cat_id;
 		//$issue->severity = $data['severity'];
 		if ($issue->save()){
 			$issue_id = $issue->id;
@@ -83,7 +96,7 @@ class IssueController extends Controller {
 			$history->date = date('Y-m-d H:i:s');
 			$history->save();
 		}
-		return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => $issue_id]);
+		return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => array('issue_id' => $issue_id)]);
 	}
 
 	/**
@@ -94,25 +107,52 @@ class IssueController extends Controller {
 	 */
 	public function show($id)
 	{
-		$data = Issue::find($id);
+		$data = Issue::where('id', '=', $id)->first();
 		if (!is_null($data)){
 			$atach = array();
 			$category = array();
-			foreach ($data->attachments()->get()->all() as $attachment)
+			foreach ($data->attachments->all() as $attachment)
 			{
 				$atach[] =  $attachment->url;
 			};
 			$issue_data = $data->toArray();
 			$issue_data['attachments'] = $atach;
-			$issue_data['category'] = !is_null($cat = $data->category()->get()->first()) ? $cat->name : null;
-			$issue_data['status'] = $data->history()->first()->status()->first()->name;
+			$issue_data['category'] = !is_null($cat = $data->category) ? $cat->name : null;
+			$issue_data['status'] = $data->history->status->name;
+			$issue_data['author_id'] = $data->history->user_id;
 			return response()->json(['code' => '12202', 'data' => $issue_data]);
 		} else {
 			return response()->json(['code' => '12501', 'msg' => 'Issue is not exist!']);
 		}
 	}
 
-
+  public function showUserIssues($uid)
+	{
+		$data = Issue::whereHas('history', function($q){
+			$q->where('user_id', '=', $uid);
+		})->get()->all();	
+		
+		if (!is_null($data)){
+			$issues = array();
+			foreach($data as $issue){
+				$atach = array();
+				$category = array();
+				foreach ($data->attachments->all() as $attachment)
+				{
+					$atach[] =  $attachment->url;
+				};
+				$issue_data = $data->toArray();
+				$issue_data['attachments'] = $atach;
+				$issue_data['category'] = !is_null($cat = $data->category) ? $cat->name : null;
+				$issue_data['status'] = $data->history->status->name;
+				$issue_data['author_id'] = $data->history->user_id;
+				$issues[] = $issue_data; 
+			}
+			return response()->json(['code' => '12212', 'data' => $issues]);
+		} else {
+			return response()->json(['code' => '12511', 'msg' => 'Issue is not exist!']);
+		}
+	}
 	/**
 	 * Update the specified resource in storage.
 	 *
