@@ -34,6 +34,7 @@ requirejs.config({
         Issue           : 'pages/models/Issue',
         Issues          : 'pages/collections/Issues',
         ProfileView     : 'pages/views/ProfileView',
+        ManagerView     : 'pages/views/ManagerView',
     },
 });
     

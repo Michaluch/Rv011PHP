@@ -90,9 +90,8 @@ define([
                                      cache: false,
                                      processData: false,
                                      contentType: false,
-                                     type: 'POST',
-                                }
-                            });
+                                     type: 'POST'
+                                });
                             var template = _.template(SimpleMessage);
                             $('#sidebar').html(template({message: response.message}));
                             

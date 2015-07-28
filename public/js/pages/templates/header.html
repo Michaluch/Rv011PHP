@@ -3,7 +3,7 @@
 <div id="about-button" class="header-elements"><span>About</span></div>
 <% if(logged_in){ %>
 <a href="#" id="logout-btn"><div id="logout-button" class="header-elements" ><span>Logout</span></div></a>
-<a href="#myprofile" id="profile-lnk"><div id="profile" class="header-elements" ><span>Hello,</br> <%=session.get("user").email%></span></div></a>
+<a href="#myprofile" id="profile-lnk"><div id="profile" class="header-elements" ><span>Hello,</br> <%=user.email%></span></div></a>
 <% } else{ %>
 <a href="#login" id="login">
 <div id="login-button" class="header-elements" ><span>Login</span></div></a>

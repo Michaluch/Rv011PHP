@@ -38,10 +38,10 @@ define([
             signUpValidation.focusField('password');
         },   
   
-         render:function(){
+        render:function(){
             this.sidebar.turnOn();
             this.$el.html(LoginTemplate);
-         },
+        },
 
          //Login script sends data to server and wait to respond
 
