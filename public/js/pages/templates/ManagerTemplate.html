@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bawl</title>      
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/social-networks.css">
+    <link rel="stylesheet" href="css/signform.css">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"> 
+
+</head>
+<body>
+    <header>
+       
+    </header>
+    <div id="main-container" class="row">
+        <div class="left-sidebar col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+        <div class="profile row"> 
+        <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12">   
+        <img src="img/sample-img.jpg" alt="avatar"> 
+        </div>
+        <div class="profile-info col-lg-9 col-md-8 col-sm-9 col-xs-9">
+        <p>Peter Hudson</p>
+        <button type="submit" id="logout-btn">Logout</button>
+        </div>
+        </div>
+         <ul>
+            <li><a href="#">Recently added</a></li>
+            <li><a href="#">All problems</a></li>
+            <li><a href="#">Solved</a></li>
+            <li><a href="#">Add category</a></li>
+            <li><a href="#">New</a></li>
+        </ul>
+        </div>
+        <div class="manager-panel col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <form action="/search" class="search-form">
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search..." name="search">
+            <button type="submit" id="search-btn">Search</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Description</td>
+                    <td>Date</td>
+                    <td>Status</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tr>
+                <td>23</td>
+                <td>Slippery road</td>
+                <td>Nature</td>
+                <td>Volodymyra Velukogo str.</td>
+                <td>12.12.2014</td>
+                <td><span class="new-status">New</span></td>
+                <td class="edit-icons">
+                    <a href="#"><i class="fa fa-file-text-o"></i></a>
+                    <a href="#"><i class="fa fa-pencil"></i></a>
+                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
+                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+                </i></td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>Slippery road</td>
+                <td>Nature</td>
+                <td>Volodymyra Velukogo str.</td>
+                <td>12.12.2014</td>
+                <td><span class="to-resolve-status">To resolve</span>
+                    <span class="approved-status">Approved</span>
+                    <span class="resolved-status">Resolved</span>
+                </td>
+                <td class="edit-icons">
+                    <a href="#"><i class="fa fa-file-text-o"></i></a>
+                    <a href="#"><i class="fa fa-pencil"></i></a>
+                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
+                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+                </td>
+            </tr>
+        </div>
+        </div>
+    </div>
+     <script  data-main="js/main.js" src="js/libs/requirejs/require-full.js"></script>
+<!-- I am not sure how to add scripts to index file, while we use RequreJS. Let's discuss, how to do this right. I've uploaded them on previous way -->     
+    <script src="js/libs/jquery/jquery-2.1.4.js"></script>
+    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
