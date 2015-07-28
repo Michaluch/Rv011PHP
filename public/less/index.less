@@ -1,4 +1,5 @@
 @header-background-color: #ea556f;
+@left-sidebar-background:#f6f6f7;
 html, body {
 	height: 100%;
 	padding: 0;
@@ -103,3 +104,85 @@ font-size:11px;
 #point button, #photo button{
   margin-left: 5%;
 }
+/*Styles for manager page */
+.left-sidebar{
+    background-color: @left-sidebar-background;
+    height: 100%;
+    .profile{
+        margin: 10px 0 30px 0;
+        min-height: 70px;
+    }
+    .avatar{
+
+    }
+    p{
+        margin:0px;
+        padding:0px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    button{
+       border-color: @header-background-color;
+       border-width: 1px;
+       font-size: 12px;
+       background-color:@left-sidebar-background;
+       margin-top: 17px;
+    }
+    ul{
+        padding: 0;
+        margin: 0 0 0 10px;
+        line-height: 20px;
+    }
+    ul li{
+        list-style-type: none;
+        line-height: 35px;
+    }
+    ul li a{
+    text-decoration: none;
+    color: inherit;
+    }
+}
+
+.manager-panel{
+    .form-group{
+        padding:0px;
+    }
+    input{
+        float: left;
+        width: 80%;
+        border-radius: 0px;
+        font-weight: normal;
+    }
+    button{
+        min-width: 20%;
+        min-height: 34px;
+        color: #ffffff;
+        font-size: 22px;
+        border-width: 0px;
+        background-color: @header-background-color;
+    }
+    .new-status{
+        color: @header-background-color;
+        font-weight: bold;
+    }
+    .form-group{
+        margin-left: 0px;
+        font-weight: bold;
+    }
+    .to-resolve-status{
+      color:#63978c;
+      font-weight: bold;
+    }
+    .approved-status{
+      color: #508b7e;
+    }
+    .edit-icons a{
+      text-decoration: none;
+      color: inherit;
+      font-size: 16px;
+    }
+    .edit-icons a:hover{
+      color: #63978c;
+    }
+}
+/*End of manager page styles */

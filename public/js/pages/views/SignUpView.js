@@ -100,11 +100,11 @@ define([
                                 });
                             //var template = _.template(SimpleMessage);
                             //$('#sidebar').html(template({message: response.message}));
-                            var template1 = _.template(NotificationSuccess);
+                            var template1 = _.template(NotificationSuccess); // notification
                             $.colorbox({html:template1({message: response.message}),height:"30%",width:"30%"}); 
                         },
                         error:function(model,response){     
-                            var template2 = _.template(NotificationWarning);
+                            var template2 = _.template(NotificationWarning);//notification
                             var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
                             $.colorbox({html:template2({message: obj.email}),height:"30%",width:"30%"}); 
                             // var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);

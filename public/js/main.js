@@ -34,7 +34,8 @@ requirejs.config({
         CryOutView      : 'pages/views/CryOutView',
         Issue           : 'pages/models/Issue',
         Issues          : 'pages/collections/Issues',
-        ProfileView     : 'pages/views/ProfileView'
+        ProfileView     : 'pages/views/ProfileView',
+        ManagerView     : 'pages/views/ManagerView'
 
     },
 });

@@ -10,11 +10,13 @@ define([
     'User', 
     'UserView',
     'HeaderView',
+    "ManagerView",
     "SessionModel",
     "CryOutView",
     "ProfileView",
     ],
-    function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView, HeaderView, SessionModel, CryOutView, ProfileView) {
+    function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
+     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -23,7 +25,8 @@ define([
                 "register": "register",
                 "login":"login",
                 "issue": "issue",
-                "profile":"profile"
+                "profile":"profile",
+                "manager":"manager"
             },
             loadHeader: function(){
                 var issues = null;
@@ -68,7 +71,6 @@ define([
             login: function(){
                 this.loadHeader();
                 if(session.get("logged_in")===false){
-                    console.log('Login');
                     if(typeof loginView==="undefined"){
                         loginView=new LoginView();
                     };
@@ -88,6 +90,19 @@ define([
                     };
                     profileView.render();
                 }
+            },
+            manager: function(){
+                if(session.get("logged_in")===true){
+                this.loadHeader();
+                if(typeof this.ManagerView==="undefined"){
+                    this.ManagerView=new ManagerView();
+                };
+                this.ManagerView.render();
+                }
+                else{
+                   window.location.href="/"; 
+                }
+                
             },
         });
     });
