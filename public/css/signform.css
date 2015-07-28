@@ -81,3 +81,10 @@ ul.social-buttons li a:active {
 .butconf:active {
 background-color: #c84157; 
 }
+.notification{
+   border:1px solid #ccc;
+   border-radius:4px;
+   padding-right: 0px;
+   padding-left: 0px;
+   height:100%;
+}

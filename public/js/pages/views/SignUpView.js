@@ -4,19 +4,25 @@ define([
         "jquery",
         "text!pages/templates/SignUpFormTemplate.html",
         "text!pages/templates/SimpleMessage.html",
+        "text!pages/templates/NotificationSuccess.html",
+        "text!pages/templates/NotificationInfo.html",
+        "text!pages/templates/NotificationWarning.html",
+        "text!pages/templates/NotificationDanger.html",
         "User",
         "hash",
         "bootstrap",
         "signinform",
-        "signUpValidation"
-       
+        "signUpValidation",
+        "colorbox"     
     ],
-    function(_, Backbone, $, SignUpFormTemplate, SimpleMessage, User,hash,boot,signinform, signUpValidation) {
+    function(_, Backbone, $, SignUpFormTemplate, SimpleMessage,
+                NotificationSuccess, NotificationInfo, NotificationWarning, NotificationDanger,
+                User, hash, boot, signinform, signUpValidation, colorbox
+       ) {
         var View = Backbone.View.extend({
             el: $('#sidebar'), 
             initialize: function(){	
-                // console.log(this.collection.toJSON());
-                
+                // console.log(this.collection.toJSON())    
             },
             
             render: function() {
@@ -65,9 +71,9 @@ define([
             },
             
             setAvatar: function(e){
-                readURL(this.$("#imgInp"));      
+                readURL(this.$("#imgInp"));
+                     
             },
-
 
             addUser: function  (e) {
                 e.preventDefault(); // reset default settings
@@ -83,30 +89,31 @@ define([
                                 var formData = new FormData($("#sign_up_form").get(0));
                                 formData.append('attachments', file);
                                 formData.append('email', this.$('#email').val());
-                                formData.append('type','User');    // add type of attch for AttchController
+                                formData.append('type','User'); // add type of attch for AttchController
                                 $.ajax({
-                                     url: '/attachment',
-                                     data: formData ,
-                                     cache: false,
-                                     processData: false,
-                                     contentType: false,
-                                     type: 'POST',
-                                }
-                            });
-                            var template = _.template(SimpleMessage);
-                            $('#sidebar').html(template({message: response.message}));
-                            
-      
-                            
+                                    url: '/attachment',
+                                    data: formData ,
+                                    cache: false,
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST',
+                                });
+                            //var template = _.template(SimpleMessage);
+                            //$('#sidebar').html(template({message: response.message}));
+                            var template1 = _.template(NotificationSuccess);
+                            $.colorbox({html:template1({message: response.message}),height:"30%",width:"30%"}); 
                         },
                         error:function(model,response){     
+                            var template2 = _.template(NotificationWarning);
                             var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
-                            if (obj.email) {
-                                var $error_field = $('#email');
-                                var $group = $error_field.closest('.form-group');
-                                $group.addClass('has-error');
-                                $group.find('.help-block').html(obj.email).removeClass('hidden');
-                            }
+                            $.colorbox({html:template2({message: obj.email}),height:"30%",width:"30%"}); 
+                            // var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
+                            //if (obj.email) {
+                            //    var $error_field = $('#email');
+                            //    var $group = $error_field.closest('.form-group');
+                            //    $group.addClass('has-error');
+                            //    $group.find('.help-block').html(obj.email).removeClass('hidden');
+                            //}
                         } 
                     }); 
                 }

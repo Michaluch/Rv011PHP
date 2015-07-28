@@ -5,9 +5,15 @@ define([
     "text!pages/templates/LoginTemplate.html",
     "text!pages/templates/SimpleMessage.html",
     "hash",
-    "signUpValidation"   
+    "signUpValidation",
+    "text!pages/templates/NotificationSuccess.html",
+    "text!pages/templates/NotificationInfo.html",
+    "text!pages/templates/NotificationWarning.html",
+    "text!pages/templates/NotificationDanger.html"   
     ],
-    function(_, Backbone, $, LoginTemplate, SimpleMessage,hash, signUpValidation){
+    function(_, Backbone, $, LoginTemplate, SimpleMessage,hash, signUpValidation,
+                NotificationSuccess, NotificationInfo, 
+                NotificationWarning, NotificationDanger){
         return Backbone.View.extend({
         sidebar: null,
         el:$("#sidebar"),
@@ -18,7 +24,7 @@ define([
             'focus input#email': 'focusEmail',
             'focus input#password': 'focusPassword'
         },
-         initialize:function(){
+        initialize:function(){
             
         },
         //I used Singupform validation functions, so that everything be simmilar
@@ -38,10 +44,10 @@ define([
             signUpValidation.focusField('password');
         },   
   
-         render:function(){
+        render:function(){
             this.sidebar.turnOn();
             this.$el.html(LoginTemplate);
-         },
+        },
 
          //Login script sends data to server and wait to respond
 

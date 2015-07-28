@@ -4,8 +4,14 @@ define([
     "jquery",
     "Issue",
     "text!pages/templates/CryOutTemplate.html",
+    "text!pages/templates/NotificationSuccess.html",
+    "text!pages/templates/NotificationInfo.html",
+    "text!pages/templates/NotificationWarning.html",
+    "text!pages/templates/NotificationDanger.html"
     ],
-    function(_, Backbone, $, Issue, CryOutTemplate){
+    function(_, Backbone, $, Issue, CryOutTemplate
+                NotificationSuccess, NotificationInfo, 
+                NotificationWarning, NotificationDanger){
         return Backbone.View.extend({
             map: null,
             issue: {},
@@ -90,6 +96,7 @@ define([
                         if (response.code === "12201" && self.$el.find('#fileUpload').get(0).files.length){
                             data = new FormData($('#fileform').get(0));
                             data.append('issue_id', response.data.issue_id);
+                            data.append('type','Issue');    // add type of attch for AttchController
                             $.ajax({
                                 url: '/attachment',
                                 data: data,

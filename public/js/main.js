@@ -14,6 +14,7 @@ requirejs.config({
         fonts           : '../css/font-awesome/css/font-awesone.min', 
         hash            : 'libs/encrypt/sha512',
         images          : '',
+        colorbox        : 'libs/colorbox/jquery.colorbox-min', 
         //I've added other our scripts, but I am not sure
         Map             : 'map',
         Sidebar         : 'sidebar',
@@ -33,7 +34,8 @@ requirejs.config({
         CryOutView      : 'pages/views/CryOutView',
         Issue           : 'pages/models/Issue',
         Issues          : 'pages/collections/Issues',
-        ProfileView     : 'pages/views/ProfileView',
+        ProfileView     : 'pages/views/ProfileView'
+
     },
 });
     
