@@ -55,10 +55,10 @@ class UserController extends Controller {
 			$toEmail = $request->email;
 			
 			Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
-			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+			$message->from(MAIL_USERNAME, 'Bawl');
             $message->to($toEmail)->subject('Verify your email address');
         	});	
-			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
+			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email','data' => $issues]],200);	
 	}
 	/**
 	 * Store a newly created resource in storage.

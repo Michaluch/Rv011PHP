@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Attachments as Attachment;
 use Symfony\Component\HttpFoundation\File\File as File;
+use App\User as User;
 
 
 
@@ -31,12 +32,25 @@ class AttachmentController extends Controller {
 			}
 			$file->move($upload_dir, $file_name);
 		}
-		$attachment = new Attachment();
-		$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
-	    $attachment->issue_id = $request->issue_id;
-	    $attachment->save();
-		
-		return response()->json(['code' => '18200', 'msg' => 'Stored!']);
+
+		/*
+		This block to separate attachments for User from  attch for Issue 
+		 */ 
+		if ($request->input('type')=="User")
+		{
+			$user = User::where('email', $request->input('email'))->first();
+			$user->avatar_url=$upload_dir . $file_name;
+			$user->save();
+			return response()->json(['code' => $file, 'msg' => $user->email]);
+		}
+		else if ($request->input('type')=="Issue")
+		{
+			$attachment = new Attachment();
+			$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
+	    	$attachment->issue_id = $request->issue_id;
+	    	$attachment->save();
+		}
+		return response()->json(['code' => $file, 'msg' => 'Stored!']);
 	}
 
 	/**

@@ -64,8 +64,8 @@ define([
                 signUpValidation.focusField('confpass');
             },
             
-            setAvatar: function(){
-                readURL(this.$("#imgInp"));
+            setAvatar: function(e){
+                readURL(this.$("#imgInp"));      
             },
 
 
@@ -79,10 +79,24 @@ define([
                     avatar_url  :this.$('#imgInp').val()
                     }, {
                         success:function(model,response){
-                            // alert(response.message);
-                            // router.navigate('login', {trigger: true});
+                                var file = this.$("#imgInp")[0].files[0];
+                                var formData = new FormData($("#sign_up_form").get(0));
+                                formData.append('attachments', file);
+                                formData.append('email', this.$('#email').val());
+                                formData.append('type','User');    // add type of attch for AttchController
+                                $.ajax({
+                                     url: '/attachment',
+                                     data: formData ,
+                                     cache: false,
+                                     processData: false,
+                                     contentType: false,
+                                     type: 'POST',
+                                }
+                            });
                             var template = _.template(SimpleMessage);
                             $('#sidebar').html(template({message: response.message}));
+                            
+      
                             
                         },
                         error:function(model,response){     

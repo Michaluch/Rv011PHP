@@ -6,6 +6,7 @@ use App\Models\Issues as Issue;
 use App\Models\Atachments as Attachment;
 use App\Models\History as History;
 use App\Models\IssuesCategory as Categry;
+use App\User as User;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
