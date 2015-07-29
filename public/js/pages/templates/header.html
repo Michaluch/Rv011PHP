@@ -1,3 +1,16 @@
+<ul>
+    <li id="main-banner">bawl</li>
+    <a href="#issue"><li id="cry-out-button">Cry out</li></a>
+    <li id="about-button">About</li>
+    <% if(logged_in){ %>
+    <a href="#" id="logout-btn"><li id="logout-button"><div id="logout-button" class="header-elements">Logout</li></a>
+    <a href="#myprofile" id="profile-lnk"><li id="profile">Hello,</br> <%=user.email%></li>
+    <% } else{ %>
+    <li id="login-button"><a href="#login" id="login">Login</li></a>
+    <% } %> 
+</ul>
+<div class="clearfix"></div>
+<!--
 <div id="main-banner" class="header-elements"><span>bawl</span></div>
 <div id="cry-out-button" class="header-elements"><span><a href="#issue">Cry out</a></span></div>
 <div id="about-button" class="header-elements"><span>About</span></div>
@@ -7,4 +20,5 @@
 <% } else{ %>
 <a href="#login" id="login">
 <div id="login-button" class="header-elements" ><span>Login</span></div></a>
-<% } %>       
+<% } %>     
+-->  

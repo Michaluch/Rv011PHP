@@ -5,18 +5,14 @@ body {
   margin: 0;
 }
 header {
-  height: 80px;
+  min-height: 80px;
   color: white;
   background-color: #ea556f;
   font-size: 24;
   width: 100%;
   text-align: center;
 }
-header a {
-  color: #ffffff;
-  text-decoration: none;
-}
-header a:hover {
+header a:link {
   color: #ffffff;
   text-decoration: none;
 }
@@ -24,46 +20,53 @@ header a:visited {
   color: #ffffff;
   text-decoration: none;
 }
-#main-banner,
-#cry-out-button {
+header a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+header a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+header ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+header ul li {
+  display: inline;
   float: left;
   width: 100px;
-  height: 80px;
-  line-height: 70px;
+  line-height: 80px;
 }
-#about-button,
-#login-button,
-#logout-button {
-  float: right;
-  width: 100px;
-  height: 80px;
-  line-height: 70px;
-}
-#profile {
-  float: right;
-  min-width: 25%;
-  height: 80px;
-  line-height: 20px;
-  padding-top: 15px;
-  font-size: 11px;
-}
-#main-banner {
-  font-style: italic;
-  background-color: #d5445c;
-}
-#about-button:hover,
-#login-button:hover,
-#cry-out-button:hover,
-#logout-button:hover,
-#profile:hover {
+header ul li:hover {
   background-color: #e04c65;
   cursor: pointer;
   border: 1px;
 }
-#main-banner:hover {
+header #login-button,
+header #logout-button,
+header #about-button {
+  float: right;
+  margin-right: 20px;
+}
+header #profile {
+  float: right;
+  min-width: 200px;
+  line-height: 40px;
+}
+header #main-banner {
+  font-style: italic;
+  background-color: #d5445c;
+}
+header #main-banner:hover {
   background-color: #c84157;
-  cursor: pointer;
-  border: 1px;
+}
+.map-canvas-with-sb {
+  width: 70%;
+}
+.sb-show {
+  width: 30%;
 }
 #page,
 #main-container,
@@ -113,7 +116,7 @@ header a:visited {
 #left-sidebar {
   background-color: #f6f6f7;
   height: 100%;
-  display: block;
+  /*display:block;*/
 }
 #left-sidebar .profile {
   margin: 10px 0 30px 0;
@@ -127,7 +130,6 @@ header a:visited {
   padding: 0px;
   font-size: 12px;
   font-weight: bold;
-  overflow: hidden;
 }
 #left-sidebar button {
   border-color: #ea556f;
@@ -198,8 +200,24 @@ header a:visited {
   #manager-panel .fa-align-justify {
     display: block;
   }
-  #left-sidebar {
+  .sidebar-mobile {
     display: none;
   }
+  header ul li {
+    display: block;
+    float: none;
+    width: 100%;
+    line-height: 40px;
+  }
+  header #login-button,
+  header #logout-button,
+  header #about-button {
+    margin: 0px;
+    float: none;
+  }
+  /*#left-sidebar{
+    display:none;
+  }
+  */
 }
 /*End of manager page styles */

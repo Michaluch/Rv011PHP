@@ -36,21 +36,16 @@ define([
             },
 
             onLeftsidebarbtnClick:function(){
-                if($("#left-sidebar").css("display")==="none"){
-                $("#left-sidebar").addClass("col-sm-3");
-                $("#left-sidebar").addClass("col-xs-6");
-                $('#left-sidebar').css("display", "block");
-                $("#manager-panel").removeClass("col-sm-12");
-                $("#manager-panel").removeClass("col-xs-12");
-                $("#manager-panel").addClass("col-sm-9");
-                $("#manager-panel").addClass("col-xs-6")
+                var $sidebar = $("#left-sidebar");
+                var $panel = $("#manager-panel");
+
+                if($sidebar.is(":visible")){
+                    $sidebar.addClass("sidebar-mobile");
+                    $panel.addClass("col-sm-12 col-xs-12").removeClass("col-sm-9 col-xs-6");
                 }
                 else{
-                    $('#left-sidebar').css("display", "none");
-                    $("#manager-panel").removeClass("col-sm-9");
-                    $("#manager-panel").removeClass("col-xs-6");
-                    $("#manager-panel").addClass("col-sm-12");
-                    $("#manager-panel").addClass("col-xs-12");
+                    $sidebar.addClass("col-sm-3 col-xs-6").removeClass("sidebar-mobile");
+                    $panel.removeClass("col-sm-12 col-xs-12").addClass("col-sm-9 col-xs-6");
                 }
             },
 
