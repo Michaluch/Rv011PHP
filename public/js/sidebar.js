@@ -10,13 +10,12 @@ define(
         var windowsize=$(window).width();
         sidebar.turnOn = function(){
             if (!sidebar.on){
-                if(windowsize>800){
-                $("#map-canvas").addClass("col-xs-9");
-                $("#sb").addClass("col-xs-3");
-                }
-                else {
-                $("#map-canvas").addClass("col-xs-6");
-                $("#sb").addClass("col-xs-6");  
+                if ($(window).width() > 800){
+                    $("#map-canvas").addClass("col-xs-9");
+                    $("#sb").addClass("col-xs-3");
+                } else {
+                    $("#map-canvas").addClass("col-xs-6");
+                    $("#sb").addClass("col-xs-6");  
                 }
                 $("#sb").show();
                 sidebar.on = true;
@@ -31,13 +30,12 @@ define(
         //Close sidebar method
         sidebar.turnOff = function(){
             if (sidebar.on){
-                if(windowsize>800){
-                $("#map-canvas").removeClass("col-xs-9");
-                $("#sb").removeClass("col-xs-3");
-                }
-                else{
-                $("#map-canvas").removeClass("col-xs-6");
-                $("#sb").removeClass("col-xs-6");    
+                if ($(window).width() > 800){
+                    $("#map-canvas").removeClass("col-xs-9");
+                    $("#sb").removeClass("col-xs-3");
+                } else{
+                    $("#map-canvas").removeClass("col-xs-6");
+                    $("#sb").removeClass("col-xs-6");    
                 }
                 $("#sb").hide();
                 sidebar.on = false;
