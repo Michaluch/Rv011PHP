@@ -9,7 +9,7 @@ define([
     "text!pages/templates/NotificationWarning.html",
     "text!pages/templates/NotificationDanger.html"
     ],
-    function(_, Backbone, $, Issue, CryOutTemplate
+    function(_, Backbone, $, Issue, CryOutTemplate,
                 NotificationSuccess, NotificationInfo, 
                 NotificationWarning, NotificationDanger){
         return Backbone.View.extend({
