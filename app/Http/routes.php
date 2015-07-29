@@ -24,7 +24,8 @@ Route::controllers([
 
 Route::post('/auth/register', 'auth@postRegister');
 
-
+/*
+Route::get('/auth/fb/callback', 'auth@facebookLogin');
 Route::get('get/{id}', function($id){
   if ($id !== null){
     return $id;
@@ -56,7 +57,7 @@ Route::get('gp', function ($google = "google")
         return $provider->scopes(['email'])->redirect();
     }
 });
-
+*/
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
 Route::resource('issue', 'IssueController');
 Route::post('attachment','AttachmentController@store');
