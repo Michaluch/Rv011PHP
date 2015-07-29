@@ -110,53 +110,60 @@ header a:visited {
   margin-left: 5%;
 }
 /*Styles for manager page */
-.left-sidebar {
+#left-sidebar {
   background-color: #f6f6f7;
   height: 100%;
+  display: block;
 }
-.left-sidebar .profile {
+#left-sidebar .profile {
   margin: 10px 0 30px 0;
   min-height: 70px;
 }
-.left-sidebar .avatar img {
+#left-sidebar .avatar img {
   height: 70px;
 }
-.left-sidebar p {
+#left-sidebar p {
   margin: 0px;
   padding: 0px;
   font-size: 12px;
   font-weight: bold;
+  overflow: hidden;
 }
-.left-sidebar button {
+#left-sidebar button {
   border-color: #ea556f;
   border-width: 1px;
   font-size: 12px;
   background-color: #f6f6f7;
   margin-top: 17px;
 }
-.left-sidebar ul {
+#left-sidebar ul {
   padding: 0;
   margin: 0 0 0 10px;
   line-height: 20px;
 }
-.left-sidebar ul li {
+#left-sidebar ul li {
   list-style-type: none;
   line-height: 35px;
 }
-.left-sidebar ul li a {
+#left-sidebar ul li a {
   text-decoration: none;
   color: inherit;
 }
-.manager-panel .form-group {
+#manager-panel .form-group {
   padding: 0px;
 }
-.manager-panel input {
+#manager-panel .fa-align-justify {
+  display: none;
+  font-size: 25px;
+  margin-top: 10px;
+}
+#manager-panel input {
   float: left;
   width: 80%;
   border-radius: 0px;
   font-weight: normal;
 }
-.manager-panel button {
+#manager-panel button {
   min-width: 20%;
   min-height: 34px;
   color: #ffffff;
@@ -164,27 +171,35 @@ header a:visited {
   border-width: 0px;
   background-color: #ea556f;
 }
-.manager-panel .new-status {
+#manager-panel .new-status {
   color: #ea556f;
   font-weight: bold;
 }
-.manager-panel .form-group {
+#manager-panel .form-group {
   margin-left: 0px;
   font-weight: bold;
 }
-.manager-panel .to-resolve-status {
+#manager-panel .to-resolve-status {
   color: #63978c;
   font-weight: bold;
 }
-.manager-panel .approved-status {
+#manager-panel .approved-status {
   color: #508b7e;
 }
-.manager-panel .edit-icons a {
+#manager-panel .edit-icons a {
   text-decoration: none;
   color: inherit;
   font-size: 16px;
 }
-.manager-panel .edit-icons a:hover {
+#manager-panel .edit-icons a:hover {
   color: #63978c;
+}
+@media screen and (max-width: 990px) {
+  #manager-panel .fa-align-justify {
+    display: block;
+  }
+  #left-sidebar {
+    display: none;
+  }
 }
 /*End of manager page styles */

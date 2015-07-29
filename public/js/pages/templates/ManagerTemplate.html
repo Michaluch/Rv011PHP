@@ -1,8 +1,8 @@
     <div id="main-container" class="row">
-        <div class="left-sidebar col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+        <div class="col-lg-3 col-md-3" id="left-sidebar">
         <div class="profile row"> 
-        <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12">   
-        <img src="<%=user.avatar_url%>" alt="avatar"> 
+        <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12"> 
+        <img src="<%if(user.avatar_url){%><%=user.avatar_url%><%}else{%>img/anonymus.png<%}%>" alt="avatar"> 
         </div>
         <div class="profile-info col-lg-9 col-md-8 col-sm-9 col-xs-9">
         <p><%=user.email%></p>
@@ -17,7 +17,8 @@
             <li><a href="#">New</a></li>
         </ul>
         </div>
-        <div class="manager-panel col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="manager-panel">
+        <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
         <form action="/search" class="search-form">
             <div class="form-group">
             <input type="text" class="form-control" placeholder="Search..." name="search">

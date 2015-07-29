@@ -105,9 +105,10 @@ font-size:11px;
   margin-left: 5%;
 }
 /*Styles for manager page */
-.left-sidebar{
+#left-sidebar{
     background-color: @left-sidebar-background;
     height: 100%;
+    display:block;
     .profile{
         margin: 10px 0 30px 0;
         min-height: 70px;
@@ -122,6 +123,7 @@ font-size:11px;
         padding:0px;
         font-size: 12px;
         font-weight: bold;
+        overflow: hidden;
     }
     button{
        border-color: @header-background-color;
@@ -145,9 +147,14 @@ font-size:11px;
     }
 }
 
-.manager-panel{
+#manager-panel{
     .form-group{
         padding:0px;
+    }
+    .fa-align-justify{
+      display: none;
+      font-size: 25px;
+      margin-top: 10px;
     }
     input{
         float: left;
@@ -186,5 +193,13 @@ font-size:11px;
     .edit-icons a:hover{
       color: #63978c;
     }
+}
+@media screen and (max-width: 990px){
+  #manager-panel .fa-align-justify{
+    display:block;
+  }
+  #left-sidebar{
+    display:none;
+  }
 }
 /*End of manager page styles */

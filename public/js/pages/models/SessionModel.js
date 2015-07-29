@@ -51,52 +51,6 @@ define([
 
             //callback.complete();
         },
-
-
-                /*
-        _public.isLogged(
-        function() {
-        this.$el.hide();
-        }, 
-        function() {
-        this.$el.show();
-        }
-        );
-
-        var _public={};
-        _public.isLogged(
-        function() {
-        $('#login-button').hide();
-        }, 
-        function() {
-        console.log('NOt Loggined');
-        }
-        ),
-        // private variable
-
-        _public._isLogged = null,
-
-        _public.isLogged = function(accept, fail) {
-            if(_public._isLogged === null) {
-                _public.getIsLogged(accept, fail);
-            } else if(_public._isLogged){
-                accept();
-            } else {
-                fail();
-            }
-        },
-
-        _public.getIsLogged =  function  (accept, fail) {
-            $.post('/auth/logged', function(data) {
-                _public._isLogged = parseInt(data);
-                if(_public._isLogged) {
-                    accept();
-                } else {
-                    fail();
-                }
-            });
-        },
-*/
         });
         return SessionModel;
     })
