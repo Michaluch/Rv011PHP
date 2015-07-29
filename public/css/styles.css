@@ -118,6 +118,9 @@ header a:visited {
   margin: 10px 0 30px 0;
   min-height: 70px;
 }
+.left-sidebar .avatar img {
+  height: 70px;
+}
 .left-sidebar p {
   margin: 0px;
   padding: 0px;

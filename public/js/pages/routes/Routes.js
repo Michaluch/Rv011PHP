@@ -92,7 +92,7 @@ define([
                 }
             },
             manager: function(){
-                if(session.get("logged_in")===true){
+                if(session.get("logged_in")===true&&session.get("user").role_id===1){
                 this.loadHeader();
                 if(typeof this.ManagerView==="undefined"){
                     this.ManagerView=new ManagerView();

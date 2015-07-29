@@ -39,10 +39,8 @@ public $timestamps = false;
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token',
-            "role_id",
-            "status_id",
-            "avatar_url",
-            "language_id"];
+	protected $hidden = ['password',
+            'remember_token',
+            "salt"];
 
 }

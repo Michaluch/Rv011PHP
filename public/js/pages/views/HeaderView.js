@@ -32,7 +32,6 @@ define([
         });
             },
             render:function(){
-                if(DEBUG) console.log(session.toJSON());
                 this.$el.html(this.template({ 
                 logged_in: session.get("logged_in"),
                 user: session.user.toJSON() 
