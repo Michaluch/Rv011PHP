@@ -50,16 +50,29 @@ define([
                 }
             },
 
+
+
             onSearchClick:function(e){
                 e.preventDefault();
                 var search=$("input[name=search]").val();
+
+               function showIssues(issuesList){
+                    for(var i=0; i<issuesList.length; i++){
+                    for(var issue in issuesList[i]){
+                    $('#search-form').append('<p>'+issuesList[i].name+'</p>');
+                    }
+                    }
+                 };
+
                 if(search.length<3){
                     console.log("Please add more details");
                 }
                 else{
                     $.post("/search", {search:search}, function(data){
                     if(data.status=="ok"){
-                        $('#search-form').append("<p>"+data.response[1].name+"</p>");
+                        //var issues=showIssues(data.response);
+               
+                       showIssues(data.response);
                         //console.log(data);
                     }
                     else{
