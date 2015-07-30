@@ -10,7 +10,8 @@ define([
             el:$("#main-container"),
             events:{
                 "click #small-logout-btn" :"onLogoutClick",
-                "click #left-sidebar-btn" :"onLeftsidebarbtnClick"
+                "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
+                "click #search-btn": "onSearchClick"
             },
             initialize:function(){
 
@@ -46,6 +47,26 @@ define([
                 else{
                     $sidebar.addClass("col-sm-3 col-xs-6").removeClass("sidebar-mobile");
                     $panel.removeClass("col-sm-12 col-xs-12").addClass("col-sm-9 col-xs-6");
+                }
+            },
+
+            onSearchClick:function(e){
+                e.preventDefault();
+                var search=$("input[name=search]").val();
+                if(search.length<3){
+                    console.log("Please add more details");
+                }
+                else{
+                    $.post("/search", {search:search}, function(data){
+                    if(data.status=="ok"){
+                        $('#search-form').append("<p>"+data.response[1].name+"</p>");
+                        //console.log(data);
+                    }
+                    else{
+                        $('#search-form').append("<p>"+data.message+"</p>");
+                         //console.log(data.message);      
+                    };
+                    });
                 }
             },
 

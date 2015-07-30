@@ -5,8 +5,7 @@ define([
     ], function(_, User, UserView){
         var SessionModel=Backbone.Model.extend({
             defaults:{
-                logged_in: false,
-                user_id: ''
+                logged_in: false
             },
             initialize:function(){
                 //_.bindAll(this);
