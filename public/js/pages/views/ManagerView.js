@@ -59,7 +59,9 @@ define([
                function showIssues(issuesList){
                     for(var i=0; i<issuesList.length; i++){
                     for(var issue in issuesList[i]){
-                    $('#search-form').append('<p>'+issuesList[i].name+'</p>');
+                    $('#search-form').append(
+                        '<table><tr><td>'+issuesList[i].id+
+                        '</td><td>'+issuesList[i].name+'<td></tr></table>');
                     }
                     }
                  };
@@ -71,8 +73,10 @@ define([
                     $.post("/search", {search:search}, function(data){
                     if(data.status=="ok"){
                         //var issues=showIssues(data.response);
-               
-                       showIssues(data.response);
+                        console.log(data.response[1].id);
+                        var issues=data.response;
+                        console.log(issues[1]);
+                        showIssues(issues);
                         //console.log(data);
                     }
                     else{
