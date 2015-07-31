@@ -2,11 +2,14 @@ define([
     "text!pages/templates/ManagerTemplate.html",
     "jquery",
     "underscore",
-    "backbone"
+    "backbone",
+    "IssuesView",
+    "Issues"
     ],
-    function(ManagerTemplate, $, _, Backbone){
+    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues){
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
+            model: Issues,
             el:$("#main-container"),
             events:{
                 "click #small-logout-btn" :"onLogoutClick",
@@ -17,12 +20,24 @@ define([
 
             },
             render:function(){
-                this.$el.empty();
-                this.$el.html(this.template({ 
-                logged_in: session.get("logged_in"),
-                user: session.user.toJSON() 
-            }));
-            return this;
+              //console.log(this.model);
+              var issues=new Issues();
+              var self=this;
+              self.$el.empty();
+              issues.fetch({
+                success: function(issues) {
+                  //console.log(issues);
+                    var template = self.template({
+                        issues: issues.models,
+                        logged_in: session.get("logged_in"),
+                        user: session.user.toJSON(),
+
+                    });
+                    self.$el.html(template);
+                }
+            });
+   
+
             },
             onLogoutClick:function(e){
             e.preventDefault(e);

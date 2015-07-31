@@ -14,9 +14,11 @@ define([
     "SessionModel",
     "CryOutView",
     "ProfileView",
+    "IssuesView",
+    "Issues"
     ],
     function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
-     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView) {
+     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView, IssuesView, Issues) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -26,7 +28,8 @@ define([
                 "login":"login",
                 "issue": "issue",
                 "profile":"profile",
-                "manager":"manager"
+                "manager":"manager",
+                "issues": "issues"
             },
             loadHeader: function(){
                 var issues = null;
@@ -104,5 +107,11 @@ define([
                 }
                 
             },
+            issues: function(){
+                this.loadHeader(); 
+                var view = new IssuesView();              
+                view.render();
+                console.log('render view');
+            }
         });
     });

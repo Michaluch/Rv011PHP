@@ -71,8 +71,8 @@ class IssueController extends Controller {
 			$issue->description = $data['description'];
 		}
 		$issue->map_pointer = json_encode($data['location']);
-				
-		$categoryModel = new Categry;
+				//TO FIX Categry
+		$categoryModel = new Categry; 
 		$input_cat = strtolower($data['category']);
 		$category = $categoryModel->where('name', '=', $input_cat)->first();
 		if (is_null($category)){

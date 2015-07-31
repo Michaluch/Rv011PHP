@@ -1,13 +1,15 @@
 define([
+    "jquery",
+    "underscore",
     'backbone',
     'Issue'
-], function  (Backbone, Issue) {
-    var Collection = Backbone.Collection.extend({
+], function  ($, _, Backbone, Issue) {
+    var Issues = Backbone.Collection.extend({
         model: Issue,
-        url: '/issue',
+        url: '/issues',
         parse: function (response) {
-            return response.data;
+            return response;
         }
     });
-    return Collection;
+    return Issues;
 });

@@ -35,7 +35,9 @@ requirejs.config({
         Issue           : 'pages/models/Issue',
         Issues          : 'pages/collections/Issues',
         ProfileView     : 'pages/views/ProfileView',
-        ManagerView     : 'pages/views/ManagerView'
+        ManagerView     : 'pages/views/ManagerView',
+        IssueView       : 'pages/views/IssueView',
+        IssuesView      : 'pages/views/IssuesView',
 
     },
 });

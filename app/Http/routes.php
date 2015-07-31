@@ -27,6 +27,7 @@ Route::post('/search', 'SearchController@postSearch');
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
 Route::resource('issue', 'IssueController');
+Route::resource('issues', 'IssuesController');
 Route::post('attachment','AttachmentController@store');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();

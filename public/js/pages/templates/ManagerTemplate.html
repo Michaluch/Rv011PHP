@@ -25,6 +25,44 @@
             <button type="submit" id="search-btn">Search</button>
             </div>
         </form>
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover table-condensed">
+   <thead>
+     <tr>
+       <th scope="col">id</th>
+       <th scope="col">name</th>
+       <th scope="col">category_id</th>
+
+       <th scope="col">description</th>
+
+       <th scope="col">map_pointer</th>
+
+       <th scope="col">severity</th>
+     </tr>
+   </thead>
+<tbody>
+<% _.each(issues, function(issue, key, list) { %>
+  
+     <tr>
+       <td><%= issue.get('id') %></td>
+
+       <td><%= issue.get('name') %></td>
+
+       <td><%= issue.get('category_id') %></td>
+
+       <td><%= issue.get('description') %></td>
+
+       <td><%= issue.get('map_pointer') %></td>
+
+       <td><%= issue.get('severity') %></td>
+     
+<% }) %>
+     </tr>
+   </tbody>
+ </table>
+</div>
+        <!--      
         <div class="table-responsive">
         <table class="table table-bordered table-hover table-condensed">
             <thead>
@@ -69,6 +107,8 @@
                     <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
                 </td>
             </tr>
+        </table>
         </div>
+        -->
         </div>
     </div>
