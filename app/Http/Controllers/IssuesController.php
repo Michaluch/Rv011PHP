@@ -13,8 +13,29 @@ class IssuesController extends Controller {
 	 */
 	public function index()
 	{
-		$result = Issues::all();
+		/*
+		$result = Issues::with('category', 'history', 'history.status')->get();
 		return $result->toArray();
+		*/
+		return $this->getIssuesCollection();
+	}
+
+	public function search(Request $request)
+	{
+		/*
+		$result = Issues::with('category', 'history', 'history.status')
+		->search($request->search)->get();
+		return $result->toArray();
+		*/
+		return $this->getIssuesCollection($request->search);
+	}
+
+	private function getIssuesCollection($keywords = null){
+		$result = Issues::with('category', 'history', 'history.status');
+		if($keywords) {
+			$result->search($keywords);
+		}
+		return $result->get()->toArray();
 	}
 	/**
 	 * Show the form for creating a new resource.

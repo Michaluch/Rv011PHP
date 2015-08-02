@@ -11,6 +11,7 @@ use App\Models\Issues as Issue;
 
 class SearchController extends Controller {
 
+/*
     public function postSearch(Request $request){
     $search = $request->all();
     $searchName=$request['search'];
@@ -29,5 +30,7 @@ class SearchController extends Controller {
             );
         }
     }
+
+*/
 
 }

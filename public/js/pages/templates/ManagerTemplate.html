@@ -21,7 +21,7 @@
         <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
         <form  id="search-form" action="/issue/search">
             <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search..." name="search">
+            <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>">
             <button type="submit" id="search-btn">Search</button>
             </div>
         </form>
@@ -30,15 +30,15 @@
 <table class="table table-bordered table-hover table-condensed">
    <thead>
      <tr>
-       <th scope="col">id</th>
-       <th scope="col">name</th>
-       <th scope="col">category_id</th>
-
-       <th scope="col">description</th>
-
-       <th scope="col">map_pointer</th>
-
-       <th scope="col">severity</th>
+       <th>ID</th>
+       <th>Name</th>
+       <th>Category</th>
+       <th>Description</th>
+       <th>Date</th>
+       <!--<th scope="col">Location</th>-->
+       <th>Status</th>
+       <th>Severity</th>
+       <th>Action</th>
      </tr>
    </thead>
 <tbody>
@@ -49,13 +49,24 @@
 
        <td><%= issue.get('name') %></td>
 
-       <td><%= issue.get('category_id') %></td>
+       <td><%= issue.get('category').name %></td>
 
        <td><%= issue.get('description') %></td>
 
-       <td><%= issue.get('map_pointer') %></td>
+       <td><%= issue.get('history').date%></td>
+
+       <!--<td><%= issue.get('map_pointer') %></td>-->
+
+       <td><%= issue.get('history').status.name %></td>
 
        <td><%= issue.get('severity') %></td>
+
+       <td class="edit-icons">
+        <a href="#"><i class="fa fa-file-text-o"></i></a>
+        <a href="#"><i class="fa fa-pencil"></i></a>
+        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
+        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+        </td>
      
 <% }) %>
      </tr>

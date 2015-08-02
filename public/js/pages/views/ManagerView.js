@@ -20,22 +20,24 @@ define([
 
             },
             render:function(){
-              //console.log(this.model);
-              var issues=new Issues();
-              var self=this;
-              self.$el.empty();
-              issues.fetch({
-                success: function(issues) {
-                  //console.log(issues);
-                    var template = self.template({
-                        issues: issues.models,
-                        logged_in: session.get("logged_in"),
-                        user: session.user.toJSON(),
+                  //console.log(this.model);
+                var issues=new Issues();
+                var self=this;
+                self.$el.empty();
+                issues.fetch({
+                    success: function(issues) {
+                      //console.log(issues);
+                        var template = self.template({
+                            issues: issues.models,
+                            logged_in: session.get("logged_in"),
+                            user: session.user.toJSON(),
+                            search: ''
+                            //category: issues.category
 
-                    });
-                    self.$el.html(template);
-                }
-            });
+                        });
+                        self.$el.html(template);
+                    }
+                });
    
 
             },
@@ -70,35 +72,32 @@ define([
             onSearchClick:function(e){
                 e.preventDefault();
                 var search=$("input[name=search]").val();
-
-               function showIssues(issuesList){
-                    for(var i=0; i<issuesList.length; i++){
-                    for(var issue in issuesList[i]){
-                    $('#search-form').append(
-                        '<table><tr><td>'+issuesList[i].id+
-                        '</td><td>'+issuesList[i].name+'<td></tr></table>');
-                    }
-                    }
-                 };
-
+                var self=this;
                 if(search.length<3){
-                    console.log("Please add more details");
+                    $('#search-form').append("<p>Please, add more than 2 letters</p>");
                 }
-                else{
-                    $.post("/search", {search:search}, function(data){
-                    if(data.status=="ok"){
-                        //var issues=showIssues(data.response);
-                        console.log(data.response[1].id);
-                        var issues=data.response;
-                        console.log(issues[1]);
-                        showIssues(issues);
-                        //console.log(data);
+                else
+                {
+                $.post("/issues/search", {search:search}, function(data){
+                    //var issues=showIssues(data.response);
+                    if(data.length>0){
+                    var issuesFound=new Issues(data);
+
+                    var template = self.template({
+                            issues: issuesFound.models,
+                            logged_in: session.get("logged_in"),
+                            user: session.user.toJSON(),
+                            search: search
+                            //category: issues.category
+                        });
+                    self.$el.html(template); 
+
+                    //console.log(data);
                     }
                     else{
-                        $('#search-form').append("<p>"+data.message+"</p>");
-                         //console.log(data.message);      
-                    };
-                    });
+                      $('#search-form').append("<p>Nothing found</p>");  
+                    }
+                });
                 }
             },
 

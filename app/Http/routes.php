@@ -22,12 +22,13 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::post('/search', 'SearchController@postSearch');
+//Route::post('/search', 'SearchController@postSearch');
 //Route::post('/auth/register', 'auth@postRegister');
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
 Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
+Route::post('issues/search', 'IssuesController@search');
 Route::post('attachment','AttachmentController@store');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();

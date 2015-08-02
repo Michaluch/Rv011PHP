@@ -32,4 +32,9 @@ class Issues extends Model {
     {
     	return $this->hasOne('App\Models\History', 'issue_id', 'id');
     }
+    
+    public function scopeSearch($query, $keywords)
+    {
+        return $query->where('name', 'like', '%'.$keywords.'%');
+    }
 }

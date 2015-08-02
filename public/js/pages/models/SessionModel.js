@@ -1,5 +1,5 @@
 define([
-     "underscore",
+    "underscore",
     "User",
     'UserView'
     ], function(_, User, UserView){

@@ -6,7 +6,7 @@ define([
         var Model = Backbone.Model.extend({
         defaults: {
             name         : "",
-            category_id  : 1,
+            category  : {},
             description  : "",
             //map_pointer  : {'lat': 0, 
             //                'lng': 0},
