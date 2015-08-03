@@ -4,12 +4,13 @@ define([
     "jquery",
     "Issue",
     "text!pages/templates/CryOutTemplate.html",
+    "text!pages/templates/IssueDetails.html",
     "text!pages/templates/NotificationSuccess.html",
     "text!pages/templates/NotificationInfo.html",
     "text!pages/templates/NotificationWarning.html",
     "text!pages/templates/NotificationDanger.html"
     ],
-    function(_, Backbone, $, Issue, CryOutTemplate,
+    function(_, Backbone, $, Issue, CryOutTemplate, IssueDetailsTemplate,
                 NotificationSuccess, NotificationInfo, 
                 NotificationWarning, NotificationDanger){
         return Backbone.View.extend({
@@ -27,11 +28,30 @@ define([
             initialize: function(){
                 //console.log(this.collection.toJSON());
             },
-            render: function(){
+            render: function(id){
                 var map = this.map,
+                    issueModel,
                     self = this;
 
-                this.$el.appendTo('#sb');    
+                if (typeof id !== 'undefined' && id !== null){
+                    issueModel = new Issue;
+                    issueModel.url = '/issue/' + id;
+                    issueModel.parse = function(res) {
+                        return res.data;
+                    };
+                    issueModel.fetch({
+                        success: function(res){
+                            self.sidebar.turnOn();
+                            self.sidebar.setOnCloseOnce(function(){
+                    self.closeView();
+                });
+                            var template = _.template(IssueDetailsTemplate);
+                            self.$el.html(template(res.attributes));
+                            
+                        },
+                    });
+                    return false;
+                }
                 this.sidebar.turnOn();
                 this.sidebar.setOnCloseOnce(function(){
                     map.setMarkerOnClick(false, true);
@@ -122,8 +142,8 @@ define([
                   reader.onloadend = function (e) {
                     selectedImage = e.target.result;
                     $('#photo-container').attr({
-                      src: selectedImage,
-                      style: 'width: 100%; height: auto'
+                      'src': selectedImage,
+                      'style': 'width: 100%; height: auto'
                     });
                   };
                   reader.readAsDataURL(input.files[0]);

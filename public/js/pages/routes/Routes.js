@@ -26,7 +26,7 @@ define([
                 "": "index",
                 "register": "register",
                 "login":"login",
-                "issue": "issue",
+                "issue(/:id)": "issue",
                 "profile":"profile",
                 "manager":"manager",
                 "issues": "issues"
@@ -52,7 +52,7 @@ define([
                 signInView.render();
             },
             
-            issue: function(){
+            issue: function(id){
                 var oCryOutView = null;
                 this.loadHeader();
                 console.log('New issue');
@@ -67,7 +67,11 @@ define([
                         oCryOutView.map = this.map;
                     }
                     oCryOutView.sidebar = this.sidebar;
+                    if (typeof id !== 'undefined' && id !== null){
+                        oCryOutView.render(id);    
+                    } else {
                     oCryOutView.render();                    
+                }
                 }
             },
             

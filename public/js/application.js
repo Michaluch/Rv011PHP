@@ -40,6 +40,9 @@ define([
                     center: new google.maps.LatLng(50.624, 26.260)
                 });
                 Map.setMarkers(markers);
+                Map.setMarkersClickEvent(function(marker){
+                    location.hash = 'issue/' + marker.id;
+                });
                 //window.mapa = Map;
             }});
             router.map = Map;
