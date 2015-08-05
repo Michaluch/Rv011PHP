@@ -17,11 +17,12 @@ define([
                 "click #search-btn": "onSearchClick"
             },
             initialize:function(){
-
+                issues=new Issues();
+                //console.log(issues);
             },
             render:function(){
                   //console.log(this.model);
-                var issues=new Issues();
+                //var issues=new Issues();
                 var self=this;
                 self.$el.empty();
                 issues.fetch({
@@ -35,6 +36,7 @@ define([
                             //category: issues.category
 
                         });
+                        console.log(issues);
                         self.$el.html(template);
                     }
                 });
@@ -100,6 +102,7 @@ define([
                 });
                 }
             },
+
 
             });
         return ManagerView;

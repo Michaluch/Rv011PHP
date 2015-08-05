@@ -9,15 +9,23 @@ define([
             category  : {},
             description  : "",
             //map_pointer  : {'lat': 0, 
-            //                'lng': 0},
+            //               'lng': 0},
             map_pointer: "",
             severity     : 1
         },
-        //url:"/issue",
+        url: function(){
+            if(this.isNew()){
+                return "/issues";
+            }
+            else{
+                return "/issues/"+this.id;
+            }
+        },
+        idAttribute: "id",
         initialize: function(){
             
         },
 
         });
-    return Model;
+        return Model;
     });

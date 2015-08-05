@@ -30,13 +30,10 @@ define(
         //Close sidebar method
         sidebar.turnOff = function(){
             if (sidebar.on){
-                if ($(window).width() > 800){
+
                     $("#map-canvas").removeClass("col-xs-9");
                     $("#sb").removeClass("col-xs-3");
-                } else{
-                    $("#map-canvas").removeClass("col-xs-6");
-                    $("#sb").removeClass("col-xs-6");    
-                }
+
                 $("#sb").hide();
                 sidebar.on = false;
                 if (typeof this.onCloseOnce === 'function'){

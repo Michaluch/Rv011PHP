@@ -203,6 +203,9 @@ header #main-banner:hover {
   .sidebar-mobile {
     display: none;
   }
+  .width50 {
+    width: 50%;
+  }
   header ul li {
     display: block;
     float: none;

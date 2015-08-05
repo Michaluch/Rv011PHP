@@ -44,7 +44,7 @@ class IssuesController extends Controller {
 	 */
 	public function create(Request $request)
 	{
-		
+
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -53,7 +53,7 @@ class IssuesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+
 	}
 	/**
 	 * Display the specified resource.
@@ -63,7 +63,9 @@ class IssuesController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$result=Issues::where('id', '=', $id)
+		->with('category', 'history', 'history.status')->first();
+		return $result;
 	}
 	/**
 	 * Show the form for editing the specified resource.

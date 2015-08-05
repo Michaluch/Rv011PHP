@@ -53,7 +53,7 @@
 
        <td><%= issue.get('description') %></td>
 
-       <td><%= issue.get('history').date%></td>
+       <td><%= issue.get('history').date %></td>
 
        <!--<td><%= issue.get('map_pointer') %></td>-->
 
@@ -62,7 +62,7 @@
        <td><%= issue.get('severity') %></td>
 
        <td class="edit-icons">
-        <a href="#"><i class="fa fa-file-text-o"></i></a>
+        <a href="#issues/<%= issue.get('id')  %>"><i class="fa fa-file-text-o"></i></a>
         <a href="#"><i class="fa fa-pencil"></i></a>
         <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
         <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
