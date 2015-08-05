@@ -64,7 +64,7 @@ class IssuesController extends Controller {
 	public function show($id)
 	{
 		$result=Issues::where('id', '=', $id)
-		->with('category', 'history', 'history.status')->first();
+		->with('category', 'history', 'history.status', 'attachments')->first();
 		return $result;
 	}
 	/**

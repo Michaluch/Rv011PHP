@@ -116,9 +116,9 @@ define(
             this.setMarkers = function(markers){
                 $.each(markers, function(k, e){
                     var marker = new google.maps.Marker({
-                            position: e.location,
+                            position: JSON.parse(e.map_pointer),
                             map: map,
-                            title: e.title,
+                            title: e.name,
                             id: e.id
                         });
                     map_markers.push(marker);
