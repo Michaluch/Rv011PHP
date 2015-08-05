@@ -88,24 +88,33 @@ class AuthController extends Controller {
 		]);
 
 		$credentials = $request->only('email', 'password');
+		$errorMessage = '';
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			if($request->ajax()) {
-				return array(
-					'status' => 'ok',
-					'response'=>'10200',
-					);
-			}
-			else {
-				return redirect()->intended($this->redirectPath());
+			$user=$this->auth->user();
+			if($user->status_id==2) {
+				if($request->ajax()) {
+					return array(
+						'status' => 'ok',
+						'response'=>'10200',
+						);
+				}
+				else {
+					return redirect()->intended($this->redirectPath());
+				}
+			} else{
+				$this->auth->logout();
+				$errorMessage = 'Please, verify your account';
 			}
 		};
+
+		$errorMessage = $errorMessage ?:$this->getFailedLoginMessage();
 
 		if($request->ajax()) {
 			$result = array(
 				'status' => 'error',
-				'errors' => $this->getFailedLoginMessage(),
+				'errors' => $errorMessage,
 				'response'=>'10400',
 				);
 			
@@ -115,7 +124,7 @@ class AuthController extends Controller {
 			return redirect($this->loginPath())
 					->withInput($request->only('email', 'remember'))
 					->withErrors([
-						'email' => $this->getFailedLoginMessage(),
+						'email' => $errorMessage,
 					]);
 		}
 	}
@@ -170,6 +179,7 @@ class AuthController extends Controller {
 				'avatar_url' => $userSocialite->getAvatar(),
 				$type . '_id' => $userSocialite->getId(),
 				'password' => bcrypt(str_random(32)),
+				'status_id' => 2,
 			]);
 
 			return $user;

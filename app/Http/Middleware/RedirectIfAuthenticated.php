@@ -35,6 +35,7 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
+			
 			if(!$request->ajax()) {
 				return new RedirectResponse(url('/home'));
 			}
