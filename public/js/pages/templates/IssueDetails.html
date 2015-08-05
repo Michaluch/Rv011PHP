@@ -1,0 +1,13 @@
+<div id="issue-container">
+  <h2><%= name %></h2>
+  <% _.each(attachments, function(attach){%>
+	<img src="//<%= attach %>" width="100%" height="auto">
+  <% }); %>
+  <div class="issue-desciption">
+	<div class="desc-text">
+		<h3>Issue description:</h3>
+		<p><%= description %></p>
+	</div>
+	<span><strong>Issue category:</strong> <%= category %></span>
+  </div>
+</div>
