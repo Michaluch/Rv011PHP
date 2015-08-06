@@ -144,6 +144,10 @@ header a:visited {
   text-decoration: none;
   color: inherit;
 }
+
+.left-sidebar li:hover{
+    cursor: pointer;
+}
 .manager-panel .form-group {
   padding: 0px;
 }
@@ -183,5 +187,8 @@ header a:visited {
 }
 .manager-panel .edit-icons a:hover {
   color: #63978c;
+}
+.manager-panel li:hover {
+  cursor: pointer;
 }
 /*End of manager page styles */

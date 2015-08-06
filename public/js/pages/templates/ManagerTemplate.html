@@ -1,73 +1,28 @@
     <div id="main-container" class="row">
         <div class="left-sidebar col-lg-3 col-md-3 col-sm-3 col-xs-3" >
-        <div class="profile row"> 
-        <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12">   
-        <img src="img/sample-img.jpg" alt="avatar"> 
-        </div>
-        <div class="profile-info col-lg-9 col-md-8 col-sm-9 col-xs-9">
-        <p><%=user.email%></p>
-        <button type="submit" id="small-logout-btn">Logout</button>
-        </div>
-        </div>
-         <ul>
-            <li><a href="#">Recently added</a></li>
-            <li><a href="#">All problems</a></li>
-            <li><a href="#">Solved</a></li>
-            <li><a href="#">Add category</a></li>
-            <li><a href="#">New</a></li>
-        </ul>
-        </div>
-        <div class="manager-panel col-lg-9 col-md-9 col-sm-9 col-xs-9">
-        <form action="/search" class="search-form">
-            <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search..." name="search">
-            <button type="submit" id="search-btn">Search</button>
+            <div class="profile row"> 
+                <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12">   
+                    <img src="img/sample-img.jpg" alt="avatar"> 
+                </div>
+                <div class="profile-info col-lg-9 col-md-8 col-sm-9 col-xs-9">
+                    <p><%=user.email%></p>
+                    <button type="submit" id="small-logout-btn">Logout</button>
+                </div>
             </div>
-        </form>
-        <div class="table-responsive">
-        <table class="table table-bordered table-hover table-condensed">
-            <thead>
-                <tr>
-                    <td>id</td>
-                    <td>Name</td>
-                    <td>Category</td>
-                    <td>Description</td>
-                    <td>Date</td>
-                    <td>Status</td>
-                    <td>Action</td>
-                </tr>
-            </thead>
-            <tr>
-                <td>23</td>
-                <td>Slippery road</td>
-                <td>Nature</td>
-                <td>Volodymyra Velukogo str.</td>
-                <td>12.12.2014</td>
-                <td><span class="new-status">New</span></td>
-                <td class="edit-icons">
-                    <a href="#"><i class="fa fa-file-text-o"></i></a>
-                    <a href="#"><i class="fa fa-pencil"></i></a>
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                </i></td>
-            </tr>
-            <tr>
-                <td>23</td>
-                <td>Slippery road</td>
-                <td>Nature</td>
-                <td>Volodymyra Velukogo str.</td>
-                <td>12.12.2014</td>
-                <td><span class="to-resolve-status">To resolve</span>
-                    <span class="approved-status">Approved</span>
-                    <span class="resolved-status">Resolved</span>
-                </td>
-                <td class="edit-icons">
-                    <a href="#"><i class="fa fa-file-text-o"></i></a>
-                    <a href="#"><i class="fa fa-pencil"></i></a>
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                </td>
-            </tr>
+            <ul>
+                <li id="recentlyissues-link">Recently added</li>
+                <li id="allissues-link">All problems</li>
+                <li id="solvedissues-link">Solved</li>
+                <li id="">Add category</li>
+            </ul>
         </div>
+        <div class="manager-panel col-lg-9 col-md-9 col-sm-9 col-xs-9" id="manager" >
+            <form action="/search" class="search-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="search">
+                    <button type="submit" id="search-btn">Search</button>
+                </div>
+            </form>     
         </div>
+         
     </div>

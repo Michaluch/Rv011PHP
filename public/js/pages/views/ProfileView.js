@@ -10,7 +10,7 @@ define([
     "text!pages/templates/NotificationWarning.html",
     "text!pages/templates/NotificationDanger.html"
     ],
-    function(_, Backbone, $, SessionModel, User, ProfileTemplate
+    function(_, Backbone, $, SessionModel, User, ProfileTemplate,
             NotificationSuccess, NotificationInfo, 
             NotificationWarning, NotificationDanger){
         return Backbone.View.extend({

@@ -18,7 +18,7 @@ define([
     function(_, Backbone, $, SignUpFormTemplate, SimpleMessage,
                 NotificationSuccess, NotificationInfo, NotificationWarning, NotificationDanger,
                 User, hash, boot, signinform, signUpValidation, colorbox
-       ) {
+        )   {
         var View = Backbone.View.extend({
             el: $('#sidebar'), 
             initialize: function(){	

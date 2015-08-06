@@ -14,9 +14,10 @@ define([
     "SessionModel",
     "CryOutView",
     "ProfileView",
+    "Issues"
     ],
     function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
-     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView) {
+     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView,Issues) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -97,12 +98,12 @@ define([
                 if(typeof this.ManagerView==="undefined"){
                     this.ManagerView=new ManagerView();
                 };
-                this.ManagerView.render();
+                //this.ManagerView.render();
                 }
                 else{
                    window.location.href="/"; 
                 }
                 
-            },
+            }
         });
     });

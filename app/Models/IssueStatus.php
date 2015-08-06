@@ -19,7 +19,7 @@ class IssueStatus extends Model {
     //protected $fillable = ['name'];
     public function history()
     {
-    	return $this->hasOne('App\Models\History', 'status_id');
+    	return $this->hasMany('App\Models\History', 'status_id');
     }
     
 
