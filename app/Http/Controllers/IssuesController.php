@@ -1,8 +1,13 @@
-<?php namespace App\Http\Controllers;
+<?php 
+
+namespace App\Http\Controllers;
 use App\Models\Issues;
+use App\Models\History;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
+
 
 
 class IssuesController extends Controller {
@@ -83,9 +88,23 @@ class IssuesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Guard $auth, Request $request, $id)
 	{
-		//
+		$user = $auth->user();
+		if (!is_null($user)){
+			$issue = Issues::where('id', $id)->first();
+			if (!is_null($request->input('status'))){
+				$history = new History();
+				$history->user_id = $user->id;
+				$history->status_id = $request->input('status');
+				$history->date = date('Y-m-d H:i');
+				try {
+					$issue->history()->save($history);
+				} catch (Exception $e) {
+					//
+				}
+			}
+		}
 	}
 	/**
 	 * Remove the specified resource from storage.
