@@ -39,9 +39,7 @@ define([
                         console.log(issues);
                         self.$el.html(template);
                     }
-                });
-   
-
+                });   
             },
             onLogoutClick:function(e){
             e.preventDefault(e);

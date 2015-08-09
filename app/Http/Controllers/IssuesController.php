@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Issues;
 use App\Models\History;
+use App\Models\IssueStatus as Statuses;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -115,5 +116,10 @@ class IssuesController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function getIssueStatuses(){
+		$statuses=Statuses::all();
+		return $statuses;
 	}
 }

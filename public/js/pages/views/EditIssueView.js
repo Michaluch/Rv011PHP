@@ -14,6 +14,11 @@ define([
         events: {
 
         },
+        initialize:function(){
+            $.get("statuses", {},function(data){
+                console.log(data);
+            });
+        },
 
         render:function (e) {
             $.colorbox({html:this.template,height:"70%",width:"70%", onClosed:function(){
