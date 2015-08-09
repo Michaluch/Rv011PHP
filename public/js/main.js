@@ -38,6 +38,7 @@ requirejs.config({
         ManagerView     : 'pages/views/ManagerView',
         IssueView       : 'pages/views/IssueView',
         IssuesView      : 'pages/views/IssuesView',
+        EditIssueView   : 'pages/views/EditIssueView'
 
     },
 });
