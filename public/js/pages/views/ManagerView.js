@@ -14,8 +14,10 @@ define([
             events:{
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
-                "click #search-btn": "onSearchClick"
+                "click #search-btn": "onSearchClick",
+                "change .status-selector": "statusChanged"
             },
+            statuses:{},
             initialize:function(){
                 issues=new Issues();
                 //console.log(issues);
@@ -27,19 +29,25 @@ define([
                 self.$el.empty();
                 issues.fetch({
                     success: function(issues) {
-                      //console.log(issues);
+                        $.get("statuses", {}, function(data){
+                        statuses=data;                        
                         var template = self.template({
                             issues: issues.models,
                             logged_in: session.get("logged_in"),
                             user: session.user.toJSON(),
-                            search: ''
+                            search: '',
                             //category: issues.category
-
+                            statuses: statuses
                         });
                         console.log(issues);
-                        self.$el.html(template);
+                        console.log(statuses);
+                        self.$el.html(template);                        
+                        });
+                      //console.log(issues);
+
                     }
-                });   
+                });
+                   
             },
             onLogoutClick:function(e){
             e.preventDefault(e);
@@ -101,6 +109,17 @@ define([
                 }
             },
 
+            statusChanged: function(e){
+
+                console.log("Status is changed");
+                var status_id=e.target.value;
+                var issue_id=$(e.target).closest('tr').attr('data-id');
+                //var user=window.session.user.get('id');
+                $.post("issues/statuschange", {
+                    issue_id: issue_id, status_id: status_id}, function(data){
+                        console.log(data);
+                    });
+            }
 
             });
         return ManagerView;

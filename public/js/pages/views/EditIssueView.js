@@ -14,9 +14,14 @@ define([
         events: {
 
         },
+        statuses: {
+
+        },
+
         initialize:function(){
             $.get("statuses", {},function(data){
-                console.log(data);
+                statuses=data;
+                console.log(statuses);
             });
         },
 

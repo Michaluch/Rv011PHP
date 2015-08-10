@@ -1,4 +1,4 @@
-    <div id="main-container" class="row">
+    <div class="row">
         <div class="col-lg-3 col-md-3 sidebar-mobile" id="left-sidebar">
         <div class="profile row"> 
         <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12"> 
@@ -44,7 +44,7 @@
 <tbody>
 <% _.each(issues, function(issue, key, list) { %>
   
-     <tr>
+     <tr data-id="<%= issue.get('id') %>">
        <td><%= issue.get('id') %></td>
 
        <td><%= issue.get('name') %></td>
@@ -57,7 +57,19 @@
 
        <!--<td><%= issue.get('map_pointer') %></td>-->
 
-       <td><%= issue.get('history').status.name %></td>
+       <td>
+        <select name="status-slector" class="status-selector form-control">
+           <% _.each(statuses, function(status, key, list) { %>
+
+           <option value="<%= status.id %>" 
+            <%if(issue.get('history').status_id == status.id) {%>
+                selected <%} %>><%= status.name %>
+            </option>
+
+           <% }) %>
+
+       </select>
+        </td>
 
        <td><%= issue.get('severity') %></td>
 
@@ -67,8 +79,8 @@
         <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
         <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
         </td>
-     
-<% }) %>
+        <% }) %>
+
      </tr>
    </tbody>
  </table>
