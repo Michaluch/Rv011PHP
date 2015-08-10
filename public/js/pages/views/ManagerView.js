@@ -4,9 +4,10 @@ define([
     "underscore",
     "backbone",
     "IssuesView",
-    "Issues"
+    "Issues",
+    "IssueEditView"
     ],
-    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues){
+    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues, IssueEditView){
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
             model: Issues,
@@ -15,7 +16,8 @@ define([
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
-                "change .status-selector": "statusChanged"
+                "change .status-selector": "statusChanged",
+                "click .fa.fa-pencil": "onEditClick"
             },
             statuses:{},
             categories: {},
@@ -122,7 +124,14 @@ define([
                     issue_id: issue_id, status_id: status_id}, function(data){
                         console.log(data);
                     });
-            }
+            },
+            
+            onEditClick: function(e){
+                e.preventDefault();
+                $el = $(e.currentTarget).parent().parent().siblings(':first-child');
+                var issueEditView = new IssueEditView({id: $el.html()});
+            },
+
 
             });
         return ManagerView;
