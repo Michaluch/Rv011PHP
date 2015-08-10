@@ -25,23 +25,25 @@ requirejs.config({
         signUpValidation: 'apps/signUpValidation',
         //models
         User            : 'pages/models/User',
-        Users           : 'pages/collections/Users', 
-        UserView        : 'pages/views/UserView',
-        SignUpView      : 'pages/views/SignUpView',
-        AppRouter       : 'pages/routes/Routes',
+        Issue           : 'pages/models/Issue',
+        IssueStatus     : 'pages/models/IssueStatus',
         SessionModel    : 'pages/models/SessionModel',
+        Users           : 'pages/collections/Users', 
+        Issues          : 'pages/collections/Issues',
+        IssueStatuses   : 'pages/collections/IssueStatuses',                        
+        AppRouter       : 'pages/routes/Routes',
+        //Views
+        UserView        : 'pages/views/UserView',
+        SignUpView      : 'pages/views/SignUpView',        
         HeaderView      : 'pages/views/HeaderView',
         CryOutView      : 'pages/views/CryOutView',
-        Issue           : 'pages/models/Issue',
-        Issues          : 'pages/collections/Issues',
         ProfileView     : 'pages/views/ProfileView',
         ManagerView     : 'pages/views/ManagerView',
         TableIssueView  : 'pages/views/TableIssueView',
         RowIssueView    : 'pages/views/RowIssueView',
         IssueView       : 'pages/views/IssueView',
-        IssuesView      : 'pages/views/IssuesView'
-
-
+        IssuesView      : 'pages/views/IssuesView',
+        EditIssueView   : 'pages/views/EditIssueView'
     },
 });
     

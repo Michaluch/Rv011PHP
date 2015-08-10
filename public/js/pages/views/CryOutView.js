@@ -25,6 +25,7 @@ define([
                 "click .btn-next": "changeFormTab",
                 "change #fileUpload": "uploadImage",
                 "focusout .desc-data": "setDescription",
+                "click #resolve": "toResolve",
             },
             initialize: function(){
                 //console.log(this.collection.toJSON());
@@ -44,6 +45,7 @@ define([
                     self.closeView();
                 });
                             var template = _.template(IssueDetailsTemplate);
+                            self.issue = res.attributes;
                             self.$el.html(template(res.attributes));
                             
                         },
@@ -133,6 +135,15 @@ define([
                     }
                 });        
             },
+            
+            toResolve: function(){
+                var issue = new Issue({id: this.issue.id});
+                issue.fetch();
+                console.log(issue);
+                issue.save({"status": 2},{patch: true});
+                $('#resolve').remove();
+            },
+            
             uploadImage: function(e) {
                 var input = e.currentTarget;
                 if (input.files && input.files[0]) {
