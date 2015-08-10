@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
-    <title>bawl</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">       
+    <title>bawl</title>  
+    <link rel="stylesheet" href="css/reset.css">    
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/social-networks.css">
     <link rel="stylesheet" href="css/signform.css">
     <link rel="stylesheet" href="css/colorbox.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/styles.css">
+    
 
 </head>
 <body>
@@ -18,13 +21,14 @@
        
     </header>
     <div id="main-container" class="row">
-        <div id="map-canvas"></div>
-        <div id="sb">
+        <div id="map-canvas" class="width50"></div>
+        <div id="sb" class="width50">
             <div id="sidebarClose"><a href="#" class="glyphicon glyphicon-remove"></a></div>
             <div id="sidebar"><!-- sidebar --></div>
         </div>
     </div>
-     <script  data-main="js/main.js" src="js/libs/requirejs/require-full.js"></script>
+     <script  data-main="js/main.js" src="js/libs/requirejs/require-full.js">
+     </script>
 <!-- I am not sure how to add scripts to index file, while we use RequreJS. Let's discuss, how to do this right. I've uploaded them on previous way -->     
     <script src="js/libs/jquery/jquery-2.1.4.js"></script>
     <script src="js/libs/bootstrap/bootstrap.min.js"></script>

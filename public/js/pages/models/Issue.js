@@ -1,4 +1,3 @@
-
 define([
     'jquery',
     'underscore',
@@ -19,11 +18,19 @@ define([
             date         :"",
             status       :""
         },
-        url:"/issue",
+        url: function(){
+            if(this.isNew()){
+                return "/issues";
+            }
+            else{
+                return "/issues/"+this.id;
+            }
+        },
+        idAttribute: "id",
         initialize: function(){
             
         },
 
         });
-    return Model;
+        return Model;
     });

@@ -5,18 +5,14 @@ body {
   margin: 0;
 }
 header {
-  height: 80px;
+  min-height: 80px;
   color: white;
   background-color: #ea556f;
   font-size: 24;
   width: 100%;
   text-align: center;
 }
-header a {
-  color: #ffffff;
-  text-decoration: none;
-}
-header a:hover {
+header a:link {
   color: #ffffff;
   text-decoration: none;
 }
@@ -24,47 +20,55 @@ header a:visited {
   color: #ffffff;
   text-decoration: none;
 }
-#main-banner,
-#cry-out-button {
+header a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+header a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+header ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+header ul li {
+  display: inline;
   float: left;
   width: 100px;
-  height: 80px;
-  line-height: 70px;
+  line-height: 80px;
 }
-#about-button,
-#login-button,
-#logout-button {
-  float: right;
-  width: 100px;
-  height: 80px;
-  line-height: 70px;
-}
-#profile {
-  float: right;
-  min-width: 25%;
-  height: 80px;
-  line-height: 20px;
-  padding-top: 15px;
-  font-size: 11px;
-}
-#main-banner {
-  font-style: italic;
-  background-color: #d5445c;
-}
-#about-button:hover,
-#login-button:hover,
-#cry-out-button:hover,
-#logout-button:hover,
-#profile:hover {
+header ul li:hover {
   background-color: #e04c65;
   cursor: pointer;
   border: 1px;
 }
-#main-banner:hover {
-  background-color: #c84157;
-  cursor: pointer;
-  border: 1px;
+header #login-button,
+header #logout-button,
+header #about-button {
+  float: right;
+  margin-right: 20px;
 }
+header #profile {
+  float: right;
+  min-width: 200px;
+  line-height: 40px;
+}
+header #main-banner {
+  font-style: italic;
+  background-color: #d5445c;
+}
+header #main-banner:hover {
+  background-color: #c84157;
+}
+.map-canvas-with-sb {
+  width: 70%;
+}
+.sb-show {
+  width: 30%;
+}
+#manager-cont,
 #page,
 #main-container,
 #map-canvas {
@@ -110,54 +114,82 @@ header a:visited {
   margin-left: 5%;
 }
 /*Styles for manager page */
-.left-sidebar {
+
+#avatarimg {
+
+  width: 100%;
+  overflow: hidden; 
+ 
+}
+
+#avatarover {
+  width: 70px;
+  max-height: 70px;
+  overflow: hidden;
+  
+}
+
+
+
+
+#left-sidebar {
   background-color: #f6f6f7;
   height: 100%;
+  /*display:block;*/
 }
-.left-sidebar .profile {
+#left-sidebar .profile {
   margin: 10px 0 30px 0;
   min-height: 70px;
 }
-.left-sidebar p {
+
+#left-sidebar p {
   margin: 0px;
   padding: 0px;
   font-size: 12px;
   font-weight: bold;
 }
-.left-sidebar button {
+#left-sidebar button {
   border-color: #ea556f;
   border-width: 1px;
   font-size: 12px;
   background-color: #f6f6f7;
   margin-top: 17px;
 }
-.left-sidebar ul {
+#left-sidebar ul {
   padding: 0;
   margin: 0 0 0 10px;
   line-height: 20px;
 }
-.left-sidebar ul li {
+#left-sidebar ul li {
   list-style-type: none;
   line-height: 35px;
 }
-.left-sidebar ul li a {
+#left-sidebar ul li a {
   text-decoration: none;
   color: inherit;
 }
 
-.left-sidebar li:hover{
-    cursor: pointer;
+
+#left-sidebar li:hover{
+  cursor: pointer;
 }
-.manager-panel .form-group {
+
+
+#manager-panel .form-group {
   padding: 0px;
 }
-.manager-panel input {
+#manager-panel .fa-align-justify {
+  display: none;
+  font-size: 25px;
+  margin-top: 10px;
+}
+#manager-panel input {
   float: left;
   width: 80%;
   border-radius: 0px;
   font-weight: normal;
 }
-.manager-panel button {
+#manager-panel button {
   min-width: 20%;
   min-height: 34px;
   color: #ffffff;
@@ -165,30 +197,62 @@ header a:visited {
   border-width: 0px;
   background-color: #ea556f;
 }
-.manager-panel .new-status {
+#manager-panel .new-status {
   color: #ea556f;
   font-weight: bold;
 }
-.manager-panel .form-group {
+#manager-panel .form-group {
   margin-left: 0px;
   font-weight: bold;
 }
-.manager-panel .to-resolve-status {
+#manager-panel .to-resolve-status {
   color: #63978c;
   font-weight: bold;
 }
-.manager-panel .approved-status {
+#manager-panel .approved-status {
   color: #508b7e;
 }
-.manager-panel .edit-icons a {
+#manager-panel .edit-icons a {
   text-decoration: none;
   color: inherit;
   font-size: 16px;
 }
-.manager-panel .edit-icons a:hover {
+#manager-panel .edit-icons a:hover {
   color: #63978c;
 }
-.manager-panel li:hover {
+
+#manager-panel li:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 990px) {
+  #manager-panel .fa-align-justify {
+    display: block;
+    cursor: pointer;
+  }
+  .sidebar-mobile {
+    display: none;
+  }
+  .width50 {
+    width: 50%;
+  }
+  header ul li {
+    display: block;
+    float: none;
+    width: 100%;
+    line-height: 40px;
+  }
+  header #login-button,
+  header #logout-button,
+  header #about-button {
+    margin: 0px;
+    float: none;
+  }
+  /*#left-sidebar{
+    display:none;
+  }
+  */
+
+
 }
 /*End of manager page styles */

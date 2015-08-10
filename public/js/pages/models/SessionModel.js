@@ -1,12 +1,11 @@
 define([
-     "underscore",
+    "underscore",
     "User",
     'UserView'
     ], function(_, User, UserView){
         var SessionModel=Backbone.Model.extend({
             defaults:{
-                logged_in: false,
-                user_id: ''
+                logged_in: false
             },
             initialize:function(){
                 //_.bindAll(this);
@@ -51,52 +50,6 @@ define([
 
             //callback.complete();
         },
-
-
-                /*
-        _public.isLogged(
-        function() {
-        this.$el.hide();
-        }, 
-        function() {
-        this.$el.show();
-        }
-        );
-
-        var _public={};
-        _public.isLogged(
-        function() {
-        $('#login-button').hide();
-        }, 
-        function() {
-        console.log('NOt Loggined');
-        }
-        ),
-        // private variable
-
-        _public._isLogged = null,
-
-        _public.isLogged = function(accept, fail) {
-            if(_public._isLogged === null) {
-                _public.getIsLogged(accept, fail);
-            } else if(_public._isLogged){
-                accept();
-            } else {
-                fail();
-            }
-        },
-
-        _public.getIsLogged =  function  (accept, fail) {
-            $.post('/auth/logged', function(data) {
-                _public._isLogged = parseInt(data);
-                if(_public._isLogged) {
-                    accept();
-                } else {
-                    fail();
-                }
-            });
-        },
-*/
         });
         return SessionModel;
     })

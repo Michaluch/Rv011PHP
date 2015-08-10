@@ -42,4 +42,9 @@ class Issues extends Model {
     {
         return $this->hasOne('App\Models\History', 'issue_id', 'id')->where('status_id', '1')->orderBy('date', 'desc');
     }
+    
+    public function scopeSearch($query, $keywords)
+    {
+        return $query->where('name', 'like', '%'.$keywords.'%');
+    }
 }

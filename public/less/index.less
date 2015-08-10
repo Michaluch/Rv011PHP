@@ -6,61 +6,70 @@ html, body {
 	margin: 0;
 }
 header {
-	height: 80px;
+	min-height: 80px;
 	color: white;
 	background-color: @header-background-color;
 	font-size: 24;
 	width: 100%;
 	text-align: center;
+  a:link{
+  color: #ffffff;
+  text-decoration: none;
+  }
+  a:visited{
+  color:#ffffff;
+  text-decoration: none;  
+  }
+  a:hover{
+    color:#ffffff;
+    text-decoration: none;
+  }
+  a:active{
+  color:#ffffff;
+  text-decoration: none;     
+  }
+  ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  ul li{
+  display: inline;
+  float:left;
+  width:100px;
+  line-height: 80px;
+  }
+  ul li:hover{
+  background-color: #e04c65;
+  cursor: pointer;
+  border:1px;
+  }
+  #login-button, #logout-button, #about-button{
+  float: right;
+  margin-right: 20px;
 }
-header {
-	a{
-	color: #ffffff;
-	text-decoration: none;
-	}
-	a:hover{
-		color:#ffffff;
-		text-decoration: none;
-	}
-	a:visited{
-	color:#ffffff;
-	text-decoration: none;	
-	}
+
+  #profile{
+  float: right;
+  min-width:200px;
+  line-height: 40px;
+  }
+  #main-banner {
+    font-style: italic;
+    background-color:#d5445c;
+  }
+  #main-banner:hover {
+    background-color: #c84157;
+  }
 }
-#main-banner, #cry-out-button {
-	float:left;
-	width: 100px;
-	height: 80px;	
-	line-height: 70px;
+
+.map-canvas-with-sb{
+  width:70%;
 }
-#about-button, #login-button, #logout-button{
-	float: right;
-	width: 100px;
-	height: 80px;
-	line-height: 70px;
+.sb-show{
+  width: 30%;
 }
-#profile{
-float: right;
-min-width:25%;
-height: 80px;
-line-height: 20px;
-padding-top: 15px;
-font-size:11px;
-}
-#main-banner {
-	font-style: italic;
-	background-color:#d5445c
-}
-#about-button:hover, #login-button:hover, #cry-out-button:hover, #logout-button:hover , #profile:hover{
-	background-color: #e04c65;
-	cursor: pointer;
-	border:1px;
-}
-#main-banner:hover {
-	background-color: #c84157;
-	cursor: pointer;
-	border:1px;
-}
+
 #page, #main-container, #map-canvas {
 	height: 100%;
 }
@@ -105,16 +114,15 @@ font-size:11px;
   margin-left: 5%;
 }
 /*Styles for manager page */
-.left-sidebar{
+#left-sidebar{
     background-color: @left-sidebar-background;
     height: 100%;
+    /*display:block;*/
     .profile{
         margin: 10px 0 30px 0;
         min-height: 70px;
     }
-    .avatar{
-
-    }
+  
     p{
         margin:0px;
         padding:0px;
@@ -146,9 +154,30 @@ font-size:11px;
     }
 }
 
-.manager-panel{
+#avatarimg {
+
+  width: 100%;
+  overflow: hidden;    
+}
+
+#avatarover {
+  width: 70px;
+  max-height: 70px;
+  overflow: hidden;
+  
+}
+
+#manager-panel{
+  
+
+
     .form-group{
         padding:0px;
+    }
+    .fa-align-justify{
+      display: none;
+      font-size: 25px;
+      margin-top: 10px;
     }
     input{
         float: left;
@@ -188,5 +217,34 @@ font-size:11px;
       color: #63978c;
     }
 
+}
+
+@media screen and (max-width: 990px){
+  #manager-panel .fa-align-justify{
+    display:block;
+    cursor: pointer;
+  }
+  .sidebar-mobile{
+    display: none;
+  }
+  .width50{
+    width:50%;
+  }
+  header{
+    ul li{
+  display: block;
+  float:none;
+  width:100%;
+  line-height: 40px;
+    }
+  #login-button, #logout-button, #about-button{
+    margin: 0px;
+    float: none;
+  }  
+  }
+  /*#left-sidebar{
+    display:none;
+  }
+  */
 }
 /*End of manager page styles */

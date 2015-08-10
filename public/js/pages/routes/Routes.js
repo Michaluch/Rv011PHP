@@ -14,10 +14,11 @@ define([
     "SessionModel",
     "CryOutView",
     "ProfileView",
+    "IssuesView",
     "Issues"
     ],
     function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
-     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView,Issues) {
+     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView, IssuesView, Issues) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -25,9 +26,10 @@ define([
                 "": "index",
                 "register": "register",
                 "login":"login",
-                "issue": "issue",
+                "issue(/:id)": "issue",
                 "profile":"profile",
-                "manager":"manager"
+                "manager":"manager",
+                "issues": "issues"
             },
             loadHeader: function(){
                 var issues = null;
@@ -50,7 +52,7 @@ define([
                 signInView.render();
             },
             
-            issue: function(){
+            issue: function(id){
                 var oCryOutView = null;
                 this.loadHeader();
                 console.log('New issue');
@@ -65,7 +67,11 @@ define([
                         oCryOutView.map = this.map;
                     }
                     oCryOutView.sidebar = this.sidebar;
+                    if (typeof id !== 'undefined' && id !== null){
+                        oCryOutView.render(id);    
+                    } else {
                     oCryOutView.render();                    
+                }
                 }
             },
             
@@ -93,7 +99,7 @@ define([
                 }
             },
             manager: function(){
-                if(session.get("logged_in")===true){
+                if(session.get("logged_in")===true&&session.get("user").role_id===1){
                 this.loadHeader();
                 if(typeof this.ManagerView==="undefined"){
                     this.ManagerView=new ManagerView();
@@ -103,7 +109,14 @@ define([
                 else{
                    window.location.href="/"; 
                 }
-                
+            },
+
+            
+            issues: function(){
+                this.loadHeader(); 
+                var view = new IssuesView();              
+                view.render();
+                console.log('render view');
             }
         });
     });

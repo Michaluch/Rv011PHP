@@ -10,7 +10,6 @@ define([
     "text!pages/templates/NotificationWarning.html",
     "text!pages/templates/NotificationDanger.html"
     ],
-
     function(_, Backbone, $, Issue, CryOutTemplate, IssueDetailsTemplate,
                 NotificationSuccess, NotificationInfo, 
                 NotificationWarning, NotificationDanger){
@@ -36,7 +35,10 @@ define([
 
                 if (typeof id !== 'undefined' && id !== null){
                     issueModel = new Issue;
-                    issueModel.url = '/issues/' + id;
+                    issueModel.url = '/issue/' + id;
+                    issueModel.parse = function(res) {
+                        return res.data;
+                    };
                     issueModel.fetch({
                         success: function(res){
                             self.sidebar.turnOn();

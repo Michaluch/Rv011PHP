@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Services\Registrar;
+use App\User;
+
+
 class AuthController extends Controller {
 
 	/*
@@ -85,24 +88,33 @@ class AuthController extends Controller {
 		]);
 
 		$credentials = $request->only('email', 'password');
+		$errorMessage = '';
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			if($request->ajax()) {
-				return array(
-					'status' => 'ok',
-					'response'=>'10200',
-					);
-			}
-			else {
-				return redirect()->intended($this->redirectPath());
+			$user=$this->auth->user();
+			if($user->status_id==2) {
+				if($request->ajax()) {
+					return array(
+						'status' => 'ok',
+						'response'=>'10200',
+						);
+				}
+				else {
+					return redirect()->intended($this->redirectPath());
+				}
+			} else{
+				$this->auth->logout();
+				$errorMessage = 'Please, verify your account';
 			}
 		};
+
+		$errorMessage = $errorMessage ?:$this->getFailedLoginMessage();
 
 		if($request->ajax()) {
 			$result = array(
 				'status' => 'error',
-				'errors' => $this->getFailedLoginMessage(),
+				'errors' => $errorMessage,
 				'response'=>'10400',
 				);
 			
@@ -112,7 +124,7 @@ class AuthController extends Controller {
 			return redirect($this->loginPath())
 					->withInput($request->only('email', 'remember'))
 					->withErrors([
-						'email' => $this->getFailedLoginMessage(),
+						'email' => $errorMessage,
 					]);
 		}
 	}
@@ -128,5 +140,49 @@ class AuthController extends Controller {
 	public function postLogged()
 	{
 		return array('user' => $this->auth->user());
+	}
+
+	public function getFacebook(){
+		return $this->authSocialize('facebook');
+	}
+
+	public function getGoogle(){
+		return $this->authSocialize('google');
+	}
+
+	private function authSocialize($type){
+
+		$provider = \Socialize::with($type);      
+	    if (\Input::has('code'))
+	    {
+	        $userSocialite = $provider->user();
+	        $this->auth->login($this->createOrFindUser($userSocialite, $type), false);
+
+	        return redirect('/#');
+	    } else {
+	        return $provider->scopes(['email'])->redirect();
+	    }
+	}
+
+	private function createOrFindUser(\Laravel\Socialite\AbstractUser $userSocialite, $type){
+		if($user = User::where('email', '=', $userSocialite->getEmail())->first()) {
+			$user->{$type . '_id'} = $userSocialite->getId();
+			$user->avatar_url = $userSocialite->getAvatar();
+			$user->save();
+
+			return $user;
+		} elseif($user = User::where($type . '_id', '=', $userSocialite->getId())->first()) {
+			return $user;
+		} else {
+			$user = User::create([
+				'email' => $userSocialite->getEmail(),
+				'avatar_url' => $userSocialite->getAvatar(),
+				$type . '_id' => $userSocialite->getId(),
+				'password' => bcrypt(str_random(32)),
+				'status_id' => 2,
+			]);
+
+			return $user;
+		}
 	}
 }

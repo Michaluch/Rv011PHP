@@ -24,7 +24,8 @@ public $timestamps = false;
 	 */
 	protected $fillable = [	
             "email",
-			"password", 
+			"password",
+            "facebook_id", 
             "google_id",
             "role_id",
             "status_id",
@@ -38,11 +39,8 @@ public $timestamps = false;
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token', "facebook_id",
-            "google_id",
-            "role_id",
-            "status_id",
-            "avatar_url",
-            "language_id"];
+	protected $hidden = ['password',
+            'remember_token',
+            "salt"];
 
 }

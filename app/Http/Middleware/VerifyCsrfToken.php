@@ -24,12 +24,14 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected function excludedRoutes($request)  
 {
     $routes = [
+            'auth/facebook',
             'auth/login',
             'auth/register',
             'auth/logged',
             'auth/logout',
             'attachment',
             'issue',
+            'issues/search',
     ];
 
     foreach($routes as $route)

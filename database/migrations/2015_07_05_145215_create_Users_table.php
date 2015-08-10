@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration {
 			$table->rememberToken();
 			$table->string('facebook_id',256)->nullable()->default(null);
 			$table->string('google_id',256)->nullable()->default(null);
-			$table->integer('role_id')->unsigned();
-			$table->integer('status_id')->unsigned();
+			$table->integer('role_id')->unsigned()->default(1);
+			$table->integer('status_id')->unsigned()->default(1);
 			$table->string('avatar_url',500)->nullable()->default(null);
-			$table->integer('language_id')->unsigned();
+			$table->integer('language_id')->unsigned()->default(1);
 			$table->string('salt',32)->unique();
 
 			// foreign keys
