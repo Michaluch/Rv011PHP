@@ -18,29 +18,32 @@ define([
                 "change .status-selector": "statusChanged"
             },
             statuses:{},
+            categories: {},
             initialize:function(){
-                issues=new Issues();
+                //issues=new Issues();
                 //console.log(issues);
             },
             render:function(){
                   //console.log(this.model);
-                //var issues=new Issues();
+                var issues=new Issues();
                 var self=this;
                 self.$el.empty();
                 issues.fetch({
                     success: function(issues) {
-                        $.get("statuses", {}, function(data){
-                        statuses=data;                        
+                        $.get("statusesandcategories", {}, function(data){
+                        self.statuses=data.statuses;
+                        self.categories=data.categories;                        
                         var template = self.template({
                             issues: issues.models,
                             logged_in: session.get("logged_in"),
                             user: session.user.toJSON(),
                             search: '',
                             //category: issues.category
-                            statuses: statuses
+                            statuses: self.statuses,
+                            categories: self.categories,
                         });
                         console.log(issues);
-                        console.log(statuses);
+                        console.log(self.statuses);
                         self.$el.html(template);                        
                         });
                       //console.log(issues);

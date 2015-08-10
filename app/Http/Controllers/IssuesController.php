@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Issues;
 use App\Models\History;
 use App\Models\IssueStatus as Statuses;
+use App\Models\IssuesCategory as Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -118,9 +119,13 @@ class IssuesController extends Controller {
 		//
 	}
 
-	public function getIssueStatuses(){
+	public function getIssueStatusesAndCategories(){
 		$statuses=Statuses::all();
-		return $statuses;
+		$categories=Categories::all();
+		return [
+			'statuses' => $statuses,
+			'categories' => $categories,
+		];
 	}
 
 	public function statusChange(Guard $auth, Request $request){

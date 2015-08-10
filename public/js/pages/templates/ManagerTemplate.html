@@ -48,8 +48,19 @@
        <td><%= issue.get('id') %></td>
 
        <td><%= issue.get('name') %></td>
+       <td>
+        <select name="category-selector" class="category-selector form-control">
+           <% _.each(categories, function(category, key, list) { %>
 
-       <td><%= issue.get('category').name %></td>
+           <option value="<%= category.id %>" 
+            <%if(issue.get('category_id') == category.id) {%>
+                selected <%} %>><%= category.name %>
+            </option>
+
+           <% }) %>
+
+       </select>
+        </td>
 
        <td><%= issue.get('description') %></td>
 
