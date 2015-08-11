@@ -12,6 +12,7 @@ define([
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
             model: Issues,
+            
             el:$("#main-container"),
             events:{
                 "click #small-logout-btn" :"onLogoutClick",
@@ -19,11 +20,15 @@ define([
                 "click #recentlyissues-link" : "newissues",
                 "click #solvedissues-link" : "solvedissues",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
-                "click #search-btn": "onSearchClick"
-                
+
+                "click #search-btn": "onSearchClick",
+                "change .status-selector": "statusChanged"
+
             },
+          
             initialize:function(){
-               this.render();
+             
+                this.render();
 
             },
             allissues: function  () {
@@ -47,16 +52,15 @@ define([
             universalshow: function  (path) {
                 var self=this;
                 self.collectionIssue = new Issues(); //{model: new Issue}    
-                var tableIssue = new TableIssueView({collection : self.collectionIssue });
+                var tableIssue = new TableIssueView({collection : self.collectionIssue});
                 
-                // use ajax, instead fetch
                 $.get(path, function(data){
-                   
-                    self.collectionIssue.models = data;
-
-                    self.tableIssue = tableIssue;
-
-                    self.render();                  
+                  
+                            self.collectionIssue.models = data;
+        
+                            self.tableIssue = tableIssue;
+        
+                            self.render();                  
                 });
             },
 
@@ -65,7 +69,8 @@ define([
                 this.$el.html(this.template(
                     { 
                         logged_in: session.get("logged_in"),
-                        user: session.user.toJSON() 
+                        user: session.user.toJSON(),
+                        search: '' 
                     }
                     ));
 
@@ -75,7 +80,38 @@ define([
                 
                 }
             return this;
+
             },
+           // render:function(){
+           //       //console.log(this.model);
+           //     var issues=new Issues();
+           //     var self=this;
+           //     self.$el.empty();
+           //     issues.fetch({
+           //         success: function(issues) {
+           //             $.get("statusesandcategories", {}, function(data){
+           //             self.statuses=data.statuses;
+           //             self.categories=data.categories;                        
+           //             var template = self.template({
+           //                 issues: issues.models,
+           //                 logged_in: session.get("logged_in"),
+           //                 user: session.user.toJSON(),
+           //                 search: '',
+           //                 //category: issues.category
+           //                 statuses: self.statuses,
+           //                 categories: self.categories,
+           //             });
+           //             console.log(issues);
+           //             console.log(self.statuses);
+           //             self.$el.html(template);                        
+           //             });
+           //           //console.log(issues);
+//
+//           //         }
+           //     });
+                   
+
+           // },
             onLogoutClick:function(e){
                 e.preventDefault(e);
                 $.post("/auth/logout", {},function(data){
@@ -133,6 +169,21 @@ define([
                 });
                 }
             },
+
+            statusChanged: function(e){
+
+                console.log("Status is changed");
+                var status_id=e.target.value;
+                var issue_id=$(e.target).closest('tr').attr('data-id');
+                //var user=window.session.user.get('id');
+                $.post("issues/statuschange", {
+                    issue_id: issue_id, status_id: status_id}, function(data){
+                        console.log(data);
+                    });
+            },
+
+           
+
             });
         return ManagerView;
     }

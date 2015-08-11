@@ -32,6 +32,12 @@ class History extends Model {
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+     public function scopeGetNew($query)
+    {
+        $query->where('status_id', '=', 1);
+
+    }
    
 
 }

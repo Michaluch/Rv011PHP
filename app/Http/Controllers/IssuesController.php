@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 use App\Models\Issues;
 use App\Models\IssueStatus as Statuses;
+use App\Models\IssuesCategory as Categories;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ use App\Models\Issues as Issue;
 use App\Models\Atachments as Attachment;
 use App\Models\History as History;
 use App\Models\IssuesCategory as IssuesCategory;
-use App\Models\IssuesCategory as Categry;
+
 use App\Models\IssueStatus as IssueStatus;
 use App\User as User;
 
@@ -145,9 +146,16 @@ class IssuesController extends Controller {
 	}
 
 
+
 	private function showAllForManager()
 	{
 		$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->get();
+        return $data;
+	}
+
+	private function showNewForManager()
+	{
+		$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->GetNew()->get();
         return $data;
 	}
 
@@ -176,8 +184,32 @@ class IssuesController extends Controller {
 		//	return response()->json(['code' => '12501', 'msg' => 'Issue is not exist!']);
 		//}
 	}
-	public function getIssueStatuses(){
+	
+	public function getIssueStatusesAndCategories(){
+
 		$statuses=Statuses::all();
-		return $statuses;
+		$categories=Categories::all();
+		return [
+			'statuses' => $statuses,
+			'categories' => $categories,
+		];
 	}
+
+	public function statusChange(Guard $auth, Request $request){
+		$user = $auth->user();
+		$history = new History();
+		$history->user_id = $user->id;
+		$history->issue_id = $request->input('issue_id');
+		$history->status_id = $request->input('status_id');
+		$history->date = date('Y-m-d H:i');
+		$result = $history->save();
+
+		return [
+			'code' =>'12150', 
+			'message' => 'Status was updated',
+			'result' => $result ,
+		];
+	}
+
+	
 }

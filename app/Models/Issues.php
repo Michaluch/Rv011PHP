@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\History as History;
 
 class Issues extends Model {
 
@@ -40,11 +41,19 @@ class Issues extends Model {
 
     public function historyUpToDateNew()
     {
-        return $this->hasOne('App\Models\History', 'issue_id', 'id')->where('status_id', '1')->orderBy('date', 'desc');
+        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('date', 'desc');
     }
     
     public function scopeSearch($query, $keywords)
     {
         return $query->where('name', 'like', '%'.$keywords.'%');
     }
+
+    public function scopeGetNew($query)
+    {
+        $modelHistory = new History();
+        $query->where( $modelHistory->status_id, '=', 1);
+
+    }
+
 }

@@ -30,7 +30,8 @@ Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::post('issues/search', 'IssuesController@search');
 Route::post('attachment','AttachmentController@store');
-Route::get('statuses', 'IssuesController@getIssueStatuses');
+Route::get('statusesandcategories', 'IssuesController@getIssueStatusesAndCategories');
+Route::post('issues/statuschange', 'IssuesController@statusChange');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();
 	$response = new Illuminate\Http\Response;
