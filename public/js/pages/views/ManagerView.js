@@ -5,9 +5,9 @@ define([
     "backbone",
     "IssuesView",
     "Issues",
-    "IssueEditView"
+    "Issue"
     ],
-    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues, IssueEditView){
+    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues, Issue){
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
             model: Issues,
@@ -16,11 +16,12 @@ define([
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
-                "change .status-selector": "statusChanged",
-                "click .fa.fa-pencil": "onEditClick"
+                "change .status-selector" : "statusChanged",
+                "change .category-selector" : "categoryChanged"
             },
             statuses:{},
             categories: {},
+            issue: {},
             initialize:function(){
                 //issues=new Issues();
                 //console.log(issues);
@@ -96,14 +97,22 @@ define([
                     if(data.length>0){
                     var issuesFound=new Issues(data);
 
-                    var template = self.template({
+                        $.get("statusesandcategories", {}, function(data){
+                        self.statuses=data.statuses;
+                        self.categories=data.categories;                        
+                        var template = self.template({
                             issues: issuesFound.models,
                             logged_in: session.get("logged_in"),
                             user: session.user.toJSON(),
-                            search: search
+                            search: search,
                             //category: issues.category
+                            statuses: self.statuses,
+                            categories: self.categories,
                         });
-                    self.$el.html(template); 
+                        //console.log(issues);
+                        //console.log(self.statuses);
+                        self.$el.html(template);                        
+                        }); 
 
                     //console.log(data);
                     }
@@ -116,22 +125,36 @@ define([
 
             statusChanged: function(e){
 
-                console.log("Status is changed");
                 var status_id=e.target.value;
                 var issue_id=$(e.target).closest('tr').attr('data-id');
-                //var user=window.session.user.get('id');
-                $.post("issues/statuschange", {
-                    issue_id: issue_id, status_id: status_id}, function(data){
-                        console.log(data);
-                    });
-            },
-            
-            onEditClick: function(e){
-                e.preventDefault();
-                $el = $(e.currentTarget).parent().parent().siblings(':first-child');
-                var issueEditView = new IssueEditView({id: $el.html()});
+                var issue = new Issue({id: issue_id});
+
+                issue.fetch();
+
+                issue.save({"status": status_id},
+                    {
+                        success:function(model,response){console.log(response.message);},
+                        error:function(model,response){console.log(response.message);}
+                    }
+
+                );
             },
 
+            categoryChanged: function(e){
+                var category_id=e.target.value;
+                var issue_id=$(e.target).closest('tr').attr('data-id');
+                var issue = new Issue({id: issue_id});
+
+                issue.fetch();
+
+                issue.save({"category": category_id},
+                    {
+                        success:function(model,response){console.log(response.message);},
+                        error:function(model,response){console.log(response.message);}
+                    }
+
+                );  
+            }
 
             });
         return ManagerView;

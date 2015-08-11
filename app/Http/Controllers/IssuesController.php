@@ -95,14 +95,30 @@ class IssuesController extends Controller {
 		$user = $auth->user();
 		if (!is_null($user)){
 			$issue = Issues::where('id', $id)->first();
+
+			if(!is_null($request->input('category'))){
+				$issue->category_id=$request->input('category');
+				$result=$issue->save();
+				return [
+						'code' =>'12151', 
+						'message' => 'Issue category was updated',
+						'result' => $result ,
+					];
+			}
+
 			if (!is_null($request->input('status'))){
 				$history = new History();
 				$history->user_id = $user->id;
 				$history->status_id = $request->input('status');
 				$history->date = date('Y-m-d H:i');
 				try {
-					$issue->history()->save($history);
-				} catch (Exception $e) {
+					$result=$issue->history()->save($history);
+					return [
+						'code' =>'12150', 
+						'message' => 'Issue status was updated',
+						'result' => $result ,
+					];
+				}catch (Exception $e) {
 					//
 				}
 			}
@@ -125,22 +141,6 @@ class IssuesController extends Controller {
 		return [
 			'statuses' => $statuses,
 			'categories' => $categories,
-		];
-	}
-
-	public function statusChange(Guard $auth, Request $request){
-		$user = $auth->user();
-		$history = new History();
-		$history->user_id = $user->id;
-		$history->issue_id = $request->input('issue_id');
-		$history->status_id = $request->input('status_id');
-		$history->date = date('Y-m-d H:i');
-		$result = $history->save();
-
-		return [
-			'code' =>'12150', 
-			'message' => 'Status was updated',
-			'result' => $result ,
 		];
 	}
 }
