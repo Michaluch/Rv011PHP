@@ -10,7 +10,8 @@ define([
                 session.on("change:logged_in", this.onLoginStatusChange);
             },
             events:{
-                "click #logout-btn" :"onLogoutClick"
+                "click #logout-btn" :"onLogoutClick",
+                "click #main-banner" : "onHomePageClick"
             },
             onLoginStatusChange:function(e){
                 this.render();
@@ -29,7 +30,10 @@ define([
                 console.log(data);
                 window.location.href="/";
             };
-        });
+            });
+            },
+            onHomePageClick: function(){
+                window.location.href="/";
             },
             render:function(){
                 this.$el.html(this.template({ 

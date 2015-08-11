@@ -10,8 +10,8 @@ class IssuesCategorySeeder extends Seeder {
         DB::table('issuescategory')->delete();
 		
 		DB::table('issuescategory')->insert([
-				['name' => 'Categoty 1'],
-				['name' => 'Category 2'],
+				['name' => 'Categoty 1', 'confirmed' => 1],
+				['name' => 'Category 2', 'confirmed' => 1],
 			   ]);   
     }
 

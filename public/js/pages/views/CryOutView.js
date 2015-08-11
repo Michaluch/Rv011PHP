@@ -2,17 +2,19 @@ define([
     "underscore",
     "backbone",
     "jquery",
+    "jQueryUI",
     "Issue",
     "text!pages/templates/CryOutTemplate.html",
     "text!pages/templates/IssueDetails.html",
     "text!pages/templates/NotificationSuccess.html",
     "text!pages/templates/NotificationInfo.html",
     "text!pages/templates/NotificationWarning.html",
-    "text!pages/templates/NotificationDanger.html"
+    "text!pages/templates/NotificationDanger.html",
+    "Categories"
     ],
-    function(_, Backbone, $, Issue, CryOutTemplate, IssueDetailsTemplate,
+    function(_, Backbone, $, jQueryUI, Issue, CryOutTemplate, IssueDetailsTemplate,
                 NotificationSuccess, NotificationInfo, 
-                NotificationWarning, NotificationDanger){
+                NotificationWarning, NotificationDanger, Categories){
         return Backbone.View.extend({
             map: null,
             issue: {},
@@ -68,6 +70,21 @@ define([
                     });
                 });
                 this.$el.html(CryOutTemplate);
+                $("#issue-type").autocomplete({
+                    source: function (request, response) {
+                            $.get("category", {
+                            query: request.term
+                        }, function (data) {
+                           var arr = [];
+
+                           $.each(data.data, function(){
+                            console.log(this.name);
+                            arr.push(this.name);
+                           })
+                        response(arr);
+                });
+                }
+                });
             },
             
             changeFormTab: function(e){
