@@ -11,6 +11,7 @@ requirejs.config({
         markerClusterer : 'libs/gmaps/markerclusterer',
         backbone        : 'libs/backbone/backbone',
         text            : 'libs/requirejs/text',
+        jQueryUI        : 'libs/jquery-ui-autocomplete/jquery-ui.min',
         fonts           : '../css/font-awesome/css/font-awesone.min', 
         hash            : 'libs/encrypt/sha512',
         images          : '',
@@ -28,9 +29,11 @@ requirejs.config({
         Issue           : 'pages/models/Issue',
         IssueStatus     : 'pages/models/IssueStatus',
         SessionModel    : 'pages/models/SessionModel',
+        Category        : 'pages/models/Category',
         Users           : 'pages/collections/Users', 
         Issues          : 'pages/collections/Issues',
-        IssueStatuses   : 'pages/collections/IssueStatuses',                        
+        IssueStatuses   : 'pages/collections/IssueStatuses',   
+        Categories      : 'pages/collections/Categories',             
         AppRouter       : 'pages/routes/Routes',
         //Views
         UserView        : 'pages/views/UserView',
@@ -43,7 +46,9 @@ requirejs.config({
         RowIssueView    : 'pages/views/RowIssueView',
         IssueView       : 'pages/views/IssueView',
         IssuesView      : 'pages/views/IssuesView',
-        EditIssueView   : 'pages/views/EditIssueView'
+        EditIssueView   : 'pages/views/EditIssueView',
+        IssueEditView   : 'pages/views/IssueEditView'
+
     },
 });
     

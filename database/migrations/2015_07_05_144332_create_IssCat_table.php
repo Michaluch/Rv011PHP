@@ -16,6 +16,7 @@ class CreateIssCatTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name',32);
+			$table->boolean('confirmed');
 		});
 	}
 

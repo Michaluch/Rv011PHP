@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
       $this->call('IssuesCategorySeeder');
       $this->call('IssuesTableSeeder');
 	  $this->call('IssuesStatusTableSeeder');
+	  $this->call('HistorySeeder');
 	}
 
 }

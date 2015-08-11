@@ -25,6 +25,7 @@ define([
             sidebar: Sidebar,
             routes: {
                 "": "index",
+                "home": "index",
                 "register": "register",
                 "login":"login",
                 "issue(/:id)": "issue",
