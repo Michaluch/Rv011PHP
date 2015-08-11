@@ -95,6 +95,17 @@ class IssuesController extends Controller {
 		$user = $auth->user();
 		if (!is_null($user)){
 			$issue = Issues::where('id', $id)->first();
+
+			if(!is_null($request->input('category'))){
+				$issue->category_id=$request->input('category');
+				$result=$issue->save();
+				return [
+						'code' =>'12151', 
+						'message' => 'Issue category was updated',
+						'result' => $result ,
+					];
+			}
+
 			if (!is_null($request->input('status'))){
 				$history = new History();
 				$history->user_id = $user->id;
@@ -104,7 +115,7 @@ class IssuesController extends Controller {
 					$result=$issue->history()->save($history);
 					return [
 						'code' =>'12150', 
-						'message' => 'Issue was updated',
+						'message' => 'Issue status was updated',
 						'result' => $result ,
 					];
 				}catch (Exception $e) {

@@ -16,7 +16,8 @@ define([
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
-                "change .status-selector": "statusChanged"
+                "change .status-selector" : "statusChanged",
+                "change .category-selector" : "categoryChanged"
             },
             statuses:{},
             categories: {},
@@ -96,14 +97,22 @@ define([
                     if(data.length>0){
                     var issuesFound=new Issues(data);
 
-                    var template = self.template({
+                        $.get("statusesandcategories", {}, function(data){
+                        self.statuses=data.statuses;
+                        self.categories=data.categories;                        
+                        var template = self.template({
                             issues: issuesFound.models,
                             logged_in: session.get("logged_in"),
                             user: session.user.toJSON(),
-                            search: search
+                            search: search,
                             //category: issues.category
+                            statuses: self.statuses,
+                            categories: self.categories,
                         });
-                    self.$el.html(template); 
+                        //console.log(issues);
+                        //console.log(self.statuses);
+                        self.$el.html(template);                        
+                        }); 
 
                     //console.log(data);
                     }
@@ -129,6 +138,22 @@ define([
                     }
 
                 );
+            },
+
+            categoryChanged: function(e){
+                var category_id=e.target.value;
+                var issue_id=$(e.target).closest('tr').attr('data-id');
+                var issue = new Issue({id: issue_id});
+
+                issue.fetch();
+
+                issue.save({"category": category_id},
+                    {
+                        success:function(model,response){console.log(response.message);},
+                        error:function(model,response){console.log(response.message);}
+                    }
+
+                );  
             }
 
             });
