@@ -4,9 +4,10 @@ define([
     "underscore",
     "backbone",
     "IssuesView",
-    "Issues"
+    "Issues",
+    "Issue"
     ],
-    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues){
+    function(ManagerTemplate, $, _, Backbone, IssuesView, Issues, Issue){
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
             model: Issues,
@@ -19,6 +20,7 @@ define([
             },
             statuses:{},
             categories: {},
+            issue: {},
             initialize:function(){
                 //issues=new Issues();
                 //console.log(issues);
@@ -114,14 +116,19 @@ define([
 
             statusChanged: function(e){
 
-                console.log("Status is changed");
                 var status_id=e.target.value;
                 var issue_id=$(e.target).closest('tr').attr('data-id');
-                //var user=window.session.user.get('id');
-                $.post("issues/statuschange", {
-                    issue_id: issue_id, status_id: status_id}, function(data){
-                        console.log(data);
-                    });
+                var issue = new Issue({id: issue_id});
+
+                issue.fetch();
+
+                issue.save({"status": status_id},
+                    {
+                        success:function(model,response){console.log(response.message);},
+                        error:function(model,response){console.log(response.message);}
+                    }
+
+                );
             }
 
             });
