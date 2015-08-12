@@ -36,7 +36,7 @@ class Issues extends Model {
 
     public function historyUpToDate()
     {
-        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('date', 'desc');
+        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('id', 'desc');
     }
 
     public function historyNew()
