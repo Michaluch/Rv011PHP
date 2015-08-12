@@ -216,15 +216,19 @@ define([
                 var issue_id=$(e.target).closest('tr').attr('data-id');
                 var issue = new Issue({id: issue_id});
 
-                issue.fetch();
-
-                issue.save({"category": category_id},
-                    {
-                        success:function(model,response){console.log(response.message);},
-                        error:function(model,response){console.log(response.message);}
+                issue.fetch({
+                    success:function(){
+                        issue.save({"category": category_id, "status": null},
+                                {
+                                    success:function(model,response){console.log(response.message);},
+                                    error:function(model,response){console.log(response.message);}
+                                }
+    
+                        )
                     }
+                });
 
-                );  
+  
             },
             
             onEditClick: function(e){

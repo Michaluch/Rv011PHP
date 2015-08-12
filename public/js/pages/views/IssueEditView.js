@@ -10,6 +10,8 @@ define([
     var IssueEditView=Backbone.View.extend({
         //el: $('#main-container'),
         // model: new Issue,
+        model: {},
+        model2: {},
         template:_.template(IssueEditTemplate),
 
         events: {
@@ -22,9 +24,9 @@ define([
                 this.model = new Issue({id: this.id});
                 this.model.fetch({
                     success: function(){
-                    console.log("fetching successfull");
-                    that.render();
-                },
+                        console.log("fetching successfull");
+                        that.render();
+                    },
                 });
             }
             else {
