@@ -122,16 +122,6 @@ class IssuesController extends Controller {
 		if (!is_null($user)){
 			$issue = Issues::where('id', $id)->first();
 
-			if(!is_null($request->input('category'))){
-				$issue->category_id=$request->input('category');
-				$result=$issue->save();
-				return [
-						'code' =>'12151', 
-						'message' => 'Issue category was updated',
-						'result' => $result ,
-					];
-			}
-
 			if (!is_null($request->input('status'))){
 				$history = new History();
 				$history->user_id = $user->id;
@@ -148,6 +138,28 @@ class IssuesController extends Controller {
 					//
 				}
 			}
+
+			$changed_fields = "";
+            if(!is_null($request->input('category'))){
+				$issue->category_id=$request->input('category');
+				$changed_fields .= "category, ";
+			}
+
+            if(!is_null($request->input('name'))){
+				$issue->name=$request->input('name');
+				$changed_fields .= "name, ";
+			}
+			
+			$result=$issue->save();
+			$changed_fields = rtrim($changed_fields, ", ");
+			return [
+					'code' =>'12151', 
+					'message' => 'Issue fields ('.$changed_fields.') was updated',
+					'result' => $result ,
+				];
+		
+
+
 		}
 	}
 	/**

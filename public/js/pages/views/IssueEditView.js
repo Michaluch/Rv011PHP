@@ -34,6 +34,7 @@ define([
         },
     
         render:function () {
+            var that = this;
             console.log("rendering issue edit start.");
             var template = _.template(IssueEditTemplate);
             this.template = template(this.model.attributes);
@@ -51,8 +52,13 @@ define([
                 return false;
             });
             $("#issue_edit_save").click(function() {
-                //this.model.save();
+                that.model.set('name', $('#issue-name').val());
+                that.model.set('category', null);
+                that.model.set('status', null);
+                alert(that.model.get('name'));
                 console.log("save");
+                that.model.save({patch: true});
+                console.log("saved");
                 return false;
             });
             console.log("rendering issue edit end.");
