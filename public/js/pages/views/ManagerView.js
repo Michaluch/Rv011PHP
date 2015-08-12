@@ -7,9 +7,10 @@ define([
     "RowIssueView" ,
     "IssuesView",
     "Issues",
-    "Issue"   
+    "Issue",
+    "IssueEditView"
     ],
-    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue ){
+    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue, IssueEditView ){
 
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
@@ -24,7 +25,8 @@ define([
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
                 "change .status-selector" : "statusChanged",
-                "change .category-selector" : "categoryChanged"
+                "change .category-selector" : "categoryChanged",
+                "click .fa.fa-pencil": "onEditClick"
             },
             statuses:{},
             categories: {},
@@ -214,16 +216,28 @@ define([
                 var issue_id=$(e.target).closest('tr').attr('data-id');
                 var issue = new Issue({id: issue_id});
 
-                issue.fetch();
-
-                issue.save({"category": category_id},
-                    {
-                        success:function(model,response){console.log(response.message);},
-                        error:function(model,response){console.log(response.message);}
+                issue.fetch({
+                    success:function(){
+                        issue.save({"category": category_id, "status": null},
+                                {
+                                    success:function(model,response){console.log(response.message);},
+                                    error:function(model,response){console.log(response.message);}
+                                }
+    
+                        )
                     }
+                });
 
-                );  
-            }
+  
+            },
+            
+            onEditClick: function(e){
+                e.preventDefault();
+                $el = $(e.currentTarget).parent().parent().siblings(':first-child');
+                var issueEditView = new IssueEditView({id: $el.html()});
+            },
+
+            
             });
         return ManagerView;
     }

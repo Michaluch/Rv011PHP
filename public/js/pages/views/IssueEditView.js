@@ -10,6 +10,8 @@ define([
     var IssueEditView=Backbone.View.extend({
         //el: $('#main-container'),
         // model: new Issue,
+        model: {},
+        model2: {},
         template:_.template(IssueEditTemplate),
 
         events: {
@@ -22,9 +24,9 @@ define([
                 this.model = new Issue({id: this.id});
                 this.model.fetch({
                     success: function(){
-                    console.log("fetching successfull");
-                    that.render();
-                },
+                        console.log("fetching successfull");
+                        that.render();
+                    },
                 });
             }
             else {
@@ -34,6 +36,7 @@ define([
         },
     
         render:function () {
+            var that = this;
             console.log("rendering issue edit start.");
             var template = _.template(IssueEditTemplate);
             this.template = template(this.model.attributes);
@@ -51,8 +54,13 @@ define([
                 return false;
             });
             $("#issue_edit_save").click(function() {
-                //this.model.save();
+                that.model.set('name', $('#issue-name').val());
+                that.model.set('category', null);
+                that.model.set('status', null);
+                alert(that.model.get('name'));
                 console.log("save");
+                that.model.save({patch: true});
+                console.log("saved");
                 return false;
             });
             console.log("rendering issue edit end.");
