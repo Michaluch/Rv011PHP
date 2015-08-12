@@ -91,6 +91,9 @@ class IssuesController extends Controller {
         case 'new':
             return $this->showCustomForManager(1);
             break;
+         case 'inprogress':
+            return $this->showCustomForManager(2); /// here you should change according to DB
+            break;
         case 'solved':
             return $this->showCustomForManager(2);
             break;
@@ -123,54 +126,34 @@ class IssuesController extends Controller {
 		if (!is_null($user)){
 			$issue = Issues::where('id', $id)->first();
 
-			$changed_fields = "";
-			
+			if(!is_null($request->input('category'))){
+				$issue->category_id=$request->input('category');
+				$result=$issue->save();
+				return [
+						'code' =>'12151', 
+						'message' => 'Issue category was updated',
+						'result' => $result ,
+					];
+			}
+
 			if (!is_null($request->input('status'))){
 				$history = new History();
 				$history->user_id = $user->id;
 				$history->status_id = $request->input('status');
-				$history->date = date('Y-m-d H:i');
+				$history->date = date('Y-m-d H:i:s');
 				try {
-					$status_change_result=$issue->history()->save($history);
-					$changed_fields .= "status, ";
+					$result=$issue->history()->save($history);
+					return [
+						'code' =>'12150', 
+						'message' => 'Issue status was updated',
+						'result' => $result ,
+					];
 				}catch (Exception $e) {
 					//
 				}
 			}
-			else $status_change_result = true;
-
-            if(!is_null($request->input('category'))){
-				$issue->category_id=$request->input('category');
-				$changed_fields .= "category, ";
-			}
-
-            if(!is_null($request->input('name'))){
-				$issue->name=$request->input('name');
-				$changed_fields .= "name, ";
-			}
-			
-    		if(!is_null($request->input('description'))){
-				$issue->description=$request->input('description');
-				$changed_fields .= "description, ";
-			}
-			
-    		if(!is_null($request->input('severity'))){
-				$issue->severity=$request->input('severity');
-				$changed_fields .= "severity, ";
-			}			
-			
-			$result=$issue->save();
-			
-			$changed_fields = rtrim($changed_fields, ", ");
-			return [
-					'code' =>'12150', 
-					'message' => 'Issue fields ('.$changed_fields.') was updated',
-					'result' => $result && $status_change_result,
-				];
-
 		}
 	}
-	
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -207,7 +190,7 @@ class IssuesController extends Controller {
 	private function showById($id)
 	{
 		$result=Issues::where('id', '=', $id)
-		->with('category', 'history', 'history.status', 'attachments', 'historyUpToDate')->first();
+		->with('category', 'history', 'history.status', 'attachments')->first();
 		return $result;
 
 		//$data = Issue::where('id', '=', $id)->first();
@@ -236,6 +219,22 @@ class IssuesController extends Controller {
 		return [
 			'statuses' => $statuses,
 			'categories' => $categories,
+		];
+	}
+
+	public function statusChange(Guard $auth, Request $request){
+		$user = $auth->user();
+		$history = new History();
+		$history->user_id = $user->id;
+		$history->issue_id = $request->input('issue_id');
+		$history->status_id = $request->input('status_id');
+		$history->date = date('Y-m-d H:i');
+		$result = $history->save();
+
+		return [
+			'code' =>'12150', 
+			'message' => 'Status was updated',
+			'result' => $result ,
 		];
 	}
 
