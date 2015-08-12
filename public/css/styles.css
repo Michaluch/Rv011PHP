@@ -68,7 +68,6 @@ header #main-banner:hover {
 .sb-show {
   width: 30%;
 }
-#manager-cont,
 #page,
 #main-container,
 #map-canvas {
@@ -114,24 +113,6 @@ header #main-banner:hover {
   margin-left: 5%;
 }
 /*Styles for manager page */
-
-#avatarimg {
-
-  width: 100%;
-  overflow: hidden; 
- 
-}
-
-#avatarover {
-  width: 70px;
-  max-height: 70px;
-  overflow: hidden;
-  
-}
-
-
-
-
 #left-sidebar {
   background-color: #f6f6f7;
   height: 100%;
@@ -141,7 +122,6 @@ header #main-banner:hover {
   margin: 10px 0 30px 0;
   min-height: 70px;
 }
-
 #left-sidebar p {
   margin: 0px;
   padding: 0px;
@@ -168,13 +148,18 @@ header #main-banner:hover {
   text-decoration: none;
   color: inherit;
 }
-
-
-#left-sidebar li:hover{
+#left-sidebar li:hover {
   cursor: pointer;
 }
-
-
+#avatarimg {
+  width: 100%;
+  overflow: hidden;
+}
+#avatarover {
+  width: 70px;
+  max-height: 70px;
+  overflow: hidden;
+}
 #manager-panel .form-group {
   padding: 0px;
 }
@@ -220,11 +205,6 @@ header #main-banner:hover {
 #manager-panel .edit-icons a:hover {
   color: #63978c;
 }
-
-#manager-panel li:hover {
-  cursor: pointer;
-}
-
 @media screen and (max-width: 990px) {
   #manager-panel .fa-align-justify {
     display: block;
@@ -234,6 +214,9 @@ header #main-banner:hover {
     display: none;
   }
   .width50 {
+    width: 50%;
+  }
+  #manager-panel input {
     width: 50%;
   }
   header ul li {
@@ -252,7 +235,5 @@ header #main-banner:hover {
     display:none;
   }
   */
-
-
 }
 /*End of manager page styles */

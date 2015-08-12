@@ -82,7 +82,7 @@ define([
 
                 if(this.tableIssue!=null)
                 {
-                    this.$('#manager-panel').append(this.tableIssue.render().el);
+                    this.$('#search-form').append(this.tableIssue.render().el);
                 
                 }
             return this;

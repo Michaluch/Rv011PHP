@@ -223,20 +223,4 @@ class IssuesController extends Controller {
 		];
 	}
 
-	public function statusChange(Guard $auth, Request $request){
-		$user = $auth->user();
-		$history = new History();
-		$history->user_id = $user->id;
-		$history->issue_id = $request->input('issue_id');
-		$history->status_id = $request->input('status_id');
-		$history->date = date('Y-m-d H:i');
-		$result = $history->save();
-
-		return [
-			'code' =>'12150', 
-			'message' => 'Status was updated',
-			'result' => $result ,
-		];
-	}
-
 }
