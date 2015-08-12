@@ -8,9 +8,9 @@ define([
     "IssuesView",
     "Issues",
     "Issue",
-    "IssueEditView"
+    "IssueEditView",
     ],
-    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue, IssueEditView ){
+    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue, IssueEditView){
 
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
@@ -234,7 +234,9 @@ define([
             onEditClick: function(e){
                 e.preventDefault();
                 $el = $(e.currentTarget).parent().parent().siblings(':first-child');
-                var issueEditView = new IssueEditView({id: $el.html()});
+                var issueEditId = $el.html();
+                var issueEditView = new IssueEditView({id: issueEditId});
+                issueEditView.render();
             },
 
             

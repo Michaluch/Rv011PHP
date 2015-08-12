@@ -1,22 +1,47 @@
 <div class="container-fluid">
 <form class="form-horizontal" id="issue_edit_form" role="form">
-	<h2>Issue Edit (ID: <%= id %>)</h2>
+	<h2>Issue Edit (ID: <%= issue.id %>)</h2>
 	<div class="form-group">
     <label for="issue-name">Title</label>
-    <input type="text" id="issue-name" class="desc-data form-control" value="<%= name %>">
+    <input type="text" id="issue-name" class="desc-data form-control" value="<%= issue.name %>">
     </div>
     <div class="form-group">
     <label for="issue-description">Description</label>
-    <input type="text" id="issue-description" class="desc-data form-control"  value="<%= description %>">
+    <input type="text" id="issue-description" class="desc-data form-control"  value="<%= issue.description %>">
     </div>
     <div class="form-group">
-    <label for="issue-description">Severity</label>
-    <input type="text" id="issue-description" class="desc-data form-control"  value="<%= severity %>">
+    <label for="issue-severity">Severity</label>
+    <input type="text" id="issue-severity" class="desc-data form-control"  value="<%= issue.severity %>">
     </div>
     <div class="form-group">
-    <label for="issue-type">Category</label>
-    <input type="text" id="issue-category" class="desc-data form-control"  value="<%= category %>">
+    <label for="issue-category">Category</label>
+	    <select id = "issue-category" name="category-selector" class="category-selector form-control">
+	       <% _.each(categories, function(category, key, list) { %>      
+	       <option value="<%= category.id %>"        
+	       <%if(issue.category_id == category.id) {%>selected <%} %>
+	       >
+	            <%= category.name %>
+	            <%= console.log(category.name) %>        
+	        </option>      
+	       <% }) %>      
+	   </select>
     </div>
+    
+    <div class="form-group">
+    <label for="issue-status">Status</label>
+       <select id="issue-status" name="status-slector" class="status-selector form-control">
+           <% _.each(statuses, function(status, key, list) { %>
+           <option value="<%= status.id %>" 
+            <%if(issue.history_up_to_date.status_id == status.id) {%>selected <%} %>
+            >
+                <%= status.name %>
+                <%= console.log(status.name) %>  
+            </option>
+           <% }) %>
+
+       </select>
+    </div>
+    
     
  	<div class="row">
 	<div class="col-sm-6">

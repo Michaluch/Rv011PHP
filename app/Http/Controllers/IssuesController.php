@@ -123,24 +123,22 @@ class IssuesController extends Controller {
 		if (!is_null($user)){
 			$issue = Issues::where('id', $id)->first();
 
+			$changed_fields = "";
+			
 			if (!is_null($request->input('status'))){
 				$history = new History();
 				$history->user_id = $user->id;
 				$history->status_id = $request->input('status');
 				$history->date = date('Y-m-d H:i');
 				try {
-					$result=$issue->history()->save($history);
-					return [
-						'code' =>'12150', 
-						'message' => 'Issue status was updated',
-						'result' => $result ,
-					];
+					$status_change_result=$issue->history()->save($history);
+					$changed_fields .= "status, ";
 				}catch (Exception $e) {
 					//
 				}
 			}
+			else $status_change_result = true;
 
-			$changed_fields = "";
             if(!is_null($request->input('category'))){
 				$issue->category_id=$request->input('category');
 				$changed_fields .= "category, ";
@@ -151,18 +149,28 @@ class IssuesController extends Controller {
 				$changed_fields .= "name, ";
 			}
 			
+    		if(!is_null($request->input('description'))){
+				$issue->description=$request->input('description');
+				$changed_fields .= "description, ";
+			}
+			
+    		if(!is_null($request->input('severity'))){
+				$issue->severity=$request->input('severity');
+				$changed_fields .= "severity, ";
+			}			
+			
 			$result=$issue->save();
+			
 			$changed_fields = rtrim($changed_fields, ", ");
 			return [
-					'code' =>'12151', 
+					'code' =>'12150', 
 					'message' => 'Issue fields ('.$changed_fields.') was updated',
-					'result' => $result ,
+					'result' => $result && $status_change_result,
 				];
-		
-
 
 		}
 	}
+	
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -199,7 +207,7 @@ class IssuesController extends Controller {
 	private function showById($id)
 	{
 		$result=Issues::where('id', '=', $id)
-		->with('category', 'history', 'history.status', 'attachments')->first();
+		->with('category', 'history', 'history.status', 'attachments', 'historyUpToDate')->first();
 		return $result;
 
 		//$data = Issue::where('id', '=', $id)->first();
