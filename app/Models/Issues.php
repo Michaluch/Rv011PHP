@@ -36,7 +36,7 @@ class Issues extends Model {
 
     public function historyUpToDate()
     {
-        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('id', 'desc');
+        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('date', 'desc');
     }
 
     public function historyNew()
@@ -47,6 +47,13 @@ class Issues extends Model {
     public function scopeSearch($query, $keywords)
     {
         return $query->where('name', 'like', '%'.$keywords.'%');
+    }
+
+    public function scopeGetNew($query)
+    {
+        $modelHistory = new History();
+        $query->where( $modelHistory->status_id, '=', 1);
+
     }
 
 }
