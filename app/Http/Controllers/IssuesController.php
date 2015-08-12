@@ -72,8 +72,45 @@ class IssuesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Guard $auth, Request $request)
 	{
+	    $user = $auth->user();
+        // validation block
+	    $validator = $this->validator($request->all());
+
+        if ($validator->fails())
+        {
+            $this->throwValidationException($request, $validator);
+        }
+        $data = $request->all();
+        $issue = new Issues;
+        $issue->name = $data['name'];
+        if (isset($data['description'])){
+            $issue->description = $data['description'];
+        }
+        $issue->map_pointer = json_encode($data['map_pointer']);
+        
+        $categoryModel = new IssuesCategory;
+        $input_cat = strtolower($data['category']);
+        $category = $categoryModel->where('name', '=', $input_cat)->first();
+        if (is_null($category)){
+            $new_cat = new IssuesCategory;
+            $new_cat->name = $input_cat;
+            $cat_id = $issue->category()->save($new_cat)->id;
+        } else {
+            $cat_id = $category->id;
+        } 
+        $issue->category_id = $cat_id;
+        
+        $issue->severity = 1;
+        $issue->save();
+        $history = new History;
+        $history->user_id = $user->id;
+        $history->status_id = 1;
+        $history->issue_id = $issue->id;
+        $history->date = date('Y-m-d H:i:s');
+        $issue->history()->save($history);
+
 
 	}
 	/**
@@ -182,6 +219,14 @@ class IssuesController extends Controller {
 		//
 	}
 
+	public function validator(array $data)
+	{
+	    return Validator::make($data, [
+	        'name'     => 'required|max:256',
+	        'map_pointer' => 'required',
+	        'severity' =>  'Integer|between:1,5'
+        ]);
+	}
 
 
 	private function showAllForManager()
