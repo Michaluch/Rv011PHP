@@ -26,6 +26,7 @@ use Validator;
 
 
 class IssuesController extends Controller {
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -88,10 +89,10 @@ class IssuesController extends Controller {
             return $this->showAllForManager();
             break;
         case 'new':
-            return $this->showNewForManager();
+            return $this->showCustomForManager(1);
             break;
         case 'solved':
-            return $this->showSolvedForManager();
+            return $this->showCustomForManager(2);
             break;
         default :
         	return $this->showById($id);
@@ -165,16 +166,23 @@ class IssuesController extends Controller {
 
 	private function showAllForManager()
 	{
-		$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->get();
-        return $data;
+		$data = Issue::with('historyUpToDate')->get();
+		return $data;
 	}
 
-	private function showNewForManager()
+	private function showCustomForManager($id)
 	{
-		$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->GetNew()->get();
-        return $data;
+		$data = Issue::with('historyUpToDate')->get();
+		$toSend = array();
+		foreach ($data as $el) 
+		{
+			if ($el->historyUpToDate->status_id == $id)
+			{
+				array_push($toSend, $el);
+			}
+		}
+		return $toSend;
 	}
-
 
 	private function showById($id)
 	{

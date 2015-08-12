@@ -39,9 +39,9 @@ class Issues extends Model {
         return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('date', 'desc');
     }
 
-    public function historyUpToDateNew()
+    public function historyNew()
     {
-        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('date', 'desc');
+        return $this->hasMany('App\Models\History', 'issue_id', 'id')->where('status_id', '1');
     }
     
     public function scopeSearch($query, $keywords)

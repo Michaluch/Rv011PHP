@@ -216,7 +216,7 @@ class IssueController extends Controller {
 	 */
 	private function showAllForManager()
 	{
-		$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->get();
+		//$data = Issue::with('category','historyUpToDate','historyUpToDate.status')->get();
         return $data;
 	}
 

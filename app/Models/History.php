@@ -25,7 +25,7 @@ class History extends Model {
     }
     public function status()
     {
-    	return $this->hasOne('App\Models\IssueStatus', 'id', 'status_id');
+    	return $this->hasMany('App\Models\IssueStatus', 'id', 'status_id')->where('id', '=', 1);
     }
 
        public function user()
