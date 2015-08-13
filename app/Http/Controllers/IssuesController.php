@@ -176,9 +176,9 @@ class IssuesController extends Controller {
 			}
 			else $status_change_result = true;
 
-            if(!is_null($request->input('category'))){
-				$issue->category_id=$request->input('category');
-				$changed_fields .= "category, ";
+            if(!is_null($request->input('category_id'))){
+				$issue->category_id=$request->input('category_id');
+				$changed_fields .= "category_id, ";
 			}
 
             if(!is_null($request->input('name'))){

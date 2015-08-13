@@ -13,9 +13,10 @@
     <label for="issue-severity">Severity</label>
     <input type="text" id="issue-severity" class="desc-data form-control"  value="<%= issue.severity %>">
     </div>
+    
     <div class="form-group">
-    <label for="issue-category">Category</label>
-	    <select id = "issue-category" name="category-selector" class="category-selector form-control">
+    <label for="issue-category_id">Category</label>
+	    <select id = "issue-category_id" name="category-selector" class="category-selector form-control">
 	       <% _.each(categories, function(category, key, list) { %>      
 	       <option value="<%= category.id %>"        
 	       <%if(issue.category_id == category.id) {%>selected <%} %>
@@ -28,8 +29,8 @@
     </div>
     
     <div class="form-group">
-    <label for="issue-status">Status</label>
-       <select id="issue-status" name="status-slector" class="status-selector form-control">
+    <label for="issue-status_id">Status</label>
+       <select id="issue-status_id" name="status-slector" class="status-selector form-control">
            <% _.each(statuses, function(status, key, list) { %>
            <option value="<%= status.id %>" 
             <%if(issue.history_up_to_date.status_id == status.id) {%>selected <%} %>
@@ -42,10 +43,9 @@
        </select>
     </div>
     
-    
  	<div class="row">
 	<div class="col-sm-6">
-		<a id="issue_edit_save" class="btn btn-default btn-sm btn-block" role="button"><span class="glyphicon glyphicon-save"></span> Save Issue</a>
+		<a id="issue_edit_save" class="btn btn-default btn-sm btn-block" role="button"><span class="glyphicon glyphicon-save"></span> Ok</a>
 	</div>
 	<div class="col-sm-6">
 		<button id="issue_edit_cancel" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-ban-circle"></span> Close</button>

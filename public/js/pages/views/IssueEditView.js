@@ -15,7 +15,7 @@ define([
             this.id = data.id;
         },
     
-        render:function () {
+        render:function (managerView) {
             $.get("statusesandcategories",  function(data) {
                 IssueEditView.statuses = data.statuses;
                 IssueEditView.categories = data.categories;
@@ -72,12 +72,12 @@ define([
                             issueEditModelNew.set('severity', $('#issue-severity').val());
                         };
 
-                        if ($('#issue-category').val() !== issueEditModelOld.get('category')){
-                            issueEditModelNew.set('category', $('#issue-category').val());
+                        if ($('#issue-category_id').val() !== issueEditModelOld.get('category_id')){
+                            issueEditModelNew.set('category_id', $('#issue-category').val());
                         };
-                        
-                        if ($('#issue-status').val() !== issueEditModelOld.get('history_up_to_date.id')){
-                            issueEditModelNew.set('status', $('#issue-status').val());
+
+                        if ($('#issue-status_id').val() !== issueEditModelOld.get('history_up_to_date').status_id){
+                            issueEditModelNew.set('status', $('#issue-status_id').val());
                         };
                         
                         console.log("save");
@@ -88,6 +88,7 @@ define([
                                 $.colorbox.close();
                             },
                             });
+                        managerView.universalshow(managerView.path);
                         console.log("saved");
                         $.colorbox.close();
                         return false;

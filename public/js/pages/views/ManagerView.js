@@ -31,6 +31,7 @@ define([
             statuses:{},
             categories: {},
             issue: {},
+            path: null,
 
             initialize:function(){
              
@@ -38,17 +39,17 @@ define([
 
             },
             allissues: function  () {
-                var path = "/issues/all";
-                this.universalshow(path);
+                this.path = "/issues/all";
+                this.universalshow(this.path);
             },
             newissues: function  () {
-                var path = "/issues/new";
-                this.universalshow(path);
+                path = "/issues/new";
+                this.universalshow(this.path);
             },
 
             solvedissues: function  () {
-                var path="/issues/solved";
-                this.universalshow(path);
+                this.path="/issues/solved";
+                this.universalshow(this.path);
             },
             /**
              * fetch data from db by path on succsess render 
@@ -218,7 +219,7 @@ define([
 
                 issue.fetch({
                     success:function(){
-                        issue.save({"category": category_id, "status": null},
+                        issue.save({"category_id": category_id, "status": null},
                                 {
                                     success:function(model,response){console.log(response.message);},
                                     error:function(model,response){console.log(response.message);}
@@ -236,7 +237,7 @@ define([
                 $el = $(e.currentTarget).parent().parent().siblings(':first-child');
                 var issueEditId = $el.html();
                 var issueEditView = new IssueEditView({id: issueEditId});
-                issueEditView.render();
+                issueEditView.render(this);
             },
 
             
