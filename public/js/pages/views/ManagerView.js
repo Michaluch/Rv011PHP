@@ -201,17 +201,18 @@ define([
 //=======
                 var issue = new Issue({id: issue_id});
 
-                issue.fetch();
-
-                issue.save({"status": status_id},
-                    {
-                        success:function(model,response){console.log(response.message);},
-                        error:function(model,response){console.log(response.message);}
-                    }
-
-                );
-            },
-
+                issue.fetch({
+                    success:function(){
+                        issue.save({"status": status_id},
+                            {
+                                success:function(model,response){console.log(response.message);},
+                                error:function(model,response){console.log(response.message);}
+                            }
+                        )
+                }
+            });
+        },
+        
             categoryChanged: function(e){
                 var category_id=e.target.value;
                 var issue_id=$(e.target).closest('tr').attr('data-id');
@@ -228,8 +229,6 @@ define([
                         )
                     }
                 });
-
-  
             },
             
             onEditClick: function(e){

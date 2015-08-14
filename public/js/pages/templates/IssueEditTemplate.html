@@ -1,21 +1,26 @@
 <div class="container-fluid">
-<form class="form-horizontal" id="issue_edit_form" role="form">
-	<h2>Issue Edit (ID: <%= issue.id %>)</h2>
-	<div class="form-group">
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h2>Issue Edit (ID: <%= issue.id %>)</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
     <label for="issue-name">Title</label>
     <input type="text" id="issue-name" class="desc-data form-control" value="<%= issue.name %>">
     </div>
-    <div class="form-group">
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
     <label for="issue-description">Description</label>
     <input type="text" id="issue-description" class="desc-data form-control"  value="<%= issue.description %>">
     </div>
-    <div class="form-group">
-    <label for="issue-severity">Severity</label>
-    <input type="text" id="issue-severity" class="desc-data form-control"  value="<%= issue.severity %>">
-    </div>
-    
-    <div class="form-group">
-    <label for="issue-category_id">Category</label>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+	<label for="issue-category_id">Category</label>
 	    <select id = "issue-category_id" name="category-selector" class="category-selector form-control">
 	       <% _.each(categories, function(category, key, list) { %>      
 	       <option value="<%= category.id %>"        
@@ -27,8 +32,10 @@
 	       <% }) %>      
 	   </select>
     </div>
+</div>
     
-    <div class="form-group">
+<div class="row">
+	<div class="col-xs-12">
     <label for="issue-status_id">Status</label>
        <select id="issue-status_id" name="status-slector" class="status-selector form-control">
            <% _.each(statuses, function(status, key, list) { %>
@@ -42,7 +49,20 @@
 
        </select>
     </div>
-    
+</div>
+
+<div class="row">
+<div class="col-xs-12 text-center">
+<link rel="stylesheet" href="css/severity-stars.css">
+    <div class="stars" data-toggle="tooltip" data-placement="left" title="Severity">
+    <% for(var star = 5; star > 0; star--) { %>
+	    <input class="star star-<%= star %>" id="star-<%= star %>" type="radio" name="severity" value="<%= star %>" <% if (star == issue.severity) {%> checked<% } %> />
+	    <label class="star star-<%= star %>" for="star-<%= star %>"></label>
+	<% } %>
+	</div>
+    </div>
+</div>
+
  	<div class="row">
 	<div class="col-sm-6">
 		<a id="issue_edit_save" class="btn btn-default btn-sm btn-block" role="button"><span class="glyphicon glyphicon-save"></span> Ok</a>
@@ -51,5 +71,5 @@
 		<button id="issue_edit_cancel" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-ban-circle"></span> Close</button>
 	</div>
 
-</form>
+
 </div>

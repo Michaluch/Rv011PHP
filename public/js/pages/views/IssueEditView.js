@@ -32,7 +32,8 @@ define([
                         categories: IssueEditView.categories
                     });
                     
-                    $.colorbox({html:template, width:"400",
+                    $.colorbox({html:template, width:"450",
+                        height: "100%",
                         speed: 50,
                         opacity: 0.5,
                         closeButton: false,
@@ -41,6 +42,8 @@ define([
                             $.colorbox.remove();
                         }, //end onClosed   
                     });
+                    
+                    $('[data-toggle="tooltip"]').tooltip()
                     
                     $("#issue_edit_cancel").click(function() {
                         $.colorbox.close();
@@ -68,8 +71,8 @@ define([
                             issueEditModelNew.set('description', $('#issue-description').val());
                         };
                         
-                        if ($('#issue-severity').val() !== issueEditModelOld.get('severity')){
-                            issueEditModelNew.set('severity', $('#issue-severity').val());
+                        if ($('input:radio[name=severity]:checked').val() !== issueEditModelOld.get('severity')){
+                            issueEditModelNew.set('severity', $('input:radio[name=severity]:checked').val());
                         };
 
                         if ($('#issue-category_id').val() !== issueEditModelOld.get('category_id')){
@@ -90,7 +93,8 @@ define([
                             });
                         managerView.universalshow(managerView.path);
                         console.log("saved");
-                        $.colorbox.close();
+                        
+                        //$.colorbox.close();
                         return false;
                     });
                     
