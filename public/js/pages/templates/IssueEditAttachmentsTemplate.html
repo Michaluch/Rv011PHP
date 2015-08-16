@@ -1,0 +1,87 @@
+<style>
+.item img {
+  width: auto;
+  height: 160px;
+  max-height: 160px;
+  margin: 0 auto;
+}
+
+.attachment-icons{
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+span.attachment-icons{
+	font-size: 30px;
+	color: #ddd;
+	text-decoration: none;	
+}
+
+span.attachment-icons:hover{
+	color: #fff;
+	cursor:pointer;
+}
+
+
+.carousel-caption.att{
+	top: 0px;
+}
+</style>
+
+<div class = "row">
+	<div class="col-xs-12">
+		<div id="attachments-carousel" class="carousel slide">
+			<ol class="carousel-indicators">
+				<% _.each(attachments, function(attachment, key, list) { %>
+					<li data-target="#attachments-carousel" data-slide-to="<%= key %>"<% if (key == 0) { %> class="active"<% } %>">
+					</li>
+				<% }) %>
+				
+			</ol>
+			<div class="carousel-inner">
+				<% _.each(attachments, function(attachment, key, list) { %>
+					<div class="item<% if (key == 0) { %> active<% } %>">
+						<img class="att" src="<%= attachment.url %>">
+						<div class="carousel-caption att">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Zoom In">
+										<a href="#modal-attachment-<%= key %>" data-toggle="modal"><span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom"></span></a>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Delete">
+										<span class="glyphicon glyphicon-remove-sign attachment-icons att-remove" attachment-id="<%= attachment.id %>"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+			<a class="left carousel-control" href="#attachments-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a class="right carousel-control" href="#attachments-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+	</div>
+</div>
+
+<% _.each(attachments, function(attachment, key, list) { %>
+
+<div id="modal-attachment-<%= key %>" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="model-header">
+			header
+			</div>
+			<div class="model-body">
+			body
+			</div>
+			<div class="model-footer">
+			footer
+			</div>
+		</div>
+	</div>
+</div>
+
+<% }) %>

@@ -1,15 +1,31 @@
 define([
-        "text!pages/templates/IssueEditTemplate.html",    
+        "text!pages/templates/IssueEditTemplate.html",
+        "text!pages/templates/IssueEditAttachmentsTemplate.html",
         "jquery",
         "underscore",
         "backbone",
         "Issue",
-        "colorbox"
+        "AttachmentsEditView",
+        "Attachment",
         ],
-        function(IssueEditTemplate, $, _, Backbone, Issue, colorbox){
+        function(IssueEditTemplate, IssueEditAttachmentsTemplate, $, _, Backbone, Issue, AttachmentsEditView, Attachment){
         var IssueEditView=Backbone.View.extend({
         statuses:{},
         categories: {},
+        
+        hint: {
+            hint: "Congratulations! Now You can edit this event.",
+            setMessage: function(hint){
+                this.hint = hint;
+            },
+            displayHint: function(){
+                $('#issue-edit-hint').html(this.hint);                
+            },
+            displayHintMessage: function(hint){
+                this.hint = hint;
+                this.displayHint();                
+            }
+        },
         
         initialize: function(data){
             this.id = data.id;
@@ -24,32 +40,29 @@ define([
             var that = this;
             issueEditModelOld.fetch({
                 success: function(){
+                    
                     var template = _.template(IssueEditTemplate);
-                   
                     template = template({
                         issue: issueEditModelOld.attributes,
                         statuses: IssueEditView.statuses,
-                        categories: IssueEditView.categories
+                        categories: IssueEditView.categories,
                     });
+
+                    $('#modal').html(template);
+                    $('#modal').modal();
                     
-                    $.colorbox({html:template, width:"450",
-                        height: "100%",
-                        speed: 50,
-                        opacity: 0.5,
-                        closeButton: false,
-                        onClosed:function(){
-                            console.log("Popup window: onClosed.");
-                            $.colorbox.remove();
-                        }, //end onClosed   
-                    });
+                    var attachmentsEditView = new AttachmentsEditView(that.id, that.hint);
+                    attachmentsEditView.render();
+                    
+                    that.hint.displayHint();
                     
                     $('[data-toggle="tooltip"]').tooltip()
                     
                     $("#issue_edit_cancel").click(function() {
-                        $.colorbox.close();
+                        $('#modal').modal('hide');
                         return false;
                     });
-                    
+                                        
                     $("#issue_edit_save").click(function() {
                         var issueEditModelNew = new Issue({
                             id : that.id,
@@ -63,36 +76,63 @@ define([
                             status: null
                         }); //end issueEditedModel
                         
+                        var ok_save = true;
+                        var we_have_changes = false;
+                        
                         if ($('#issue-name').val() !== issueEditModelOld.get('name')){
-                            issueEditModelNew.set('name', $('#issue-name').val());
+                            if ($('#issue-name').val().length >= 5) {
+                                issueEditModelNew.set('name', $('#issue-name').val());
+                                we_have_changes = true;
+                            }
+                            else {
+                                ok_save = false;
+                                that.hint.setMessage("Title is too small.");
+                            }
                         };
                         
                         if ($('#issue-description').val() !== issueEditModelOld.get('description')){
-                            issueEditModelNew.set('description', $('#issue-description').val());
+                            if ($('#issue-description').val().length >= 10) {
+                                issueEditModelNew.set('description', $('#issue-description').val());
+                                we_have_changes = true;
+                            }
+                            else {
+                                ok_save = false;
+                                that.hint.setMessage("Description is too small.");
+                            }
                         };
                         
                         if ($('input:radio[name=severity]:checked').val() !== issueEditModelOld.get('severity')){
                             issueEditModelNew.set('severity', $('input:radio[name=severity]:checked').val());
+                            we_have_changes = true;
                         };
 
                         if ($('#issue-category_id').val() !== issueEditModelOld.get('category_id')){
-                            issueEditModelNew.set('category_id', $('#issue-category').val());
+                            issueEditModelNew.set('category_id', $('#issue-category_id').val());
+                            we_have_changes = true;
                         };
 
                         if ($('#issue-status_id').val() !== issueEditModelOld.get('history_up_to_date').status_id){
                             issueEditModelNew.set('status', $('#issue-status_id').val());
+                            we_have_changes = true;
                         };
                         
-                        console.log("save");
-                        issueEditModelNew.save({
-                            patch: true,
-                            success: function(){
-                                alert('saved successful');
-                                $.colorbox.close();
-                            },
+                        if (!ok_save){
+                            that.hint.displayHint();
+                        }
+                        else if (!we_have_changes) {
+                            that.hint.displayHintMessage("Nothing to save.")
+                        }
+                        else {
+                            issueEditModelNew.save({patch: true}, {
+                                success: function(model, response){
+                                    managerView.universalshow(managerView.path);
+                                    that.hint.setMessage('Issue saved successfully.');
+                                    that.render(managerView);
+                                    console.log("saved");
+                                },
                             });
-                        managerView.universalshow(managerView.path);
-                        console.log("saved");
+                        }
+                        
                         
                         //$.colorbox.close();
                         return false;
