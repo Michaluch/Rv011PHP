@@ -36,12 +36,16 @@ define([
                     
                     $('[data-toggle="tooltip"]').tooltip();
                     
+                    $("span.att-zoom").click(function(e) {
+                        var big_image='<img class="img-responsive center-block" src="'+$(e.target).attr('attachment-url')+'">';
+                        $.colorbox({html: big_image, height:"80%",width:"80%"});
+                    });
                     $("span.att-remove").click(function(e) {
                         var attachment = new Attachment({id: $(e.target).attr('attachment-id')});
                         attachment.destroy({
                             success: function() {
                                 that.render();
-                                hint.displayHintMessage('Image deleted successfully.');
+                                that.hint.displayHintMessage('Image deleted successfully.');
                             },
                         });
                      });
