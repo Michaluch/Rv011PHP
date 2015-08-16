@@ -49,4 +49,11 @@ class Issues extends Model {
         return $query->where('name', 'like', '%'.$keywords.'%');
     }
 
+    public function scopeGetNew($query)
+    {
+        $modelHistory = new History();
+        $query->where( $modelHistory->status_id, '=', 1);
+
+    }
+
 }

@@ -30,6 +30,7 @@ Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::post('issues/search', 'IssuesController@search');
 Route::post('attachment','AttachmentController@store');
+Route::resource('attachment','AttachmentController');
 Route::get('statusesandcategories', 'IssuesController@getIssueStatusesAndCategories');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();

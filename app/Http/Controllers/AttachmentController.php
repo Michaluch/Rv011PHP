@@ -62,7 +62,8 @@ class AttachmentController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $attachment = Attachment::where('id', '=', $id)->first();
+        return $attachment;
 	}
 
 	/**
@@ -85,7 +86,20 @@ class AttachmentController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$attachment = Attachment::where('id', '=', $id)->first();
+		$url = $attachment->url;
+		try{
+		    $result = $attachment->delete();
+		    unlink(getcwd().'/'.$url);
+		}
+		catch (Exception $e) {
+		    $result=false;
+	    }
+		return [
+    		'code' =>'11111', 
+    		'message' => 'Attachment '.$id.' and file '.getcwd().'/'.$url.' deleted.',
+    		'result' => $result,
+	    ];	
 	}
 
 }
