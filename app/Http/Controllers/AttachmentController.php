@@ -23,7 +23,7 @@ class AttachmentController extends Controller {
 	{
 		$file = $request->file('attachments');
 		$allowed_mime = array('image/jpeg', 'image/gif', 'image/pjpeg', 'image/png');
-		$upload_dir = 'uploaded';
+		$upload_dir = 'uploaded/';
 		if ($file->isValid() && in_array($file->getMimeType(), $allowed_mime)){
 			$original_name = $file->getClientOriginalName();
 			$file_name = $original_name;
@@ -39,7 +39,8 @@ class AttachmentController extends Controller {
 		if ($request->input('type')=="User")
 		{
 			$user = User::where('email', $request->input('email'))->first();
-			$user->avatar_url=$upload_dir .'/'. $file_name;
+			$user->avatar_url=$upload_dir . $file_name;
+	
 			$user->save();
 			return response()->json(['code' => $file, 'msg' => $user->email]);
 		}

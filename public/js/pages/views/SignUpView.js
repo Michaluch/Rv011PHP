@@ -97,6 +97,7 @@ define([
                                     processData: false,
                                     contentType: false,
                                     type: 'POST',
+                                    accept: "image/jpeg', 'image/gif', 'image/pjpeg', 'image/png'"
                                 });
                             //var template = _.template(SimpleMessage);
                             //$('#sidebar').html(template({message: response.message}));
