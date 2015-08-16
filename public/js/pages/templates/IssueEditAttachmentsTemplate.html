@@ -47,7 +47,7 @@ span.attachment-icons:hover{
 							<div class="row">
 								<div class="col-xs-6">
 									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Zoom In">
-										<a href="#modal-attachment-<%= key %>" data-toggle="modal"><span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom"></span></a>
+										<span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom" attachment-url="<%= attachment.url %>"></span>
 									</div>
 								</div>
 								<div class="col-xs-6">
@@ -65,23 +65,3 @@ span.attachment-icons:hover{
 		</div>
 	</div>
 </div>
-
-<% _.each(attachments, function(attachment, key, list) { %>
-
-<div id="modal-attachment-<%= key %>" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="model-header">
-			header
-			</div>
-			<div class="model-body">
-			body
-			</div>
-			<div class="model-footer">
-			footer
-			</div>
-		</div>
-	</div>
-</div>
-
-<% }) %>

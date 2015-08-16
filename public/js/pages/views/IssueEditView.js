@@ -14,21 +14,38 @@ define([
         categories: {},
         
         hint: {
-            hint: "Congratulations! Now You can edit this event.",
+            hint: null,
             setMessage: function(hint){
                 this.hint = hint;
             },
+            setErrorStyle: function(){
+                $('.issue-edit-hint').addClass('issue-edit-hint-error');
+            },
+            setInfoStyle: function(){
+                $('.issue-edit-hint').removeClass('issue-edit-hint-error');
+            },
             displayHint: function(){
+                this.setInfoStyle();
                 $('#issue-edit-hint').html(this.hint);                
             },
+            displayErrorHint: function(){
+                this.setErrorStyle();
+                $('#issue-edit-hint').html(this.hint);
+            },
             displayHintMessage: function(hint){
+                this.setInfoStyle();
                 this.hint = hint;
                 this.displayHint();                
+            },
+            displayErrorHintMessage: function(hint){
+                this.hint = hint;
+                this.displayErrorHint();                
             }
         },
         
         initialize: function(data){
             this.id = data.id;
+            this.hint.setMessage("Congratulations! Now You can edit this event.");
         },
     
         render:function (managerView) {
@@ -117,10 +134,10 @@ define([
                         };
                         
                         if (!ok_save){
-                            that.hint.displayHint();
+                            that.hint.displayErrorHint();
                         }
                         else if (!we_have_changes) {
-                            that.hint.displayHintMessage("Nothing to save.")
+                            that.hint.displayErrorHintMessage("Nothing to save.")
                         }
                         else {
                             issueEditModelNew.save({patch: true}, {
