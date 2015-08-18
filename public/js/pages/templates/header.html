@@ -4,7 +4,7 @@
     <li id="about-button">About</li>
     <% if(logged_in){ %>
     <a href="#" id="logout-btn"><li id="logout-button"><div id="logout-button" class="header-elements">Logout</li></a>
-    <a href="#myprofile" id="profile-lnk"><li id="profile">Hello,</br> <%=user.email%></li>
+    <a href="#profile" id="profile-lnk"><li id="profile">Hello,</br> <%=user.email%></li>
     <% } else{ %>
     <li id="login-button"><a href="#login" id="login-link">Login</li></a>
     <% } %> 

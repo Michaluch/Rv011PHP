@@ -93,26 +93,46 @@ define([
             },
             
             profile: function(){
-                if(session.get("logged_in") === true){
-                    console.log('profile');
-                    if(typeof profileView === "undefined"){
-                        profileView = new ProfileView();
-                    };
-                    profileView.render();
+                if(session.get("logged_in") === true)
+                {
+                    this.loadHeader();
+                    var role = session.get("user").role_id;
+                    
+                    switch  (role) {
+                        case 1:
+                            if(typeof this.profileView === "undefined"){
+                                this.profileView = new ProfileView();}
+                             else{
+                                window.location.href="/"; 
+                            }
+                            break;
+                        case 2:
+                            if(typeof this.ManagerView==="undefined"){
+                                this.ManagerView=new ManagerView();
+                            }
+                            else{
+                                window.location.href="/"; 
+                            }
+                            break;
+                        default:
+                            window.location.href="/"; 
+                            break;
+
+                    }
                 }
             },
-            manager: function(){
-                if(session.get("logged_in")===true&&session.get("user").role_id==1){
-                this.loadHeader();
-                if(typeof this.ManagerView==="undefined"){
-                    this.ManagerView=new ManagerView();
-                };
-                //this.ManagerView.render();
-                }
-                else{
-                   window.location.href="/"; 
-                }
-            },
+          //  manager: function(){
+          //      if(session.get("logged_in")===true&&session.get("user").role_id==1){
+          //      this.loadHeader();
+          //      if(typeof this.ManagerView==="undefined"){
+          //          this.ManagerView=new ManagerView();
+          //      };
+          //      //this.ManagerView.render();
+          //      }
+          //      else{
+          //         window.location.href="/"; 
+          //      }
+          //  },
 
             
             issues: function(){

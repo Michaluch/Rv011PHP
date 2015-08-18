@@ -41,7 +41,7 @@ define([
                 this.universalshow(this.path);
             },
             newissues: function  () {
-                path = "/issues/new";
+                this.path = "/issues/new";
                 this.universalshow(this.path);
             },
 

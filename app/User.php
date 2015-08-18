@@ -40,7 +40,6 @@ public $timestamps = false;
 	 * @var array
 	 */
 	protected $hidden = ['password',
-            'remember_token',
-            "salt"];
+            'remember_token'];
 
 }

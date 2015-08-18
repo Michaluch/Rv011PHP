@@ -20,12 +20,15 @@ Route::get('home', 'HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-]);
+    ]);
 
 //Route::post('/search', 'SearchController@postSearch');
 //Route::post('/auth/register', 'auth@postRegister');
+Route::get('pass/reset','UserController@resetPass');///
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
+Route::get('register/reset/{confirmationCode}', 'RegistrationController@changePass');
+
 Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::post('issues/search', 'IssuesController@search');

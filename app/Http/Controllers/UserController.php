@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
+use App\User as User;
 
 
 class UserController extends Controller {
@@ -55,10 +56,10 @@ class UserController extends Controller {
 			$toEmail = $request->email;
 			
 			Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
-			$message->from(MAIL_USERNAME, 'Bawl');
+			$message->from(env('MAIL_USERNAME'), 'Bawl');
             $message->to($toEmail)->subject('Verify your email address');
         	});	
-			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email','data' => $issues]],200);	
+			return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email','data' => $issues],200);	
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -109,4 +110,27 @@ class UserController extends Controller {
 	{
 		//
 	}
+
+	/**
+	 * Reset pass and send email with link to change pass
+	 * @param  email
+	 * @return [type]     [description]
+	 */
+	public function resetPass(Request $request) //
+	{
+		$result=User::where("email", '=', $request->email )->first();
+		if($result!=null)
+		{
+			$toEmail = $result['email'];
+			Mail::send('emails.reset', array('msg' => $result['salt']), function($message)use($toEmail){
+			$message->from(env('MAIL_USERNAME'), 'Bawl');
+        	$message->to($toEmail)->subject('Reset Password');
+        	});
+			return response()->json(['code' =>'11200', 'message' => 'Check email and reset password'],200);
+		}
+		else
+		{
+			return response()->json(['code' =>'11400', 'message' => 'No such user to reset password'],200);	
+		}
+	} 
 }
