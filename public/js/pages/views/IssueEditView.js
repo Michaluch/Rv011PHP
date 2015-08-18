@@ -43,16 +43,26 @@ define([
             }
         },
         
-        initialize: function(data){
+        initialize: function(data, managerView){
+            var that = this;
             this.id = data.id;
             this.hint.setMessage("Congratulations! Now You can edit this event.");
+            $.get("statusesandcategories",  function(data) {
+                that.statuses = data.statuses;
+                that.categories = data.categories;
+                that.render(managerView);
+            });
         },
     
         render:function (managerView) {
-            $.get("statusesandcategories",  function(data) {
-                IssueEditView.statuses = data.statuses;
-                IssueEditView.categories = data.categories;
-            });
+            /*
+
+            */
+//            IssueEditView.statuses = managerView.statuses;
+//            IssueEditView.categories = managerView.categories;
+            console.log('-------------');
+            console.log(managerView);
+            console.log('-------------');
             var issueEditModelOld = new Issue({id: this.id});
             var that = this;
             issueEditModelOld.fetch({
@@ -61,8 +71,8 @@ define([
                     var template = _.template(IssueEditTemplate);
                     template = template({
                         issue: issueEditModelOld.attributes,
-                        statuses: IssueEditView.statuses,
-                        categories: IssueEditView.categories,
+                        statuses: that.statuses,
+                        categories: that.categories,
                     });
 
                     $('#modal').html(template);

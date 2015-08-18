@@ -35,7 +35,7 @@ requirejs.config({
         IssueStatuses   : 'pages/collections/IssueStatuses',   
         Categories      : 'pages/collections/Categories',             
         AppRouter       : 'pages/routes/Routes',
-        Attachment     : 'pages/models/Attachment',
+        Attachment      : 'pages/models/Attachment',
         Attachments     : 'pages/collections/Attachments',
         //Views
         UserView        : 'pages/views/UserView',
@@ -51,6 +51,8 @@ requirejs.config({
         EditIssueView   : 'pages/views/EditIssueView',
         IssueEditView   : 'pages/views/IssueEditView',
         AttachmentsEditView: 'pages/views/AttachmentsEditView',
+        EditCategoriesView: 'pages/views/EditCategoriesView',
+        RowCategoryView : 'pages/views/RowCategoryView'
 
     },
 });

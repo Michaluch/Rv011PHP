@@ -129,7 +129,7 @@ class IssuesController extends Controller {
             return $this->showCustomForManager(1);
             break;
         case 'solved':
-            return $this->showCustomForManager(2);
+            return $this->showCustomForManager(4);
             break;
         default :
         	return $this->showById($id);

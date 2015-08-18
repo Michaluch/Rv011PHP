@@ -33,6 +33,7 @@ define([
                 "manager":"manager",
                 "issues": "issues",
                 "issue/:id/edit": "editissue",
+                "categories": "categories"
             },
             loadHeader: function(){
                 var issues = null;

@@ -35,15 +35,15 @@ return [
 	],
 
 	'facebook' => [
-    'client_id' => '404231896432923',
-    'client_secret' => '67df320c3883956ea730488e77b1225f',
-    'redirect' => 'http://academy.com/auth/facebook',
+    'client_id' => '1668647973380478',
+    'client_secret' => 'b4de6811cd16be9e976305c8ceb47a74',
+    'redirect' => 'http://bawl.dev/auth/facebook',
 ],
 
 'google' => [
-    'client_id' => '1017304995584-c0bar7sna64f07ttpm4qgd0fdo934ven.apps.googleusercontent.com',
-    'client_secret' => '664SJxLswUYUrmx_SugRNmRb',
-    'redirect' => 'http://academy.com/auth/google',
+    'client_id' => '1067510084405-hlq549egqurlutttjfeu5f6jhgkn97el.apps.googleusercontent.com',
+    'client_secret' => 'j4rNbKoHp_ucY4pMTxHNqyxa',
+    'redirect' => 'http://bawl.dev/auth/google',
 ],
 
 ];

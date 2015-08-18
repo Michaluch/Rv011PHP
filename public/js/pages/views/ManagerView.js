@@ -7,9 +7,15 @@ define([
     "RowIssueView" ,
     "IssuesView",
     "Issues",
-    "Issue"   
+    "Issue",
+    "Category",
+    "Categories",
+    "EditCategoriesView",
+    "RowCategoryView",
+    "IssueEditView",
     ],
-    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue ){
+    function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue, Category, 
+             Categories, EditCategoriesView, RowCategoryView, IssueEditView ){
 
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
@@ -21,10 +27,12 @@ define([
                 "click #allissues-link" : "allissues",
                 "click #recentlyissues-link" : "newissues",
                 "click #solvedissues-link" : "solvedissues",
+                "click #editcategories-link" : "editcategories",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
                 "change .status-selector" : "statusChanged",
-                "change .category-selector" : "categoryChanged"
+                "change .category-selector" : "categoryChanged",
+                "click .fa.fa-pencil": "onEditClick"
             },
             statuses:{},
             categories: {},
@@ -46,8 +54,22 @@ define([
             },
 
             solvedissues: function  () {
-                this.path="/issues/solved";
+                this.path ="/issues/solved";
                 this.universalshow(this.path);
+            },
+            editcategories: function() {
+                this.tableIssue = null;
+                this.path = "/categories";   
+                var self = this;
+                self.collectionCategory = new Categories();
+                var editCategoriesTable = new EditCategoriesView({collection : self.collectionCategory});
+                $.get(this.path, function(data){                  
+                            self.collectionCategory.models = data;    
+                            self.editCategoriesTable = editCategoriesTable;        
+                            self.render();                  
+                });
+
+
             },
             /**
              * fetch data from db by path on succsess render 
@@ -55,11 +77,11 @@ define([
              * run render after fetch data
              */
             universalshow: function  (path) {
+                this.editCategoriesTable = null;
                 var self=this;
                 self.collectionIssue = new Issues(); //{model: new Issue}    
                 
                 var tableIssue = new TableIssueView({collection : self.collectionIssue});
-                
                 $.get(path, function(data){
                   
                             self.collectionIssue.models = data;
@@ -81,12 +103,13 @@ define([
                         search: '' 
                     }
                     ));
-
                 if(this.tableIssue!=null)
                 {
-                    this.$('#manager-panel').append(this.tableIssue.render().el);
+                    this.$('#manager-panel').append(this.tableIssue.render().el);                
+                } else if(this.editCategoriesTable != null) {
+                    this.$('#manager-panel').append(this.editCategoriesTable.render().el);
+                } 
                 
-                }
             return this;
 
             },
@@ -162,7 +185,7 @@ define([
 
                         $.get("statusesandcategories", {}, function(data){
                         self.statuses=data.statuses;
-                        self.categories=data.categories;                        
+                        self.categories=data.categories;
                         var template = self.template({
                             issues: issuesFound.models,
                             logged_in: session.get("logged_in"),
@@ -235,8 +258,8 @@ define([
                 e.preventDefault();
                 $el = $(e.currentTarget).parent().parent().siblings(':first-child');
                 var issueEditId = $el.html();
-                var issueEditView = new IssueEditView({id: issueEditId});
-                issueEditView.render(this);
+                var issueEditView = new IssueEditView({id: issueEditId}, this);
+                //issueEditView.render(this);
             },
 
             });

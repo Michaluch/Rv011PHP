@@ -1,45 +1,21 @@
-<div class="row" id="profile">
-		<div class="col-xs-12 col-xs-offset-0.5">
-			<div class="col-xs-1" id="attachment">
-				<br/>
-				<img src="<%= session.get('user').avatar_url %>" id="avatar" />
-			</div>
-			<div class="col-xs-10 col-xs-offset-1">
-				<div id="email">
-					<br/>
-						<%= session.get('user').email%>
-					<br/><br/><br/>	
-				</div>
-				<br/>
-				<div class="col-xs-11">
-					<button id="logout_btn" type="submit" class="btn btn-sm" onclick="#">Logout</button>
-				</div>
-			</div>
-			<div class="row">
-				
-				<div id="profile-menu" class="col-xs-2 ">
-				<br/>
-					Settings
-				</div>
-			<div class="col-xs-8">
-				<div class="col-xs-12">
-				<br/>
-					Change password:
-					<form role="form">
-					  <div class="form-group">
-						<label for="pwd-old">Old password:</label>
-						<input type="password" class="form-control" id="pwd-old">
-					  </div>
-					  <div class="form-group">
-						<label for="pwd-new">New password:</label>
-						<input type="password" class="form-control" id="pwd-new">
-					  </div> 
-					  <div class="form-group">
-						<label for="pwd-confirm">Confirm password:</label>
-						<input type="password" class="form-control" id="pwd-confirm">
-					  </div>
-					  <button type="submit" id="password-change-button" class="btn btn-default">Submit</button>
-					</form>
-				</div>
-			</div>
-		</div>
+<div id ="profile-page-container" class="row">
+    <div class="col-lg-3 col-md-3 sidebar-mobile" id="left-sidebar" >
+        <div class="profile row"> 
+            <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12"> 
+                <div id="avatarover">
+                    <img id="avatarimg" src="<%if(user.avatar_url){%><%=user.avatar_url%><%}else{%>img/anonymus.png<%}%>" alt="avatar"> 
+                </div>
+            </div>
+                <div class="profile-info col-lg-9 col-md-8 col-sm-9 col-xs-9">
+                    <p><%=user.email%></p>
+                    <button type="submit" id="small-logout-btn">Logout</button>
+                </div>
+        </div>
+            <ul>
+                <li id="userinfo-link">My info</li>
+                <li id="changepassword-link">Change password</li>
+                <li id="myissues-link">My problems</li>
+            </ul>
+    </div>     
+</div>
+
