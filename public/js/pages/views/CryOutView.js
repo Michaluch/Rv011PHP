@@ -73,13 +73,12 @@ define([
                 this.$el.html(CryOutTemplate);
                 $("#issue-type").autocomplete({
                     source: function (request, response) {
-                            $.get("category", {
+                            $.get("categories", {
                             query: request.term
                         }, function (data) {
                            var arr = [];
-
-                           $.each(data.data, function(){
-                            console.log(this.name);
+                           $.each(data, function(){
+                          //  console.log(this.name);
                             arr.push(this.name);
                            })
                         response(arr);
