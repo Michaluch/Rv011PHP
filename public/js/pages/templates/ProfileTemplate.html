@@ -1,4 +1,4 @@
-<div id ="profile-page-container" class="row">
+<div id ="manager-cont" class="row">
     <div class="col-lg-3 col-md-3 sidebar-mobile" id="left-sidebar" >
         <div class="profile row"> 
             <div class="avatar col-lg-3 col-md-4 col-sm-12 col-xs-12"> 
@@ -16,6 +16,16 @@
                 <li id="changepassword-link">Change password</li>
                 <li id="myissues-link">My problems</li>
             </ul>
-    </div>     
+    </div>   
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="manager-panel">
+        <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
+        <form  id="search-form" action="/issue/search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search..." name="search" value=""> 
+                <button type="submit" id="search-btn">Search</button>
+            </div>
+        </form>
+
+    </div>           
 </div>
 

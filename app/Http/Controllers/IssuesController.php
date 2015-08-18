@@ -241,7 +241,8 @@ class IssuesController extends Controller {
 		$toSend = array();
 		foreach ($data as $el) 
 		{
-			if ($el->historyUpToDate->status_id == $id)
+
+            if ($el->historyUpToDate->status_id == $id)
 			{
 				array_push($toSend, $el);
 			}
@@ -274,6 +275,33 @@ class IssuesController extends Controller {
 		//}
 	}
 	
+    public function showUserIssues($user)
+    {
+        // Take Issues where first initiator was $user
+        $data = Issue::with('historyFirst')->get();
+        //
+        $toSendIssue = array();
+        foreach ($data as $el) 
+        {
+           if ($el->historyFirst->user_id == $user)
+           {
+               array_push($toSendIssue, $el->historyFirst->issue_id);
+            }
+        }
+        // Take Update Issues  and find Issues which is array of User Initiation
+        $dataUpToDate = Issue::with('historyUpToDate')->get();
+        $toSend = array();
+        foreach ($dataUpToDate as $el) 
+        {
+            if (in_array($el->historyUpToDate->issue_id, $toSendIssue))
+            {
+               array_push($toSend, $el);
+            }
+        }
+
+        return $toSend;
+    }
+
 	public function getIssueStatusesAndCategories(){
 
 		$statuses=Statuses::all();

@@ -39,6 +39,11 @@ class Issues extends Model {
         return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('id', 'desc');
     }
 
+    public function historyFirst()
+    {
+        return $this->hasOne('App\Models\History', 'issue_id', 'id')->orderBy('id', 'asc');
+    }
+
     public function historyNew()
     {
         return $this->hasMany('App\Models\History', 'issue_id', 'id')->where('status_id', '1');

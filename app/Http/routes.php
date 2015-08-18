@@ -33,6 +33,7 @@ Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::resource('categories', 'CategoriesController');
 Route::post('issues/search', 'IssuesController@search');
+Route::get('issues/user/{user}', 'IssuesController@showUserIssues');
 Route::post('attachment','AttachmentController@store');
 Route::resource('attachment','AttachmentController');
 Route::get('statusesandcategories', 'IssuesController@getIssueStatusesAndCategories');
