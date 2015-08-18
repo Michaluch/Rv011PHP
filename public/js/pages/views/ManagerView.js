@@ -185,7 +185,7 @@ define([
 
                         $.get("statusesandcategories", {}, function(data){
                         self.statuses=data.statuses;
-                        self.categories=data.categories;                        
+                        self.categories=data.categories;
                         var template = self.template({
                             issues: issuesFound.models,
                             logged_in: session.get("logged_in"),
@@ -258,8 +258,8 @@ define([
                 e.preventDefault();
                 $el = $(e.currentTarget).parent().parent().siblings(':first-child');
                 var issueEditId = $el.html();
-                var issueEditView = new IssueEditView({id: issueEditId});
-                issueEditView.render(this);
+                var issueEditView = new IssueEditView({id: issueEditId}, this);
+                //issueEditView.render(this);
             },
 
             });
