@@ -13,7 +13,7 @@ define([
                             'lng': 0},
             severity     : 1,
             // add this fields for IssueTable implementation
-            id           :1,
+            //id           :1,
             category     :"",
             date         :"",
             status       :""
