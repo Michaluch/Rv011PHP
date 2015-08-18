@@ -53,7 +53,7 @@ class Registrar implements RegistrarContract {
 		}
 		$toEmail = $data['email'];
 		Mail::send('emails.email', array('msg' => $salt), function($message)use($toEmail){
-			$message->from('aleksandr.semenyuk@gmail.com', 'Bawl');
+			$message->from(env('MAIL_USERNAME'), 'Bawl');
             $message->to($toEmail)->subject('Verify your email address');
         	});	
 		return $user;
