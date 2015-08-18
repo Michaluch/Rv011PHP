@@ -11,10 +11,11 @@ define([
     "Category",
     "Categories",
     "EditCategoriesView",
-    "RowCategoryView"
+    "RowCategoryView",
+    "IssueEditView",
     ],
     function(ManagerTemplate, $, _, Backbone, TableIssueView,RowIssueView,IssuesView,Issues, Issue, Category, 
-             Categories, EditCategoriesView, RowCategoryView ){
+             Categories, EditCategoriesView, RowCategoryView, IssueEditView ){
 
         var ManagerView=Backbone.View.extend({
             template:_.template(ManagerTemplate),
@@ -30,7 +31,8 @@ define([
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #search-btn": "onSearchClick",
                 "change .status-selector" : "statusChanged",
-                "change .category-selector" : "categoryChanged"
+                "change .category-selector" : "categoryChanged",
+                "click .fa.fa-pencil": "onEditClick"
             },
             statuses:{},
             categories: {},
