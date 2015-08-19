@@ -86,18 +86,19 @@ class AttachmentController extends Controller {
 	 */
 	public function destroy($id)
 	{
+	    $upload_dir = 'uploaded/';
 		$attachment = Attachment::where('id', '=', $id)->first();
 		$url = $attachment->url;
 		try{
 		    $result = $attachment->delete();
-		    unlink(getcwd().'/'.$url);
+		    unlink(getcwd().'/'.$upload_dir.$url);
 		}
 		catch (Exception $e) {
 		    $result=false;
 	    }
 		return [
     		'code' =>'11111', 
-    		'message' => 'Attachment '.$id.' and file '.getcwd().'/'.$url.' deleted.',
+    		'message' => 'Attachment '.$id.' and file '.getcwd().'/'.$upload_dir.$url.' deleted.',
     		'result' => $result,
 	    ];	
 	}

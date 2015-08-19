@@ -42,12 +42,12 @@ span.attachment-icons:hover{
 			<div class="carousel-inner">
 				<% _.each(attachments, function(attachment, key, list) { %>
 					<div class="item<% if (key == 0) { %> active<% } %>">
-						<img class="att" src="<%= attachment.url %>">
+						<img class="att" src="uploaded/<%= attachment.url %>">
 						<div class="carousel-caption att">
 							<div class="row">
 								<div class="col-xs-6">
 									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Zoom In">
-										<span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom" attachment-url="<%= attachment.url %>"></span>
+										<span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom" attachment-url="uploaded/<%= attachment.url %>"></span>
 									</div>
 								</div>
 								<div class="col-xs-6">
