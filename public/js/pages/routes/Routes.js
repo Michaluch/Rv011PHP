@@ -97,7 +97,7 @@ define([
                 if(session.get("logged_in") === true)
                 {
                     this.loadHeader();
-                    var role = session.get("user").role_id;
+                    var role = parseInt(session.get("user").role_id);
                     
                     switch  (role) {
                         case 1:
