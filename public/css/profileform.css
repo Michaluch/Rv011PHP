@@ -1,0 +1,8 @@
+/* Styles for ProfileForm*/
+#logout-button {
+  border-radius: 0;
+  border: 1 px solid #d5445c;
+}
+#avatar {
+  background-image: url("img/anonymus.png");
+}

@@ -182,6 +182,9 @@ header #main-banner:hover {
   border-radius: 0px;
   font-weight: normal;
 }
+#manager-panel .checkbox input[type='checkbox'] {
+  width: inherit;
+}
 #manager-panel button {
   min-width: 20%;
   min-height: 34px;
@@ -212,6 +215,9 @@ header #main-banner:hover {
 }
 #manager-panel .edit-icons a:hover {
   color: #63978c;
+}
+#manager-panel .table-responsive {
+  padding-top: 10px;
 }
 @media screen and (max-width: 990px) {
   #manager-panel .fa-align-justify {

@@ -5,49 +5,246 @@ body {
   margin: 0;
 }
 header {
-  height: 80px;
+  min-height: 80px;
   color: white;
   background-color: #ea556f;
   font-size: 24;
   width: 100%;
   text-align: center;
 }
-#main-banner,
-#cry-out-button {
+header a:link {
+  color: #ffffff;
+  text-decoration: none;
+}
+header a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+header a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+header a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+header ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+header ul li {
+  display: inline;
   float: left;
   width: 100px;
-  height: 80px;
-  line-height: 70px;
+  line-height: 80px;
 }
-#about-button,
-#login-button {
-  float: right;
-  width: 100px;
-  height: 80px;
-  line-height: 70px;
-}
-#main-banner {
-  font-style: italic;
-  background-color: #d5445c;
-}
-#about-button:hover,
-#login-button:hover,
-#cry-out-button:hover {
+header ul li:hover {
   background-color: #e04c65;
   cursor: pointer;
   border: 1px;
 }
-#main-banner:hover {
+header #login-button,
+header #logout-button,
+header #about-button {
+  float: right;
+  margin-right: 20px;
+}
+header #profile {
+  float: right;
+  min-width: 200px;
+  line-height: 40px;
+}
+header #main-banner {
+  font-style: italic;
+  background-color: #d5445c;
+}
+header #main-banner:hover {
   background-color: #c84157;
-  cursor: pointer;
-  border: 1px;
+}
+.map-canvas-with-sb {
+  width: 70%;
+}
+.sb-show {
+  width: 30%;
 }
 #page,
 #main-container,
 #map-canvas {
   height: 100%;
 }
-#login-container,
-#sign-up-container {
-  display: none;
+#sidebar {
+  display: block;
 }
+#sidebar p {
+  margin: 0 0 10px 12px;
+}
+.center-pills {
+  display: flex;
+  justify-content: center;
+}
+.center-pills li {
+  width: 33%;
+}
+#fileUpload {
+  margin-left: 19px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.form-group {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-left: 5%;
+}
+.form-group label {
+  font-weight: bold;
+}
+.form-group input {
+  width: 95%;
+}
+#photo p {
+  margin-left: 5%;
+  margin-top: 20px;
+  border: 1px dashed grey;
+  padding: 3px;
+  width: 90%;
+}
+#point p {
+  margin-left: 5%;
+  margin-top: 10px;
+}
+#point button,
+#photo button {
+  margin-left: 5%;
+}
+#manager-cont {
+  height: 100%;
+}
+/*Styles for manager page */
+#left-sidebar {
+  background-color: #f6f6f7;
+  height: 100%;
+  /*display:block;*/
+}
+#left-sidebar .profile {
+  margin: 10px 0 30px 0;
+  min-height: 70px;
+}
+#left-sidebar p {
+  margin: 0px;
+  padding: 0px;
+  font-size: 12px;
+  font-weight: bold;
+}
+#left-sidebar button {
+  border-color: #ea556f;
+  border-width: 1px;
+  font-size: 12px;
+  background-color: #f6f6f7;
+  margin-top: 17px;
+}
+#left-sidebar ul {
+  padding: 0;
+  margin: 0 0 0 10px;
+  line-height: 20px;
+}
+#left-sidebar ul li {
+  list-style-type: none;
+  line-height: 35px;
+}
+#left-sidebar ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+#left-sidebar li:hover {
+  cursor: pointer;
+}
+#avatarimg {
+  width: 100%;
+  overflow: hidden;
+}
+#avatarover {
+  width: 70px;
+  max-height: 70px;
+  overflow: hidden;
+}
+#manager-panel .form-group {
+  padding: 0px;
+}
+#manager-panel .fa-align-justify {
+  display: none;
+  font-size: 25px;
+  margin-top: 10px;
+}
+#manager-panel input {
+  float: left;
+  width: 80%;
+  border-radius: 0px;
+  font-weight: normal;
+}
+#manager-panel .checkbox input[type='checkbox'] {
+  width: inherit;
+}
+#manager-panel button {
+  min-width: 20%;
+  min-height: 34px;
+  color: #ffffff;
+  font-size: 22px;
+  border-width: 0px;
+  background-color: #ea556f;
+}
+#manager-panel .new-status {
+  color: #ea556f;
+  font-weight: bold;
+}
+#manager-panel .form-group {
+  margin-left: 0px;
+  font-weight: bold;
+}
+#manager-panel .to-resolve-status {
+  color: #63978c;
+  font-weight: bold;
+}
+#manager-panel .approved-status {
+  color: #508b7e;
+}
+#manager-panel .edit-icons a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+}
+#manager-panel .edit-icons a:hover {
+  color: #63978c;
+}
+@media screen and (max-width: 990px) {
+  #manager-panel .fa-align-justify {
+    display: block;
+    cursor: pointer;
+  }
+  .sidebar-mobile {
+    display: none;
+  }
+  .width50 {
+    width: 50%;
+  }
+  #manager-panel input {
+    width: 50%;
+  }
+  header ul li {
+    display: block;
+    float: none;
+    width: 100%;
+    line-height: 40px;
+  }
+  header #login-button,
+  header #logout-button,
+  header #about-button {
+    margin: 0px;
+    float: none;
+  }
+  /*#left-sidebar{
+    display:none;
+  }
+  */
+}
+/*End of manager page styles */

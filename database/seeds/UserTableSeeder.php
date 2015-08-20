@@ -15,8 +15,8 @@ class UserTableSeeder extends Seeder {
 			   "facebook_id" =>"",
 			   "google_id"   =>"",
 			   "role_id"     =>2,
-			   "status_id"   =>1,
-			   "avatar_url"  =>"",
+			   "status_id"   =>2,
+			   "avatar_url"  =>"uploads/manager.jpg",
 			   "language_id" =>1,
 			   "salt"        =>str_random(8)],
 			   [
@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder {
 			   "facebook_id" =>"",
 			   "google_id"   =>"",
 			   "role_id"     =>1,
-			   "status_id"   =>1,
+			   "status_id"   =>2,
 			   "avatar_url"  =>"",
 			   "language_id" =>1,
 			   "salt"        =>str_random(8)
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder {
 			   "facebook_id" =>"",
 			   "google_id"   =>"",
 			   "role_id"     =>1,
-			   "status_id"   =>1,
+			   "status_id"   =>2,
 			   "avatar_url"  =>"",
 			   "language_id" =>1,
 			   "salt"        =>str_random(8)
