@@ -1,26 +1,3 @@
-<style>
-.issue-edit-form-group label{
-    font-weight: bold;
-}
-
-.issue-edit-form-group{
-    padding-top: 5px;
-}
-
-.issue-edit-hint{
-    font-style: italic;
-    text-align: center;
-}
-
-.issue-edit-hint p{
-    margin: 15px 15px 0 15px;
-}
-
-.issue-edit-hint-error{
-    color: red;
-}
-</style>
-
 <div class="modal-dialog modal-md">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -82,7 +59,6 @@
 <div class="col-xs-6">
 <div class="row">
 <div class="col-xs-12 text-center issue-edit-form-group">
-<link rel="stylesheet" href="css/severity-stars.css">
     <div class="stars" data-toggle="tooltip" data-placement="left" title="Severity">
     <% for(var star = 5; star > 0; star--) { %>
         <input class="star star-<%= star %>" id="star-<%= star %>" type="radio" name="severity" value="<%= star %>" <% if (star == issue.severity) {%> checked<% } %> />

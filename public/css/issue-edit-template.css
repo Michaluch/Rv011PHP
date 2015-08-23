@@ -1,0 +1,20 @@
+.issue-edit-form-group label{
+    font-weight: bold;
+}
+
+.issue-edit-form-group{
+    padding-top: 5px;
+}
+
+.issue-edit-hint{
+    font-style: italic;
+    text-align: center;
+}
+
+.issue-edit-hint p{
+    margin: 15px 15px 0 15px;
+}
+
+.issue-edit-hint-error{
+    color: red;
+}

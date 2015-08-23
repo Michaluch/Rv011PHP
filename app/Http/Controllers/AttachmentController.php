@@ -47,7 +47,8 @@ class AttachmentController extends Controller {
 		else if ($request->input('type')=="Issue")
 		{
 			$attachment = new Attachment();
-			$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
+			//$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
+			$attachment->url = $file_name;
 	    	$attachment->issue_id = $request->issue_id;
 	    	$attachment->save();
 		}

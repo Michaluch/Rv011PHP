@@ -1,34 +1,3 @@
-<style>
-.item img {
-  width: auto;
-  height: 160px;
-  max-height: 160px;
-  margin: 0 auto;
-}
-
-.attachment-icons{
-	width: 30px;
-	height: 30px;
-	margin: 0 auto;
-}
-
-span.attachment-icons{
-	font-size: 30px;
-	color: #ddd;
-	text-decoration: none;	
-}
-
-span.attachment-icons:hover{
-	color: #fff;
-	cursor:pointer;
-}
-
-
-.carousel-caption.att{
-	top: 0px;
-}
-</style>
-
 <div class = "row">
 	<div class="col-xs-12">
 		<div id="attachments-carousel" class="carousel slide">
@@ -45,14 +14,19 @@ span.attachment-icons:hover{
 						<img class="att" src="uploaded/<%= attachment.url %>">
 						<div class="carousel-caption att">
 							<div class="row">
-								<div class="col-xs-6">
+								<div class="col-xs-4">
 									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Zoom In">
 										<span class="glyphicon glyphicon glyphicon-fullscreen attachment-icons att-zoom" attachment-url="uploaded/<%= attachment.url %>"></span>
 									</div>
 								</div>
-								<div class="col-xs-6">
+                                <div class="col-xs-4">
+                                    <div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Add new image">
+                                        <span class="glyphicon glyphicon-plus attachment-icons upload-new-image-button"></span>
+                                    </div>
+                                </div>
+								<div class="col-xs-4">
 									<div class="attachment-icons" data-toggle="tooltip" data-placement="bottom" title="Delete">
-										<span class="glyphicon glyphicon-remove-sign attachment-icons att-remove" attachment-id="<%= attachment.id %>"></span>
+										<span class="glyphicon glyphicon-remove attachment-icons att-remove" attachment-id="<%= attachment.id %>"></span>
 									</div>
 								</div>
 							</div>
@@ -65,3 +39,4 @@ span.attachment-icons:hover{
 		</div>
 	</div>
 </div>
+<input type="file" id="add-new-attachment" class="hidden">

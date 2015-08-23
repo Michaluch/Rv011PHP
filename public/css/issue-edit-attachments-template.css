@@ -1,0 +1,28 @@
+.item img {
+  width: auto;
+  height: 160px;
+  max-height: 160px;
+  margin: 0 auto;
+}
+
+.attachment-icons{
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+span.attachment-icons{
+	font-size: 30px;
+	color: #ddd;
+	text-decoration: none;	
+}
+
+span.attachment-icons:hover{
+	color: #fff;
+	cursor:pointer;
+}
+
+
+.carousel-caption.att{
+	top: 0px;
+}
