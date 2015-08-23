@@ -43,16 +43,13 @@ class IssuesController extends Controller {
 
 	public function search(Request $request)
 	{
-		/*
-		$result = Issues::with('category', 'history', 'history.status')
-		->search($request->search)->get();
-		return $result->toArray();
-		*/
-		return $this->getIssuesCollection($request->search);
+        $keyword=$request->input('search');
+		return $this->getIssuesCollection($keyword);
 	}
 
 	private function getIssuesCollection($keywords = null){
-		$result = Issues::with('category', 'history', 'history.status');
+		//$result = Issues::with('category', 'history', 'history.status');
+        $result = Issue::with('historyUpToDate');
 		if($keywords) {
 			$result->search($keywords);
 		}

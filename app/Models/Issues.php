@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\History as History;
+use App\Models\IssuesCategory as Category;
 
 class Issues extends Model {
 
@@ -51,7 +52,11 @@ class Issues extends Model {
     
     public function scopeSearch($query, $keywords)
     {
-        return $query->where('name', 'like', '%'.$keywords.'%');
+        $category=Category::where('name', 'like', '%'.$keywords.'%')->select('id')->get()->toArray();
+        
+        return $query->where('name', 'like', '%'.$keywords.'%')
+                    ->orWhere('description', 'like', '%'.$keywords.'%')
+                    ->orWhereIn('category_id', $category);
     }
 
     public function scopeGetNew($query)

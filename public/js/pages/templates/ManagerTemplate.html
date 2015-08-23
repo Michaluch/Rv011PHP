@@ -22,22 +22,22 @@
         <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
         <form  id="search-form" action="/issue/search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="search" value=""> 
+                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>"> 
                 <button type="submit" id="search-btn">Search</button>
             </div>
             <div class="checkbox">
                 <label>
-                  <input type="checkbox">Name
+                  <input type="checkbox" name="nameCheckbox" value="1">Name
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                  <input type="checkbox">Description
+                  <input type="checkbox" name="descriptionCheckbox" value="2">Description
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                  <input type="checkbox">Category
+                  <input type="checkbox" name="categoryCheckbox" value="3">Category
                 </label>
             </div>            
         </form>

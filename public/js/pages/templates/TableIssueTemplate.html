@@ -16,15 +16,13 @@
      <tr data-id="<%=issue.id%>">
         <td><%= issue.id %></td>
         <td><%= issue.name %></td>
-        <td>
-        
+        <td>        
                <select name="category-selector" class="category-selector form-control">
                   <% _.each(categories, function(category, key, list) { %>      
                   <option value="<%= category.id %>"        
                   <%if(issue.category_id == category.id) {%>selected <%} %>
                   >
-                       <%= category.name %>
-                       <%= console.log(category.name) %>        
+                       <%= category.name %>     
                    </option>      
                   <% }) %>      
               </select>
@@ -37,8 +35,7 @@
            <option value="<%= status.id %>" 
             <%if(issue.history_up_to_date.status_id == status.id) {%>selected <%} %>
             >
-                <%= status.name %>
-                <%= console.log(status.name) %>  
+                <%= status.name %> 
             </option>
            <% }) %>
 

@@ -29,7 +29,7 @@ define([
                 "click #solvedissues-link" : "solvedissues",
                 "click #editcategories-link" : "editcategories",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
-                "click #search-btn": "onSearchClick",
+                "click #search-btn": "onSearchIssuesClick",
                 "change .status-selector" : "statusChanged",
                 "change .category-selector" : "categoryChanged",
                 "click .fa.fa-pencil": "onEditClick"
@@ -38,9 +38,10 @@ define([
             categories: {},
             issue: {},
             path: null,
+            search: null,
 
             initialize:function(){
-             
+                
                 this.render();
 
             },
@@ -57,6 +58,33 @@ define([
                 this.path ="/issues/solved";
                 this.universalshow(this.path);
             },
+            onSearchIssuesClick: function  (e) {
+                e.preventDefault();
+                var self=this;
+                var path ="/issues/search";
+                self.search=$("input[name=search]").val();
+                var nameCheckbox=$("input[name=nameCheckbox]").val();
+                var descriptionCheckbox=$("input[name=descriptionCheckbox]").val();
+                var categoryCheckbox=$("input[name=categoryCheckbox]").val();
+                self.collectionIssue = new Issues();   
+                var tableIssue = new TableIssueView({collection : self.collectionIssue});
+                if(self.search.length<3){
+                    $('#search-form').prepend("<p>Please, add more than 2 letters</p>");
+                }
+                else
+                {
+                $.post(path, {search: self.search}, function(data){
+                    if(data.length>0){
+                    self.collectionIssue.models = data;
+                    self.tableIssue = tableIssue;    
+                    self.render(); 
+                    }
+                    else{
+                    $('#search-form').prepend("<p>Nothing found</p>");   
+                    }                 
+                });
+                }
+            },            
             editcategories: function() {
                 this.tableIssue = null;
                 this.path = "/categories";   
@@ -100,7 +128,7 @@ define([
                     { 
                         logged_in: session.get("logged_in"),
                         user: session.user.toJSON(),
-                        search: '' 
+                        search: this.search 
                     }
                     ));
                 if(this.tableIssue!=null)
@@ -166,46 +194,6 @@ define([
                 else{
                     $sidebar.addClass("col-sm-3 col-xs-6").removeClass("sidebar-mobile");
                     $panel.removeClass("col-sm-12 col-xs-12").addClass("col-sm-9 col-xs-6");
-                }
-            },
-
-            onSearchClick:function(e){
-                e.preventDefault();
-                var search=$("input[name=search]").val();
-                var self=this;
-                if(search.length<3){
-                    $('#search-form').append("<p>Please, add more than 2 letters</p>");
-                }
-                else
-                {
-                $.post("/issues/search", {search:search}, function(data){
-                    //var issues=showIssues(data.response);
-                    if(data.length>0){
-                    var issuesFound=new Issues(data);
-
-                        $.get("statusesandcategories", {}, function(data){
-                        self.statuses=data.statuses;
-                        self.categories=data.categories;
-                        var template = self.template({
-                            issues: issuesFound.models,
-                            logged_in: session.get("logged_in"),
-                            user: session.user.toJSON(),
-                            search: search,
-                            //category: issues.category
-                            statuses: self.statuses,
-                            categories: self.categories,
-                        });
-                        //console.log(issues);
-                        //console.log(self.statuses);
-                        self.$el.html(template);                        
-                        }); 
-
-                    //console.log(data);
-                    }
-                    else{
-                      $('#search-form').append("<p>Nothing found</p>");  
-                    }
-                });
                 }
             },
 

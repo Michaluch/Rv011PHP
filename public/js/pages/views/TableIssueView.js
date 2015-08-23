@@ -16,43 +16,33 @@ define([
 
             events:{
                 
-            },
-
-           
+            },          
 
             initialize: function(){
-                this.getStatusAndCategory();
+               
                
              },
-
-
             render : function(){
-                var self=this;
-                console.log("render table") 
-                console.log(TableIssueView.statuses);
-                console.log(TableIssueView.categories); 
-                console.log(this.collection.length);
-               
-                var templ = this.template({
-                issues: this.collection.models,
-                statuses: TableIssueView.statuses,
-                categories: TableIssueView.categories
-            });
-                
-                this.$el.html(templ);
-                return this;
-            },
-
-             getStatusAndCategory: function (){
                 var self=this;
                 $.get("statusesandcategories",  function(data) {
                         TableIssueView.statuses = data.statuses;
                         TableIssueView.categories = data.categories;
-                        console.log(TableIssueView.statuses);
-                        console.log(TableIssueView.categories);
+                        var templ = self.template({
+                        issues: self.collection.models,
+                        statuses: TableIssueView.statuses,
+                        categories: TableIssueView.categories
+                        });
+                        self.$el.html(templ);
+                        
+                        //console.log(TableIssueView.statuses);
+                        //console.log(TableIssueView.categories);
 
                 });
-            }
+                return self;
+
+                
+
+            },
             //addOne: function  (Issue) {
             //    //console.log(this.collection.at(0).toJSON());
             //    var singleRow = new RowIssueView({model:Issue});
