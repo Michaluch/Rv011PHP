@@ -62,7 +62,7 @@ define([
         $.post("/auth/login", {email:email, password:hash, remember:false},function(data){
             if(data.status=="error"){
             var template = _.template(SimpleMessage);
-            $('#sidebar').prepend(template({message: "You entered wrong data. "+data.errors}));
+            $('.text-info').html("You entered wrong data."+data.errors);
             }
             else{
                 console.log(data);

@@ -63,17 +63,22 @@ define([
                 var self=this;
                 var path ="/issues/search";
                 self.search=$("input[name=search]").val();
-                var nameCheckbox=$("input[name=nameCheckbox]").val();
-                var descriptionCheckbox=$("input[name=descriptionCheckbox]").val();
-                var categoryCheckbox=$("input[name=categoryCheckbox]").val();
+                var nameCheckbox=$("input[name=nameCheckbox]").is(":checked");
+                var descriptionCheckbox=$("input[name=descriptionCheckbox]").is(":checked");
+                var categoryCheckbox=$("input[name=categoryCheckbox]").is(":checked");
                 self.collectionIssue = new Issues();   
                 var tableIssue = new TableIssueView({collection : self.collectionIssue});
                 if(self.search.length<3){
-                    $('#search-form').prepend("<p>Please, add more than 2 letters</p>");
+                    $('.text-info').html("<p>Please, add more than 2 letters</p>");
                 }
                 else
                 {
-                $.post(path, {search: self.search}, function(data){
+                $.post(path, {
+                              search: self.search,
+                              name:nameCheckbox,
+                              description: descriptionCheckbox,
+                              category: categoryCheckbox
+                              }, function(data){
                     if(data.length>0){
                     self.collectionIssue.models = data;
                     self.tableIssue = tableIssue;    

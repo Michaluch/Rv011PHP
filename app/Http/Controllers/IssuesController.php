@@ -41,17 +41,36 @@ class IssuesController extends Controller {
 		return $this->getIssuesCollection();
 	}
 
+    private function toBool($value){
+        return (bool)$value && $value!=='false';
+    }
+
 	public function search(Request $request)
 	{
         $keyword=$request->input('search');
-		return $this->getIssuesCollection($keyword);
+        $name=$request->input('name');
+        $description=$request->input('description');
+        $category=$request->input('category');
+        $options=[
+                'name'=>$this->toBool($name),
+                'description'=>$this->toBool($description),
+                'category'=>$this->toBool($category),
+                ]; 
+         if($options['name']===false 
+            && $options['description']===false
+            && $options['category']===false){
+            $options['name']=true;
+            $options['description']=true;
+            $options['category']=true;
+         }             
+		return $this->getIssuesCollection($keyword, $options);
 	}
 
-	private function getIssuesCollection($keywords = null){
+	private function getIssuesCollection($keywords = null, $options=[]){
 		//$result = Issues::with('category', 'history', 'history.status');
         $result = Issue::with('historyUpToDate');
 		if($keywords) {
-			$result->search($keywords);
+			$result->search($keywords, $options);
 		}
 		return $result->get()->toArray();
 	}

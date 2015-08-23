@@ -50,13 +50,21 @@ class Issues extends Model {
         return $this->hasMany('App\Models\History', 'issue_id', 'id')->where('status_id', '1');
     }
     
-    public function scopeSearch($query, $keywords)
+    public function scopeSearch($query, $keywords, $options = [])
     {
-        $category=Category::where('name', 'like', '%'.$keywords.'%')->select('id')->get()->toArray();
-        
-        return $query->where('name', 'like', '%'.$keywords.'%')
-                    ->orWhere('description', 'like', '%'.$keywords.'%')
-                    ->orWhereIn('category_id', $category);
+
+        if(!empty($options['name'])){
+           $query->orWhere('name', 'like', '%'.$keywords.'%');
+        }
+        if(!empty($options['description'])){
+            $query->orWhere('description', 'like', '%'.$keywords.'%');
+        }
+        if(!empty($options['category'])){
+            $category=Category::where('name', 'like', '%'.$keywords.'%')->select('id')
+            ->get()->toArray();
+            $query->orWhereIn('category_id', $category);
+        }
+        return $query;        
     }
 
     public function scopeGetNew($query)
