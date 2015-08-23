@@ -106,9 +106,9 @@ define([
                         var ok_save = true;
                         var we_have_changes = false;
                         
-                        if ($('#issue-name').val() !== issueEditModelOld.get('name')){
+                        if (_.escape($('#issue-name').val()) !== issueEditModelOld.get('name')){
                             if ($('#issue-name').val().length >= 5) {
-                                issueEditModelNew.set('name', $('#issue-name').val());
+                                issueEditModelNew.set('name', _.escape($('#issue-name').val()));
                                 we_have_changes = true;
                             }
                             else {
@@ -117,9 +117,9 @@ define([
                             }
                         };
                         
-                        if ($('#issue-description').val() !== issueEditModelOld.get('description')){
+                        if (_.escape($('#issue-description').val()) !== issueEditModelOld.get('description')){
                             if ($('#issue-description').val().length >= 10) {
-                                issueEditModelNew.set('description', $('#issue-description').val());
+                                issueEditModelNew.set('description', _.escape($('#issue-description').val()));
                                 we_have_changes = true;
                             }
                             else {

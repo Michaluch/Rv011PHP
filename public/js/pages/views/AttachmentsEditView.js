@@ -40,15 +40,21 @@ define([
                         var big_image='<img class="img-responsive center-block" src="'+$(e.target).attr('attachment-url')+'">';
                         $.colorbox({html: big_image, height:"80%",width:"80%"});
                     });
+                    
                     $("span.att-remove").click(function(e) {
-                        var attachment = new Attachment({id: $(e.target).attr('attachment-id')});
-                        attachment.destroy({
-                            success: function() {
-                                that.render();
-                                that.hint.displayHintMessage('Image deleted successfully.');
-                            },
+                        that.hint.displayHintMessage('Are you sure you want to delete this image? <button class="btn btn-default btn-xs" id="image-delete-confirmation-button" attachment-id="'+$(e.target).attr('attachment-id')+'">Yes!</button>');
+                        
+                        $("#image-delete-confirmation-button").click(function(e) {
+                            var attachment = new Attachment({id: $(e.target).attr('attachment-id')});
+                            attachment.destroy({
+                                success: function() {
+                                    that.render();
+                                    that.hint.displayHintMessage('Image deleted successfully.');
+                                },
+                            });
                         });
                      });
+                    
                     
                 },
             });
