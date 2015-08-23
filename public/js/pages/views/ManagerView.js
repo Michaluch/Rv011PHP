@@ -66,9 +66,10 @@ define([
                 var nameCheckbox=$("input[name=nameCheckbox]").is(":checked");
                 var descriptionCheckbox=$("input[name=descriptionCheckbox]").is(":checked");
                 var categoryCheckbox=$("input[name=categoryCheckbox]").is(":checked");
+
                 self.collectionIssue = new Issues();   
                 var tableIssue = new TableIssueView({collection : self.collectionIssue});
-                if(self.search.length<3){
+                if(self.search.length<2){
                     $('.text-info').html("<p>Please, add more than 2 letters</p>");
                 }
                 else
@@ -85,7 +86,7 @@ define([
                     self.render(); 
                     }
                     else{
-                    $('#search-form').prepend("<p>Nothing found</p>");   
+                    $('.text-info').html("<p>Nothing found</p>");   
                     }                 
                 });
                 }

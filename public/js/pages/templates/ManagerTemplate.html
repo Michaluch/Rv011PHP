@@ -22,7 +22,7 @@
         <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
         <form  id="search-form" action="/issue/search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>"> 
+                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>" required minlength="2"> 
                 <button type="submit" id="search-btn">Search</button>
             </div>
             <div class="clearfix"></div>

@@ -45,8 +45,20 @@ class IssuesController extends Controller {
         return (bool)$value && $value!=='false';
     }
 
+    public function searchValidation(array $data){
+        return Validator::make($data, [
+        'search' => 'string|required|min:2'
+         ]);
+    }
 	public function search(Request $request)
 	{
+        $validator = $this->searchValidation($request->all());
+
+        if ($validator->fails())
+        {
+            $this->throwValidationException($request, $validator);
+        }
+
         $keyword=$request->input('search');
         $name=$request->input('name');
         $description=$request->input('description');
