@@ -219,6 +219,17 @@ header #main-banner:hover {
 #manager-panel .table-responsive {
   padding-top: 10px;
 }
+#manager-panel #input__clear {
+  opacity: 0.5;
+  font-size: 20px;
+  cursor: pointer;
+  visibility: hidden;
+  float: left;
+  margin-left: -30px;
+  width: 20px;
+  height: 20px;
+  padding-top: 5px;
+}
 @media screen and (max-width: 990px) {
   #manager-panel .fa-align-justify {
     display: block;
@@ -228,6 +239,9 @@ header #main-banner:hover {
     display: none;
   }
   .width50 {
+    width: 50%;
+  }
+  .col-xs-9 {
     width: 50%;
   }
   #manager-panel input {

@@ -10,13 +10,10 @@ define(
         var windowsize=$(window).width();
         sidebar.turnOn = function(){
             if (!sidebar.on){
-                if ($(window).width() > 800){
+                
                     $("#map-canvas").addClass("col-xs-9");
-                    $("#sb").addClass("col-xs-3");
-                } else {
-                    $("#map-canvas").addClass("col-xs-6");
-                    $("#sb").addClass("col-xs-6");  
-                }
+                    $("#sb").addClass("col-xs-3"); 
+
                 $("#sb").show();
                 sidebar.on = true;
             }

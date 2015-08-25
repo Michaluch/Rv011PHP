@@ -52,7 +52,8 @@ requirejs.config({
         IssueEditView   : 'pages/views/IssueEditView',
         AttachmentsEditView: 'pages/views/AttachmentsEditView',
         EditCategoriesView: 'pages/views/EditCategoriesView',
-        RowCategoryView : 'pages/views/RowCategoryView'
+        RowCategoryView : 'pages/views/RowCategoryView',
+        AdminView       : 'pages/views/AdminView'
 
     },
 });

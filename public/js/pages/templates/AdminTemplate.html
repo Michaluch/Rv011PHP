@@ -12,21 +12,15 @@
                 </div>
         </div>
             <ul>
-                <li id="recentlyissues-link">Recently added</li>
-                <li id="allissues-link">All problems</li>
-                <li id="solvedissues-link">Solved</li>
-                <li id="editcategories-link">Edit categories</li>
+                <li id="add-user">Add user</li>
+                <li id="check-user">Check user</li>
             </ul>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="manager-panel">
         <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
         <form  id="search-form" action="/issue/search">
             <div class="form-group">
-
-                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>" required minlength="2">
-                <div id="input__clear">
-                <span class="glyphicon glyphicon-remove" unselectable="on"></span>
-                </div> 
+                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>" required minlength="2"> 
                 <button type="submit" id="search-btn">Search</button>
             </div>
             <div class="clearfix"></div>
@@ -47,7 +41,6 @@
                 </label>
             </div>            
         </form>
-
     </div>         
 </div>
 
