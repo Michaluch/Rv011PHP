@@ -11,6 +11,9 @@ header {
   font-size: 24;
   width: 100%;
   text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 header a:link {
   color: #ffffff;
@@ -67,6 +70,9 @@ header #main-banner:hover {
 }
 .sb-show {
   width: 30%;
+}
+#main-container {
+  padding-top: 80px;
 }
 #page,
 #main-container,
@@ -230,6 +236,53 @@ header #main-banner:hover {
   height: 20px;
   padding-top: 5px;
 }
+/* Admin page Modal window style start*/
+#AddUserModal .modal-header {
+  background-color: #ea556f;
+}
+#AddUserModal .close {
+  margin: 0;
+  padding: 0;
+  font-size: 21px;
+  background-color: inherit;
+  color: white;
+  opacity: 1;
+}
+#AddUserModal .modal-title {
+  line-height: 1;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+#AddUserModal .user-picture {
+  margin-top: 20px;
+}
+#AddUserModal .form-horizontal .control-label {
+  padding-top: 0px;
+  font-weight: normal;
+}
+#AddUserModal .form-group {
+  margin-bottom: 0px;
+}
+#AddUserModal #add-user-form input {
+  border-radius: 0px;
+  height: 23px;
+  font-size: 10px;
+  line-height: 1;
+  box-shadow: none;
+  -webkit-box-shadow: border: 1px solid #F3EDED;
+}
+#AddUserModal .modal-footer {
+  padding: 0 0 15px 0;
+  text-align: center;
+  border: none;
+}
+#AddUserModal .modal-footer button {
+  border-radius: 0px;
+  font-size: 18px;
+  width: 120px;
+}
+/* Admin page Modal window styles end*/
 @media screen and (max-width: 990px) {
   #manager-panel .fa-align-justify {
     display: block;

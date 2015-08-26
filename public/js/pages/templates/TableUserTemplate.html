@@ -1,0 +1,50 @@
+<div class="table-responsive">  
+<table class="table table-bordered table-hover table-condensed">
+   <thead>
+     <tr>
+       <th scope="col">ID</th>
+       <th scope="col">Email</th>
+       <th scope="col">Role</th>
+       <th scope="col">Status</th>
+       <th scope="col">Options</th>
+     </tr>
+   </thead>
+<tbody>
+<% _.each(users, function(user) { %>
+     <tr data-id="<%=issue.id%>">
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td>        
+               <select name="category-selector" class="category-selector form-control">
+                  <% _.each(categories, function(category, key, list) { %>      
+                  <option value="<%= category.id %>"        
+                  <%if(issue.category_id == category.id) {%>selected <%} %>
+                  >
+                       <%= category.name %>     
+                   </option>      
+                  <% }) %>      
+              </select>
+        </td>
+        <td>
+            <select name="status-slector" class="status-selector form-control">
+           <% _.each(statuses, function(status, key, list) { %>
+           <option value="<%= status.id %>" 
+            <%if(issue.history_up_to_date.status_id == status.id) {%>selected <%} %>
+            >
+                <%= status.name %> 
+            </option>
+           <% }) %>
+
+       </select>
+        </td>
+        <td class="edit-icons">
+          <a href="#issue/<%= issue.id %>" target="_blank"><i class="fa fa-file-text-o"></i></a>
+          <a href="#"><i class="fa fa-pencil"></i></a>
+          <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
+          <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+        </i></td>
+<% }) %>
+     </tr>
+   </tbody>
+ </table>
+</div>
