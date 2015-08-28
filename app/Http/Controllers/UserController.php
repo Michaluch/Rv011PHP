@@ -62,9 +62,17 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$data = $request->all();
+        $user = new User;
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->avatar_url=$data['avatar_url'];
+        $user->role_id=1;
+        $user->status_id=2;
+        $user->salt=str_random(8);
+        $user->save();
 	}
 	/**
 	 * Display the specified resource.

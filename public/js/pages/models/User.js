@@ -13,7 +13,7 @@ define([
             avatar_url  :"",
             language_id :null
         },
-        urlRoot:"/user",
+        urlRoot:"auth/register",
         initialize: function(){
             
         },

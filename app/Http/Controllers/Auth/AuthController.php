@@ -42,19 +42,25 @@ class AuthController extends Controller {
 
 	public function postRegister(Request $request)
 	{
+		try{
 		$validator = $this->registrar->validator($request->all());
 
 		if ($validator->fails())
 		{
-			$this->throwValidationException(
+			$message=$this->throwValidationException(
 				$request, $validator
 			);
+			return $message;
 		}
 
 		$this->auth->login($this->registrar->create($request->all()));
-	
+		
         
 		return response()->json(['code' =>'11200', 'message' => 'You sign up successfully check email'],200);	
+		}catch(Exception $e){
+		$msg="problem";
+		return $msg;	
+		}
 		//	if($request->ajax()) {
 		//	$result = array(
 		//		'status' => 'error',
