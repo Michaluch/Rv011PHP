@@ -48,7 +48,8 @@ class CategoriesController extends Controller {
 	 */
 	public function show($id)
 	{
-		
+		$data = Category::where('id', '=', $id)->first();
+		return $data;
 	}
 
 	/**

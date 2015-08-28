@@ -8,7 +8,8 @@ define([
             id           : 0,
             name         : "",
             confirmed    : 0
-        }
+        },
+        url: '/categories'
         });
         return Model;
     });
