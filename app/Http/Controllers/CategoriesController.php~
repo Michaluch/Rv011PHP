@@ -4,9 +4,6 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use App\Models\IssuesCategory as IssuesCategory;
 
 class CategoriesController extends Controller {
@@ -75,8 +72,8 @@ class CategoriesController extends Controller {
 	public function update(Guard $auth, Request $request, $id)
 	{
 		//
-	/*	$user = $auth->user();
-		if (!is_null($user)){
+		$user = $auth->user();
+			if (!is_null($user)){
 			$category = IssuesCategory::where('id', $id)->first();
 
 			$changed_fields = "";
@@ -88,19 +85,7 @@ class CategoriesController extends Controller {
 			if(!is_null($request->input('confirmed'))){
 				$category->confirmed=$request->input('confirmed');
 				$changed_fields .= "confirmed, ";
-			}
-
-			$result=$category->save();
-			
-			$changed_fields = rtrim($changed_fields, ", ");
-			return [
-					'code' =>'12150', 
-					'message' => 'Category fields ('.$changed_fields.') was updated',
-					'result' => $result,
-				];	
-			}
-			*/
-			return "yy";
+			}	
 	}
 
 	/**

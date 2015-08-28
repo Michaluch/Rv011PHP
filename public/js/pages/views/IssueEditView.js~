@@ -86,6 +86,7 @@ define([
                     
                     $("#issue_edit_cancel").click(function() {
 
+                    console.log("issue name: " + issueEditModelOld.attributes.name);
                         $('#modal').modal('hide');
                         return false;
                     });

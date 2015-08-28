@@ -53,7 +53,8 @@ requirejs.config({
         AttachmentsEditView: 'pages/views/AttachmentsEditView',
         EditCategoriesView: 'pages/views/EditCategoriesView',
         RowCategoryView : 'pages/views/RowCategoryView',
-        AdminView       : 'pages/views/AdminView'
+        AdminView       : 'pages/views/AdminView',
+        EditCategoryView: 'pages/views/EditCategoryView'
 
     },
 });
