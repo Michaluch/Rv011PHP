@@ -85,6 +85,35 @@
                 </label>
             </div>            
         </form>
+        <div class="table-responsive">  
+<table class="table table-bordered table-hover table-condensed">
+   <thead>
+     <tr>
+       <th scope="col">ID</th>
+       <th scope="col">Email</th>
+       <th scope="col">Role</th>
+       <th scope="col">Status</th>
+       <th scope="col">Options</th>
+     </tr>
+   </thead>
+<tbody>
+<% _.each(users, function(useritem) { %>
+     <tr data-id="<%=useritem.get('id')%>">
+        <td><%= useritem.id %></td>
+        <td><%= useritem.get('email') %></td>
+        <td><%= useritem.get('role_id') %></td>        
+        <td><%= useritem.get('status_id') %></td>
+        <td class="edit-icons">
+          <a href="#issue/<%= useritem.id %>" target="_blank"><i class="fa fa-file-text-o"></i></a>
+          <a href="#"><i class="fa fa-pencil"></i></a>
+          <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
+          <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+        </i></td>
+<% }) %>
+     </tr>
+   </tbody>
+ </table>
+</div>
     </div>      
 </div>
 

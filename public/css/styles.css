@@ -312,10 +312,9 @@ header #main-banner:hover {
     margin: 0px;
     float: none;
   }
-  /*#left-sidebar{
-    display:none;
+  #main-container {
+    padding-top: 160px;
   }
-  */
 }
 /*End of manager page styles */
 #issue-container {

@@ -31,6 +31,7 @@ Route::get('register/reset/{confirmationCode}', 'RegistrationController@changePa
 
 Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
+Route::resource('users', 'UserController');
 Route::resource('categories', 'CategoriesController');
 Route::post('issues/search', 'IssuesController@search');
 Route::get('issues/user/{user}', 'IssuesController@showUserIssues');

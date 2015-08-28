@@ -17,12 +17,8 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$fetchAll = Users::all();
-		$fetchAllAttr = array ();
-		foreach ($fetchAll as $model) {
-			$fetchAllAttr[] = $model->attriutes;
-		}
-		return json_encode($fetchAll);
+		$fetchAll = Users::select('id', 'email', 'role_id', 'status_id', 'avatar_url')->get();;
+		return $fetchAll;
 	}
 	/**
 	 * Show the form for creating a new resource.

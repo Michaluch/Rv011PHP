@@ -5,16 +5,17 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "User"   
+    "Users"   
     ],
     function(AdminTemplate,
-            ChangePassword, TableUserTemplate, $, _, Backbone,  User){
+            ChangePassword, TableUserTemplate, $, _, Backbone,  Users){
         
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
         tabletemplate:_.template(TableUserTemplate),
+        model: Users,
         statuses:{},
-        categories: {},
+        roles: {},
         //el:$("#profile-container"),
         el:$("#main-container"),
         events:{
@@ -25,10 +26,30 @@ define([
         },
         initialize:function(){
             this.render();
-            $('#search-form').append(TableUserTemplate);
+            
         },
   
         render: function() {
+              console.log(this.model);
+              var users=new Users();
+              var self=this;
+              this.$el.empty();
+              users.fetch({
+                success: function(users) {
+                  console.log(users);
+                    var template = self.template({
+                        users: users.models,
+                        logged_in: session.get("logged_in"),
+                        user: session.user.toJSON(),
+                        search: '' 
+                    });
+                    
+                    self.$el.html(template);
+                    //$('#search-form').append(TableUserTemplate); 
+                }
+            });
+
+/*
             this.$el.empty();
             console.log(session.user.id);
             this.$el.html(this.template(
@@ -37,8 +58,10 @@ define([
                     user: session.user.toJSON(),
                     search: '' 
                 }
-                ));    
+                ));
+                   
             return this;
+*/            
         },
         changePass: function(){
           this.$('#manager-panel').empty();
