@@ -81,13 +81,12 @@ define([
                        //     that.hint.displayErrorHintMessage("Nothing to save.")
                         }
                         else {
-                            console.log("we have changes");
                             categoryNew.save({patch: true}, {
                                 success: function(model, response){
                                     $('#modal').modal('hide');
                                     var managerView = new ManagerView();
                                     managerView.editcategories();
-                                    console.log("category saved");
+                                    console.log("saved");
                                 },
                             });
                         }
