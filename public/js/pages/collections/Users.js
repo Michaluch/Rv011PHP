@@ -4,9 +4,10 @@ define([
   //deps
     'User'
 ], function  (Backbone,User) {
-	var Collection = Backbone.Collection.extend({
-		model  :User,
+	var Users = Backbone.Collection.extend({
+		model: User,
+		url: '/users'
 	});
-	return Collection;
+	return Users;
 }
 )

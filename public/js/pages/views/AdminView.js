@@ -5,27 +5,30 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "User"   
+    "User",
+    "Users"
     ],
     function(AdminTemplate,
-            ChangePassword, TableUserTemplate, $, _, Backbone,  User){
+            ChangePassword, TableUserTemplate, $, _, Backbone,  User, Users){
         
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
         tabletemplate:_.template(TableUserTemplate),
-        statuses:{},
-        categories: {},
+        roles: {},
+        statuses: {},
         //el:$("#profile-container"),
         el:$("#main-container"),
         events:{
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #changepassword-link" : "changePass",
-                "click #add-user"  : "onAddUserClick"           
+                "click #add-user"  : "onAddUserClick",
+                "click .user-remove-button" : "onUserRemoveButtonClick",
+                "click #all-users" : "showAllUsers"
         },
         initialize:function(){
             this.render();
-            $('#search-form').append(TableUserTemplate);
+            this.showAllUsers();
         },
   
         render: function() {
@@ -72,6 +75,23 @@ define([
     },
         onAddUserClick: function(){
             $( '#AddUserModal' ).modal();
+        },
+        
+        onUserRemoveButtonClick: function(){
+            alert('ha-ha, user deleted');
+            this.showAllUsers();
+        },
+        
+        showAllUsers: function(){
+            var that = this;
+            this.users = new Users();
+            this.users.fetch({
+                success: function (){
+                    var template = _.template(TableUserTemplate);
+                    template = template({users: that.users.models});
+                    $('#manager-panel-table').html(template);
+                }
+            });
         }
 
     });

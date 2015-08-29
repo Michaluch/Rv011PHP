@@ -28,7 +28,7 @@ Route::get('pass/reset','UserController@resetPass');///
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
 Route::get('register/reset/{confirmationCode}', 'RegistrationController@changePass');
-
+Route::resource('users', 'UserController');
 Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::resource('categories', 'CategoriesController');
