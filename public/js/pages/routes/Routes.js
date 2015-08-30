@@ -16,10 +16,12 @@ define([
     "ProfileView",
     "IssuesView",
     "Issues",
-    "EditIssueView"
+    "EditIssueView",
+    "StatisticView"
     ],
     function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
-     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView, IssuesView, Issues, EditIssueView) {
+     HeaderView, ManagerView, SessionModel, CryOutView, ProfileView, IssuesView,
+    Issues, EditIssueView, StatisticView) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -33,7 +35,8 @@ define([
                 "manager":"manager",
                 "issues": "issues",
                 "issue/:id/edit": "editissue",
-                "categories": "categories"
+                "categories": "categories",
+                "statistic" : "statistic"
             },
             loadHeader: function(){
                 var issues = null;
@@ -146,6 +149,12 @@ define([
                 console.log("Edit 1 Issue");
                 var view = new EditIssueView(); 
                 view.render();
+            },
+            statistic : function(){
+                this.loadHeader();
+                console.log("Statistic");
+                var Statview = new StatisticView(); 
+                //Statview.render();
             }
         });
     });

@@ -16,6 +16,7 @@ requirejs.config({
         hash            : 'libs/encrypt/sha512',
         images          : '',
         colorbox        : 'libs/colorbox/jquery.colorbox-min', 
+        d3              : 'libs/d3/d3.min',
         //I've added other our scripts, but I am not sure
         Map             : 'map',
         Sidebar         : 'sidebar',
@@ -24,6 +25,7 @@ requirejs.config({
         validation      : 'apps/validation',
         signinform      : 'apps/signform',
         signUpValidation: 'apps/signUpValidation',
+        //d3Script        : 'apps/d3Script',
         //models
         User            : 'pages/models/User',
         Issue           : 'pages/models/Issue',
@@ -52,7 +54,9 @@ requirejs.config({
         IssueEditView   : 'pages/views/IssueEditView',
         AttachmentsEditView: 'pages/views/AttachmentsEditView',
         EditCategoriesView: 'pages/views/EditCategoriesView',
-        RowCategoryView : 'pages/views/RowCategoryView'
+        StatisticView   : 'pages/views/StatisticView',
+        RowCategoryView : 'pages/views/RowCategoryView',
+        
 
     },
 });

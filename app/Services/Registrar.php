@@ -56,6 +56,7 @@ class Registrar implements RegistrarContract {
 			$message->from(env('MAIL_USERNAME'), 'Bawl');
             $message->to($toEmail)->subject('Verify your email address');
         	});	
+        
 		return $user;
 	}
 }

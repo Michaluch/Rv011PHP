@@ -159,6 +159,9 @@ class IssuesController extends Controller {
         case 'solved':
             return $this->showCustomForManager(4);
             break;
+        case 'statistic':
+            return $this->showAllForStatistic();
+            break;
         default :
         	return $this->showById($id);
         	break;
@@ -262,6 +265,36 @@ class IssuesController extends Controller {
 		$data = Issue::with('historyUpToDate')->get();
 		return $data;
 	}
+
+    private function showAllForStatistic()
+    {
+        $CatToSent = array();
+        $categories=Categories::all();
+        foreach ($categories as $el) {
+            $CatToSent[$el->name] = 0;
+        }
+
+        $StatusToSent = array();
+        $statuses=Statuses::all();
+        foreach ($statuses as $el) {
+            $StatusToSent[$el->name] = 0;
+        }
+
+        //$elemToSent = array()
+        $data = Issue::with('historyUpToDate',"category","historyUpToDate.status")->get();
+        foreach ($data as $el) {   
+          $CatToSent[$el->category->name] += 1;
+          $StatusToSent[$el->historyUpToDate->status->name] += 1;
+
+        }
+       
+        return [
+            'statuses' => $StatusToSent,
+            'categories' => $CatToSent,
+        ];
+        
+        
+    }
 
 	private function showCustomForManager($id)
 	{
