@@ -254,9 +254,6 @@ header #main-banner:hover {
   font-size: 16px;
   font-weight: bold;
 }
-#AddUserModal .user-picture {
-  margin-top: 20px;
-}
 #AddUserModal .form-horizontal .control-label {
   padding-top: 0px;
   font-weight: normal;

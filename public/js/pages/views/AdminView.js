@@ -45,6 +45,7 @@ define([
         },
         initialize:function(){
             this.render();
+            this.showAllUsers();
         },
   
         render: function() {
@@ -91,6 +92,11 @@ define([
     },
         onAddUserClick: function(){
             $( '#AddUserModal' ).modal();
+            $('#email').val("");
+            $('#password').val("");
+            $('#confpass').val("");
+            $('#imgInp').val("");
+
          },   
         onAddUserBtnClick: function(e){
             e.preventDefault(); // reset default settings
@@ -121,19 +127,13 @@ define([
                             //var template = _.template(SimpleMessage);
                             //$('#sidebar').html(template({message: response.message}));
                             var template1 = _.template(NotificationSuccess); // notification
-                            $.colorbox({html:template1({message: response.message}),height:"30%",width:"30%"}); 
+                            $.colorbox({html:template1({message: "You've added user"}),height:"30%",width:"30%"});
+                            $( '#AddUserModal' ).modal('hide');
                         },
                         error:function(model,response){     
                             var template2 = _.template(NotificationWarning);//notification
                             var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
                             $.colorbox({html:template2({message: obj.email}),height:"30%",width:"30%"}); 
-                            // var obj = JSON.parse(response.responseText) || $.parseJSON(response.responseText);
-                            //if (obj.email) {
-                            //    var $error_field = $('#email');
-                            //    var $group = $error_field.closest('.form-group');
-                            //    $group.addClass('has-error');
-                            //    $group.find('.help-block').html(obj.email).removeClass('hidden');
-                            //}
                         } 
                     });  
             }
@@ -172,6 +172,7 @@ define([
             readURL(this.$("#imgInp"));
                  
         },
+        
 
     });
         return AdminView;
