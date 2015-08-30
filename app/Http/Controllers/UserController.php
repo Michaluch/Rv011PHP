@@ -116,7 +116,7 @@ class UserController extends Controller {
 	public function destroy(Guard $auth, $id)
 	{
 	    $user_admin = $auth->user();
-	    if ($user_admin->role_id == 3) {
+	    if ($user_admin->role_id == 3 && $user_admin->status_id == 2) {
     	    $user=User::where("id", '=', $id)->first();
     	    if ($user->role_id == 3 && User::where('role_id', '=', 3)->where('status_id', '=', 2)->count()<2){
     	        return response()->json(['status' => 'error',

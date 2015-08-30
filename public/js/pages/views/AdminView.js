@@ -2,6 +2,7 @@ define([
     "text!pages/templates/AdminTemplate.html",
     "text!pages/templates/ChangePasswordTemplate.html",
     "text!pages/templates/TableUserTemplate.html",
+    "text!pages/templates/UserDeleteConfirmationVindowTemplate.html",
     "jquery",
     "underscore",
     "backbone",
@@ -17,7 +18,7 @@ define([
     "colorbox"   
     ],
     function(AdminTemplate,
-            ChangePassword, TableUserTemplate, $, _, Backbone,  Users, User, SimpleMessage,
+            ChangePassword, TableUserTemplate, UserDeleteConfirmationVindowTemplate, $, _, Backbone,  Users, User, SimpleMessage,
                 NotificationSuccess, NotificationInfo, NotificationWarning, NotificationDanger,
                 hash, signUpValidation, colorbox){
         
@@ -41,7 +42,8 @@ define([
                 'focus input#email': 'focusEmail',
                 'focus input#password': 'focusPassword',
                 'focus input#confpass': 'focusConfpass',
-           		"click #all-users" : "showAllUsers"
+           		"click #all-users" : "showAllUsers",
+           		"click .user-remove-button" : "onUserRemoveButtonClick",
         },
         initialize:function(){
             that = this;
@@ -178,6 +180,32 @@ define([
             readURL(this.$("#imgInp"));
                  
         },
+        
+       onUserRemoveButtonClick: function(e){
+                that=this;
+                that.delete_user_confirmed = false;
+                var user_id = $(e.target).closest('tr').attr('data-id');
+                var template = _.template(UserDeleteConfirmationVindowTemplate);
+                $.colorbox({html:template({user_id: user_id}), 
+                    height:"30%", 
+                    width:"30%",
+                    speed: 0,
+                    opacity: "0.4",
+                    closeButton: false,
+                    onClosed: function(){
+                        if (that.delete_user_confirmed){
+                            that.onUserRemoveConfirm(user_id);
+                        }
+                    }
+                });
+                $('#yes_i_want_to_remove_this_user').click(function(){
+                        that.delete_user_confirmed = true;
+                        $.colorbox.close();
+                    });
+                $('#colorbox_close').click(function(){
+                        $.colorbox.close();
+                    });
+        },
 
         onUserRemoveConfirm: function(user_id){
             that = this;
@@ -204,7 +232,7 @@ define([
 
         },
 
-                showAllUsers: function(){
+        showAllUsers: function(){
             var that = this;
             this.users = new Users();
             this.users.fetch({

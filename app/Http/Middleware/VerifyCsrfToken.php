@@ -36,7 +36,7 @@ class VerifyCsrfToken extends BaseVerifier {
             'issues/*',
             'attachment/*',
             'issues',
-            'users',
+            'users/*',
     ];
 
     foreach($routes as $route)
