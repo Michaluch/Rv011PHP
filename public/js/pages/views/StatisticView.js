@@ -107,7 +107,7 @@ define([
           .value(function(d) { return d.count; })
           .sort(null);
 
-                var tooltip = d3.select('#chart2')                               // NEW
+        var tooltip = d3.select('#chart')                               // NEW
           .append('div')                                                // NEW
           .attr('class', 'tooltipp');                                    // NEW
                       
