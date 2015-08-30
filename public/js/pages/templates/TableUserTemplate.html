@@ -1,4 +1,4 @@
-<div class="table-responsive">  
+<div class="table-responsive"> 
 <table class="table table-bordered table-hover table-condensed">
    <thead>
      <tr>
@@ -10,16 +10,17 @@
      </tr>
    </thead>
 <tbody>
-<% _.each(users, function(useritem) { %>
-     <tr data-id="<%=useritem.get('id')%>">
-        <td><%= useritem.id %></td>
-        <td><%= useritem.email %></td>
-
+<% _.each(users, function(user) { %>
+     <tr data-id="<%=user.id%>">
+        <td><%= user.id %></td>
+        <td><%= user.get('email') %></td>
+        <td><%= user.get('role_id') %></td>
+        <td><%= user.get('status_id') %></td>
         <td class="edit-icons">
-          <a href="#issue/<%= useritem.id %>" target="_blank"><i class="fa fa-file-text-o"></i></a>
-          <a href="#"><i class="fa fa-pencil"></i></a>
-          <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-          <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
+          <a href="#"><i class="fa fa-pencil user-edit-button"></i></a>
+          <% if (user.get('status_id')!=3) { %>
+            <a href="#"><i class="glyphicon glyphicon-remove user-remove-button"></i></a>
+          <% } %>
         </i></td>
 <% }) %>
      </tr>

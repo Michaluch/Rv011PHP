@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Auth\Guard;
 use App\User as User;
 
 
@@ -110,9 +111,25 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Guard $auth, $id)
 	{
-		//
+	    $user_admin = $auth->user();
+	    if ($user_admin->role_id == 3) {
+    	    $user=User::where("id", '=', $id)->first();
+    	    if ($user->role_id == 3 && User::where('role_id', '=', 3)->where('status_id', '=', 2)->count()<2){
+    	        return response()->json(['status' => 'error',
+    	        	'message' => 'STOP! You can\'t do it! You are the last one of mega super admins!!!',
+    	            ]);
+    	    }
+    	    else {
+        	    $user->status_id = 3;
+        	    $user->save();
+        		return ['status' => 'success', 'message' => "user $id destroyed!"];
+    	    }
+	    }
+	    else{
+	        return ['status' => 'error', 'message' => 'STOP! You have no permission to do it!'];
+	    }
 	}
 
 	/**

@@ -12,6 +12,7 @@ class UserStatusTableSeeder extends Seeder {
 		DB::table('userstatuses')->insert([
 				['name' => 'active'],
 				['name' => 'not-active'],
+				['name' => 'deleted'],
 			   ]);   
     }
 

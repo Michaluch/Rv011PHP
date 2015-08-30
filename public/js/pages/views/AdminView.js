@@ -24,16 +24,15 @@ define([
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
         tabletemplate:_.template(TableUserTemplate),
-        model: Users,
-        statuses:{},
         roles: {},
-        //el:$("#profile-container"),
+        statuses: {},
+		//el:$("#profile-container"),
         el:$("#main-container"),
         events:{
                 "click #small-logout-btn" :"onLogoutClick",
                 "click #left-sidebar-btn" :"onLeftsidebarbtnClick",
                 "click #changepassword-link" : "changePass",
-                "click #add-user"  : "onAddUserClick",
+                "click #add-user"  : "onAddUserClick",           
                 "click #adduser-btn": "onAddUserBtnClick",
                 'change input#imgInp': 'setAvatar',
                 'blur input#email': 'changedEmail',
@@ -41,32 +40,24 @@ define([
                 'blur input#confpass': 'changedConfpass',
                 'focus input#email': 'focusEmail',
                 'focus input#password': 'focusPassword',
-                'focus input#confpass': 'focusConfpass'           
+                'focus input#confpass': 'focusConfpass',
+           		"click #all-users" : "showAllUsers"
         },
         initialize:function(){
             this.render();
-            
         },
   
         render: function() {
-              console.log(this.model);
-              var users=new Users();
-              var self=this;
-              this.$el.empty();
-              users.fetch({
-                success: function(users) {
-                  console.log(users);
-                    var template = self.template({
-                        users: users.models,
-                        logged_in: session.get("logged_in"),
-                        user: session.user.toJSON(),
-                        search: '' 
-                    });
-                    
-                    self.$el.html(template);
-                    //$('#search-form').append(TableUserTemplate); 
+            this.$el.empty();
+            console.log(session.user.id);
+            this.$el.html(this.template(
+                { 
+                    logged_in: session.get("logged_in"),
+                    user: session.user.toJSON(),
+                    search: '' 
                 }
-            });           
+                ));    
+            return this;
         },
         changePass: function(){
           this.$('#manager-panel').empty();
@@ -100,7 +91,7 @@ define([
     },
         onAddUserClick: function(){
             $( '#AddUserModal' ).modal();
-        },
+         },   
         onAddUserBtnClick: function(e){
             e.preventDefault(); // reset default settings
             var user=new User();

@@ -12,6 +12,7 @@
                 </div>
         </div>
             <ul>
+                <li id="all-users">All users</li>
                 <li id="add-user">Add user</li>
                 <li id="check-user">Check user</li>
             </ul>
@@ -27,40 +28,31 @@
           <div class="form-group">
           <label for="email" class="col-sm-4 control-label">Email</label>
           <div class="col-sm-8">
-          <input type="email" name="email" id="email" class="form-control">
+          <input type="email" name="email" class="form-control">
           </div>
           </div>
           <div class="form-group">
           <label for="password" class="col-sm-4 control-label">Password</label>
           <div class="col-sm-8">
-          <input type="password" name="password" id="password" class="form-control">
+          <input type="password" name="password" class="form-control">
           </div>
           </div>
           <div class="form-group">
           <label for="confirm-password" class="col-sm-4 control-label">Confirm Pass</label>
           <div class="col-sm-8">
-          <input type="password" name="confpass" class="form-control" id="confpass">
+          <input type="password" name="confirm-password" class="form-control">
           </div>
           </div> 
         </form>
         <div class="user-picture col-md-3">
-        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="photo">Your Photo </label>
-        <div class="form-group">
-          <div class="image-upload col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <label for="imgInp">
-              <div id="over">
-                <img id="blah" src="img/anonymus.png" class="img-thumbnail">
-              </div>
-            </label>
-            <input  type="file" id="imgInp"/>
-          </div>
-        </div>
+        <lable>User Picture</lable>
+        <img src="img/anonymus.png">
         </div>   
          
       </div>
       <div class="clearfix"></div>
       <div class="modal-footer">
-        <button type="button" class="btn" id="adduser-btn">Submit</button>
+        <button type="button" class="btn">Submit</button>
         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -94,35 +86,7 @@
                 </label>
             </div>            
         </form>
-        <div class="table-responsive">  
-<table class="table table-bordered table-hover table-condensed">
-   <thead>
-     <tr>
-       <th scope="col">ID</th>
-       <th scope="col">Email</th>
-       <th scope="col">Role</th>
-       <th scope="col">Status</th>
-       <th scope="col">Options</th>
-     </tr>
-   </thead>
-<tbody>
-<% _.each(users, function(useritem) { %>
-     <tr data-id="<%=useritem.get('id')%>">
-        <td><%= useritem.id %></td>
-        <td><%= useritem.get('email') %></td>
-        <td><%= useritem.get('role_id') %></td>        
-        <td><%= useritem.get('status_id') %></td>
-        <td class="edit-icons">
-          <a href="#issue/<%= useritem.id %>" target="_blank"><i class="fa fa-file-text-o"></i></a>
-          <a href="#"><i class="fa fa-pencil"></i></a>
-          <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-          <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-        </i></td>
-<% }) %>
-     </tr>
-   </tbody>
- </table>
-</div>
+        <div id="manager-panel-table"></div>
     </div>      
 </div>
 
