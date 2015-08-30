@@ -2,6 +2,7 @@ define([
     "text!pages/templates/AdminTemplate.html",
     "text!pages/templates/ChangePasswordTemplate.html",
     "text!pages/templates/TableUserTemplate.html",
+    "text!pages/templates/NotificationWarning.html",
     "jquery",
     "underscore",
     "backbone",
@@ -9,7 +10,7 @@ define([
     "Users"
     ],
     function(AdminTemplate,
-            ChangePassword, TableUserTemplate, $, _, Backbone,  User, Users){
+            ChangePassword, TableUserTemplate, NotificationWarning, $, _, Backbone,  User, Users){
         
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
@@ -77,9 +78,34 @@ define([
             $( '#AddUserModal' ).modal();
         },
         
-        onUserRemoveButtonClick: function(){
-            alert('ha-ha, user deleted');
-            this.showAllUsers();
+        onUserRemoveButtonClick: function(e){
+            var user_id = $(e.target).closest('tr').attr('data-id');
+            this.onUserRemoveConfirm(user_id);
+        },
+        
+        onUserRemoveConfirm: function(user_id){
+            that = this;
+            var deleteUser = new User({id: user_id});
+            deleteUser.url = '/users/'+user_id;
+            deleteUser.destroy({
+                success: function(model,response) {
+                    if (response.status == 'error'){
+                        var template = _.template(NotificationWarning);
+                        $.colorbox({html:template({message: response.message}), 
+                            height:"30%", 
+                            width:"30%",
+                            speed: 0,
+                            opacity: "0.4"});
+                    }
+                    else {
+                        that.showAllUsers();                        
+                    }
+                },
+                error: function(model,response){
+                    console.log('some error');
+                }
+            });
+
         },
         
         showAllUsers: function(){
