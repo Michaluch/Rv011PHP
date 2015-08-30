@@ -19,15 +19,18 @@ define([
         return Backbone.View.extend({
             map: null,
             issue: {},
+            image_block: null,
             sidebar: null,
             el: $('#sidebar'),
             events: {
                 "click #AddIssueButton": "cryOutButtonClick",
                 "show.bs.tab .issue-tab": "changeFormTab",
                 "click .btn-next": "changeFormTab",
-                "change #fileUpload": "uploadImage",
+                "change .fileUpload": "uploadImage",
                 "focusout .desc-data": "setDescription",
                 "click #resolve": "toResolve",
+                "click button.more-image": "addNewImage",
+                "click button.image-remove": "removeImage",
             },
             initialize: function(){
                 //console.log(this.collection.toJSON());
@@ -44,12 +47,11 @@ define([
                         success: function(res){
                             self.sidebar.turnOn();
                             self.sidebar.setOnCloseOnce(function(){
-                    self.closeView();
-                });
+                              self.closeView();
+                            });
                             var template = _.template(IssueDetailsTemplate);
                             self.issue = res.attributes;
                             self.$el.html(template(res.attributes));
-                            
                         },
                     });
                     return false;
@@ -73,25 +75,24 @@ define([
                 this.$el.html(CryOutTemplate);
                 $("#issue-type").autocomplete({
                     source: function (request, response) {
-                            $.get("categories", {
-                            query: request.term
-                        }, function (data) {
-                           var arr = [];
-                           $.each(data, function(){
-                          //  console.log(this.name);
-                            arr.push(this.name);
-                           })
-                        response(arr);
+                        $.get("categories", { query: request.term}, 
+                            function (data) {
+                                var arr = [];
+                                $.each(data, function(){
+                                  //console.log(this.name);
+                                    arr.push(this.name);
+                                });
+                                response(arr);
+                            });
+                    }
                 });
-                }
-                });
+                this.image_block = this.$el.find('.image-item-wrapp').clone();
             },
             
             changeFormTab: function(e){
                 var $el = $(e.currentTarget);
                     map = this.map;
-                // If next button click    
-                console.log('fired');
+                // If next button click
                 if ($el.hasClass('btn-next')){
                    $el = $el.parents('#cry-out-container').find('.issue-tab.active');
                    $el.next().find('a').tab('show');
@@ -112,7 +113,7 @@ define([
             getMarkerLocation: function(){
                 var map = this.map;
                 if (map.getMarkerPossition() !== null){
-                    this.issue.location = map.getMarkerPossition();
+                    this.issue.map_pointer = map.getMarkerPossition();
                 }
             },
             
@@ -128,28 +129,62 @@ define([
                 // Maybe validate must be here
                 issue.save(this.issue, {
                     success: function(model, response, options){
-                        var data = null;
-                        if (response.code === "12201" && self.$el.find('#fileUpload').get(0).files.length){
-                            data = new FormData($('#fileform').get(0));
-                            data.append('issue_id', response.data.issue_id);
-                            data.append('type','Issue');    // add type of attch for AttchController
-                            $.ajax({
-                                url: '/attachment',
-                                data: data,
-                                cache: false,
-                                processData: false,
-                                contentType: false,
-                                type: 'POST',
-                                success: function(data){
-                                    console.log(data);
-                                }
+                        var data = null,
+                            $files = self.$el.find('.fileUpload'),
+                            attachments = 0;
+                            
+                        if (response.code === "12201"){
+                            $.each($files, function(k, e){
+                                if (e.files.length){
+                                    attachments++;
+                                }    
                             });
+                            if (attachments > 0){
+                                data = new FormData($('#fileform').get(0));
+                                data.append('issue_id', response.data.issue_id);
+                                data.append('type','Issue');    // add type of attch for AttchController
+                                $.ajax({
+                                    url: '/attachment',
+                                    data: data,
+                                    cache: false,
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST',
+                                    success: function(data){
+                                        console.log(data);
+                                    }
+                                });
+                            }
                         }
-                        self.map.setMarkers([self.issue]);
+                        //self.map.setMarkers([self.issue]);
+                        // show message here
                         self.sidebar.turnOff();
                         window.location.hash = '#';
                     }
                 });        
+            },
+            
+            addNewImage: function(){
+                if (this.image_block !== null){
+                    var $last_image = this.$el.find('.img-container').last(),
+                        order_number = ++$last_image.attr('class').split('_')[1],
+                        $new_image = $('<div class="img-container image_' + order_number + '"></div>');
+                    $new_image.append(this.image_block.clone());
+                    $last_image.after($new_image);
+                    console.log($('#sb').height() + $('#sb').scrollTop());
+                    $('#sb').animate({
+                      scrollTop: $('#sb').height() + $('#sb').scrollTop(),
+                    },500);
+                }
+            },
+            
+            removeImage: function(e){
+                if ($('.img-container').length > 1){
+                    $this_elem = $(e.currentTarget);
+                    $this_elem.parents('.img-container').remove();
+                } else {
+                    return false;
+                }
             },
             
             toResolve: function(){
@@ -161,12 +196,13 @@ define([
             },
             
             uploadImage: function(e) {
-                var input = e.currentTarget;
+                var input = e.currentTarget,
+                    $img_container = $(input).parents('.img-container');
                 if (input.files && input.files[0]) {
-                  var reader = new FileReader();
+                  var reader = new FileReader();  
                   reader.onloadend = function (e) {
                     selectedImage = e.target.result;
-                    $('#photo-container').attr({
+                    $img_container.find('.photo-container').attr({
                       'src': selectedImage,
                       'style': 'width: 100%; height: auto'
                     });

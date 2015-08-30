@@ -138,8 +138,7 @@ class IssuesController extends Controller {
         $history->issue_id = $issue->id;
         $history->date = date('Y-m-d H:i:s');
         $issue->history()->save($history);
-
-
+        return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => array('issue_id' => $issue->id)]);
 	}
 	/**
 	 * Display the specified resource.

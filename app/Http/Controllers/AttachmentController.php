@@ -21,17 +21,22 @@ class AttachmentController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$file = $request->file('attachments');
+		$files = $request->file('attachments');
 		$allowed_mime = array('image/jpeg', 'image/gif', 'image/pjpeg', 'image/png');
 		$upload_dir = 'uploaded/';
-		if ($file->isValid() && in_array($file->getMimeType(), $allowed_mime)){
-			$original_name = $file->getClientOriginalName();
-			$file_name = $original_name;
-			if (file_exists($upload_dir . $original_name)){
-				$file_name ='attach_' . mt_rand (1000000, 9999999) . '.' . $file->guessClientExtension();
-			}
-			$file->move($upload_dir, $file_name);
-		}
+		$file_urls = array();
+		foreach ($files as $file){
+    		if ($file->isValid() && in_array($file->getMimeType(), $allowed_mime)){
+    			$original_name = $file->getClientOriginalName();
+    			$file_name = $original_name;
+    			if (file_exists($upload_dir . $original_name)){
+    				$file_name ='attach_' . mt_rand (1000000, 9999999) . '.' . $file->guessClientExtension();
+    			}
+    			$file->move($upload_dir, $file_name);
+    			$file_urls[] = '/' . $upload_dir . $file_name;
+    		}
+        }
+    		
 
 		/*
 		This block to separate attachments for User from  attch for Issue 
@@ -46,11 +51,13 @@ class AttachmentController extends Controller {
 		}
 		else if ($request->input('type')=="Issue")
 		{
-			$attachment = new Attachment();
-			//$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
-			$attachment->url = $file_name;
-	    	$attachment->issue_id = $request->issue_id;
-	    	$attachment->save();
+		    foreach($file_urls as $attachment_file_url){
+    			$attachment = new Attachment();
+    			//$attachment->url = $_SERVER['HTTP_HOST'] . '/uploaded/' . $file_name;
+    			$attachment->url = $attachment_file_url;
+    	    	$attachment->issue_id = $request->issue_id;
+    	    	$attachment->save();
+		    }
 		}
 		return response()->json(['code' => $file, 'msg' => 'Stored!']);
 	}
