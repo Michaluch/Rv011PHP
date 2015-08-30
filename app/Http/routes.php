@@ -28,7 +28,7 @@ Route::get('pass/reset','UserController@resetPass');///
 
 Route::get('register/verify/{confirmationCode}', 'RegistrationController@confirm');
 Route::get('register/reset/{confirmationCode}', 'RegistrationController@changePass');
-
+Route::resource('users', 'UserController');
 Route::resource('issue', 'IssueController');
 Route::resource('issues', 'IssuesController');
 Route::resource('categories', 'CategoriesController');
@@ -37,6 +37,7 @@ Route::get('issues/user/{user}', 'IssuesController@showUserIssues');
 Route::post('attachment','AttachmentController@store');
 Route::resource('attachment','AttachmentController');
 Route::get('statusesandcategories', 'IssuesController@getIssueStatusesAndCategories');
+Route::get('userstatusesandroles', 'UserController@getUserStatusesAndRoles');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();
 	$response = new Illuminate\Http\Response;

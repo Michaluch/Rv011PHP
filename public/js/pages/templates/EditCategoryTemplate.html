@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-md">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title">Edit Category (ID: <%= category.id %>)</h3>
+		</div>
+		<div class="modal-body">
+
+
+<div class="row">
+
+<div class="col-xs-6">
+<div class="row">
+    <div class="col-xs-12 category-edit-form-group">
+    <label for="category-name">Name</label>
+    <input type="text" id="category-name" class="desc-data form-control" value="<%= category.name %>">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12 category-edit-form-group">
+    <label for="category-confirmed">Confirmed</label>
+        <select id = "category-confirmed" name="category-confirmed-selector" class="category-confirmed-selector form-control">
+           <option value="1"        
+           <%if(category.confirmed == 1) {%>selected <%} %>
+           >
+            Confirmed 
+            </option>
+            <option value="0"        
+              <%if(category.confirmed == 0) {%>selected <%} %>
+              >
+            Not Confirmed 
+            </option>    
+
+       </select>
+    </div>
+</div>
+
+</div>
+
+
+<div class="row">
+<div class="col-xs-12 category-edit-hint">
+<p id="category-edit-hint"></p>
+</div>
+</div>
+</div>
+			<div class="modal-footer">
+				<div class="col-sm-6">
+		<a id="category_edit_save" class="btn btn-default btn-sm btn-block" role="button"><span class="glyphicon glyphicon-save"></span> Save</a>
+	</div>
+	<div class="col-sm-6">
+		<button id="category_edit_cancel" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-ban-circle"></span> Close</button>
+	</div>
+			</div>
+		</div>

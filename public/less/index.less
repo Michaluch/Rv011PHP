@@ -12,6 +12,9 @@ header {
 	font-size: 24;
 	width: 100%;
 	text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 2;
   a:link{
   color: #ffffff;
   text-decoration: none;
@@ -69,7 +72,13 @@ header {
 .sb-show{
   width: 30%;
 }
-
+#main-container{
+  padding-top: 80px;
+  
+  #sb {
+    height: 100%;
+  }
+}
 #page, #main-container, #map-canvas {
 	height: 100%;
 }
@@ -230,8 +239,67 @@ header {
       padding-top: 10px;
     }
 
-}
+    #input__clear{
+    opacity: 0.5;
+    font-size: 20px;
+    cursor: pointer;
+    visibility: hidden;
+    float: left;
+    margin-left: -30px;
+    width: 20px;
+    height: 20px;
+    padding-top: 5px;
+    }
 
+}
+/* Admin page Modal window style start*/
+#AddUserModal{
+  
+.modal-header{
+    background-color: @header-background-color;  
+}
+  .close{
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+    background-color: inherit;
+    color: white;
+    opacity: 1;
+  }
+.modal-title{
+    line-height: 1;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-horizontal .control-label{
+  padding-top: 0px;
+  font-weight: normal;
+}
+.form-group{
+ margin-bottom:0px;
+}
+#add-user-form input{
+border-radius: 0px;
+height: 23px;
+font-size: 10px;
+line-height: 1;
+box-shadow: none;
+-webkit-box-shadow:
+border: 1px solid #F3EDED;
+}
+.modal-footer{
+  padding:0 0 15px 0;
+  text-align: center;
+  border: none;
+  button{
+  border-radius:0px;
+  font-size: 18px;
+  width: 120px;
+}
+}
+}
+/* Admin page Modal window styles end*/
 @media screen and (max-width: 990px){
   #manager-panel .fa-align-justify{
     display:block;
@@ -243,27 +311,30 @@ header {
   .width50{
     width:50%;
   }
+  .col-xs-9{
+    width: 50%;
+  }
   #manager-panel input{
     width:50%;
   }
   header{
     ul li{
-  display: block;
-  float:none;
-  width:100%;
-  line-height: 40px;
+      display: block;
+      float:none;
+      width:100%;
+      line-height: 40px;
     }
-  #login-button, #logout-button, #about-button{
-    margin: 0px;
-    float: none;
-  }  
+    #login-button, #logout-button, #about-button{
+      margin: 0px;
+      float: none;
+    }  
   }
-  /*#left-sidebar{
-    display:none;
+  #main-container {
+    padding-top: 160px;
   }
-  */
 }
 /*End of manager page styles */
+<<<<<<< HEAD
 
 /* Style for diagram*/
  .legend {
@@ -292,3 +363,7 @@ header {
     z-index: 1000;
      border: 1px solid black;                                                       
   }                                                                 
+
+@import "blocks/issue-details.less";
+@import "blocks/cryout.less";
+

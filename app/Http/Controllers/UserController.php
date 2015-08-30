@@ -1,11 +1,14 @@
 <?php namespace App\Http\Controllers;
 use App\Models\Users;
+use App\Models\UserStatuses as Statuses;
+use App\Models\Roles as Roles;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Auth\Guard;
 use App\User as User;
 
 
@@ -17,12 +20,8 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$fetchAll = Users::all();
-		$fetchAllAttr = array ();
-		foreach ($fetchAll as $model) {
-			$fetchAllAttr[] = $model->attriutes;
-		}
-		return json_encode($fetchAll);
+		$fetchAll = Users::select('id', 'email', 'role_id', 'status_id', 'avatar_url')->get();;
+		return $fetchAll;
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -66,9 +65,17 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$data = $request->all();
+        $user = new User;
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->avatar_url=$data['avatar_url'];
+        $user->role_id=1;
+        $user->status_id=2;
+        $user->salt=str_random(8);
+        $user->save();
 	}
 	/**
 	 * Display the specified resource.
@@ -106,9 +113,25 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Guard $auth, $id)
 	{
-		//
+	    $user_admin = $auth->user();
+	    if ($user_admin->role_id == 3 && $user_admin->status_id == 2) {
+    	    $user=User::where("id", '=', $id)->first();
+    	    if ($user->role_id == 3 && User::where('role_id', '=', 3)->where('status_id', '=', 2)->count()<2){
+    	        return response()->json(['status' => 'error',
+    	        	'message' => 'STOP! You can\'t do it! You are the last one of mega super admins!!!',
+    	            ]);
+    	    }
+    	    else {
+        	    $user->status_id = 3;
+        	    $user->save();
+        		return ['status' => 'success', 'message' => "user $id destroyed!"];
+    	    }
+	    }
+	    else{
+	        return ['status' => 'error', 'message' => 'STOP! You have no permission to do it!'];
+	    }
 	}
 
 	/**
@@ -132,5 +155,16 @@ class UserController extends Controller {
 		{
 			return response()->json(['code' =>'11400', 'message' => 'No such user to reset password'],200);	
 		}
-	} 
+	}
+
+	
+	public function getUserStatusesAndRoles(){
+
+		$statuses=Statuses::all();
+		$roles=Roles::all();
+		return [
+			'statuses' => $statuses,
+			'roles' => $roles,
+		];
+	}
 }

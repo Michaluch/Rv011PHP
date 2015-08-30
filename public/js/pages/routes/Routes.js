@@ -17,11 +17,12 @@ define([
     "IssuesView",
     "Issues",
     "EditIssueView",
-    "StatisticView"
+    "StatisticView",
+    'AdminView'
     ],
     function($, boot, Backbone, Sidebar, SignInView, LoginView, User, UserView,
      HeaderView, ManagerView, SessionModel, CryOutView, ProfileView, IssuesView,
-    Issues, EditIssueView, StatisticView) {
+    Issues, EditIssueView, StatisticView, AdminView) {
         return Backbone.Router.extend({
             map: null,
             sidebar: Sidebar,
@@ -118,6 +119,14 @@ define([
                                 window.location.href="/"; 
                             }
                             break;
+                        case 3:
+                            if(typeof this.AdminView==="undefined"){
+                                this.AdminView=new AdminView();
+                            }
+                            else{
+                                window.location.href="/"; 
+                            }
+                            break;                            
                         default:
                             window.location.href="/"; 
                             break;

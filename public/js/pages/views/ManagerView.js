@@ -32,7 +32,8 @@ define([
                 "click #search-btn": "onSearchIssuesClick",
                 "change .status-selector" : "statusChanged",
                 "change .category-selector" : "categoryChanged",
-                "click .fa.fa-pencil": "onEditClick"
+                "click .fa.fa-pencil": "onEditClick",
+                "click #input__clear": "onInputClearClick"
             },
             statuses:{},
             categories: {},
@@ -48,15 +49,18 @@ define([
             allissues: function  () {
                 this.path = "/issues/all";
                 this.universalshow(this.path);
+                $("input[name=search]").val('');
             },
             newissues: function  () {
                 this.path = "/issues/new";
                 this.universalshow(this.path);
+                $("input[name=search]").val('');
             },
 
             solvedissues: function  () {
                 this.path ="/issues/solved";
                 this.universalshow(this.path);
+
             },
             onSearchIssuesClick: function  (e) {
                 e.preventDefault();
@@ -66,7 +70,6 @@ define([
                 var nameCheckbox=$("input[name=nameCheckbox]").is(":checked");
                 var descriptionCheckbox=$("input[name=descriptionCheckbox]").is(":checked");
                 var categoryCheckbox=$("input[name=categoryCheckbox]").is(":checked");
-
                 self.collectionIssue = new Issues();   
                 var tableIssue = new TableIssueView({collection : self.collectionIssue});
                 if(self.search.length<2){
@@ -83,7 +86,8 @@ define([
                     if(data.length>0){
                     self.collectionIssue.models = data;
                     self.tableIssue = tableIssue;    
-                    self.render(); 
+                    self.render();
+                    $('#input__clear').css('visibility', 'visible'); 
                     }
                     else{
                     $('.text-info').html("<p>Nothing found</p>");   
@@ -128,7 +132,7 @@ define([
 
            // fillModelByConditnion: function()
 
-            render:function(){    
+            render:function(){   
                 this.$el.empty();
                 this.$el.html(this.template(
                     { 
@@ -147,36 +151,6 @@ define([
             return this;
 
             },
-           // render:function(){
-           //       //console.log(this.model);
-           //     var issues=new Issues();
-           //     var self=this;
-           //     self.$el.empty();
-           //     issues.fetch({
-           //         success: function(issues) {
-           //             $.get("statusesandcategories", {}, function(data){
-           //             self.statuses=data.statuses;
-           //             self.categories=data.categories;                        
-           //             var template = self.template({
-           //                 issues: issues.models,
-           //                 logged_in: session.get("logged_in"),
-           //                 user: session.user.toJSON(),
-           //                 search: '',
-           //                 //category: issues.category
-           //                 statuses: self.statuses,
-           //                 categories: self.categories,
-           //             });
-           //             console.log(issues);
-           //             console.log(self.statuses);
-           //             self.$el.html(template);                        
-           //             });
-           //           //console.log(issues);
-//
-//           //         }
-           //     });
-                   
-
-           // },
             onLogoutClick:function(e){
                 e.preventDefault(e);
                 $.post("/auth/logout", {},function(data){
@@ -207,16 +181,6 @@ define([
 
                 var status_id=e.target.value;
                 var issue_id=$(e.target).closest('tr').attr('data-id');
-//<<<<<<< HEAD
-//                //var user=window.session.user.get('id');
-//                $.post("issues/statuschange", {
-//                    issue_id: issue_id, status_id: status_id}, function(data){
-//                        console.log(data);
-//                    });
-//            },
-//
-//           
-//=======
                 var issue = new Issue({id: issue_id});
 
                 issue.fetch({
@@ -255,6 +219,10 @@ define([
                 var issueEditView = new IssueEditView({id: issueEditId}, this);
                 //issueEditView.render(this);
             },
+            onInputClearClick: function(){
+                this.search=null;
+                this.render();                   
+            }
 
             });
         return ManagerView;
