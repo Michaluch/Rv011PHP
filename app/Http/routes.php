@@ -38,6 +38,7 @@ Route::get('issues/user/{user}', 'IssuesController@showUserIssues');
 Route::post('attachment','AttachmentController@store');
 Route::resource('attachment','AttachmentController');
 Route::get('statusesandcategories', 'IssuesController@getIssueStatusesAndCategories');
+Route::get('userstatusesandroles', 'UserController@getUserStatusesAndRoles');
 Route::get('category', function(){
 	$categories = App\Models\IssuesCategory::all();
 	$response = new Illuminate\Http\Response;

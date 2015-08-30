@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 use App\Models\Users;
+use App\Models\UserStatuses as Statuses;
+use App\Models\Roles as Roles;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -153,5 +155,16 @@ class UserController extends Controller {
 		{
 			return response()->json(['code' =>'11400', 'message' => 'No such user to reset password'],200);	
 		}
-	} 
+	}
+
+	
+	public function getUserStatusesAndRoles(){
+
+		$statuses=Statuses::all();
+		$roles=Roles::all();
+		return [
+			'statuses' => $statuses,
+			'roles' => $roles,
+		];
+	}
 }

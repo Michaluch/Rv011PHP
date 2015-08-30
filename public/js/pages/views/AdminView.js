@@ -24,8 +24,8 @@ define([
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
         tabletemplate:_.template(TableUserTemplate),
-        roles: {},
-        statuses: {},
+        roles: [],
+        statuses: [],
 		//el:$("#profile-container"),
         el:$("#main-container"),
         events:{
@@ -44,8 +44,14 @@ define([
            		"click #all-users" : "showAllUsers"
         },
         initialize:function(){
+            that = this;
             this.render();
-            this.showAllUsers();
+            $.get("userstatusesandroles",  function(data) {
+                _.each(data.statuses, function(status){that.statuses[status.id]=status.name});
+                _.each(data.roles, function(role){that.roles[role.id]=role.name});
+                console.log(that.statuses);
+                that.showAllUsers();
+            });
         },
   
         render: function() {
@@ -172,6 +178,46 @@ define([
             readURL(this.$("#imgInp"));
                  
         },
+
+        onUserRemoveConfirm: function(user_id){
+            that = this;
+            var deleteUser = new User({id: user_id});
+            deleteUser.url = '/users/'+user_id;
+            deleteUser.destroy({
+                success: function(model,response) {
+                    if (response.status == 'error'){
+                        var template = _.template(NotificationWarning);
+                        $.colorbox({html:template({message: response.message}), 
+                            height:"30%", 
+                            width:"30%",
+                            speed: 0,
+                            opacity: "0.4"});
+                    }
+                    else {
+                        that.showAllUsers();                        
+                    }
+                },
+                error: function(model,response){
+                    console.log('some error');
+                }
+            });
+
+        },
+
+                showAllUsers: function(){
+            var that = this;
+            this.users = new Users();
+            this.users.fetch({
+                success: function (){
+                    var template = _.template(TableUserTemplate);
+                    template = template({users: that.users.models,
+                        statuses: that.statuses,
+                        roles: that.roles,
+                        });
+                    $('#manager-panel-table').html(template);
+                }
+            });
+        }        
         
 
     });

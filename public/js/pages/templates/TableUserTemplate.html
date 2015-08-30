@@ -14,8 +14,8 @@
      <tr data-id="<%=user.id%>">
         <td><%= user.id %></td>
         <td><%= user.get('email') %></td>
-        <td><%= user.get('role_id') %></td>
-        <td><%= user.get('status_id') %></td>
+        <td><%= roles[user.get('role_id')] %></td>
+        <td><%= statuses[user.get('status_id')] %></td>
         <td class="edit-icons">
           <a href="#"><i class="fa fa-pencil user-edit-button"></i></a>
           <% if (user.get('status_id')!=3) { %>
