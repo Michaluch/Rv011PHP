@@ -107,7 +107,7 @@ define([
           .value(function(d) { return d.count; })
           .sort(null);
 
-                var tooltip = d3.select('#chart')                               // NEW
+                var tooltip = d3.select('#chart2')                               // NEW
           .append('div')                                                // NEW
           .attr('class', 'tooltipp');                                    // NEW
                       
@@ -206,19 +206,19 @@ define([
           .value(function(d) { return d.count; })
           .sort(null);
 
-         var tooltip = d3.select('#chart2')                              
-          .append('div')                                                         
-          .attr('class', 'tooltipp');                                    
+         var tooltip = d3.select('#chart2')                               // NEW
+          .append('div')                                                // NEW
+          .attr('class', 'tooltipp');                                    // NEW
                       
-        tooltip.append('div')                                           
-          .attr('class', 'labeldiagram');                                      
+        tooltip.append('div')                                           // NEW
+          .attr('class', 'labeldiagram');                                      // NEW
              
-        tooltip.append('div')                                           
-          .attr('class', 'count');                                      
+        tooltip.append('div')                                           // NEW
+          .attr('class', 'count');                                      // NEW
 
-        tooltip.append('div')                                           
+        tooltip.append('div')                                           // NEW
           .attr('class', 'percent');
-                                          
+                                          // NEW
 
         var path = svg.selectAll('path')
           .data(pie(dataset))
@@ -228,21 +228,21 @@ define([
           .attr('fill', function(d, i) { 
             return color(d.data.label);
           });
-         path.on('mouseover', function(d) {                             
-            var total = d3.sum(dataset.map(function(d) {                
-              return d.count;                                           
-            }));                                                        
-            var percent = Math.round(1000 * d.data.count / total) / 10; 
-            tooltip.select('.labeldiagram').html(d.data.label);               
-            tooltip.select('.count').html(d.data.count);               
+         path.on('mouseover', function(d) {                             // NEW
+            var total = d3.sum(dataset.map(function(d) {                // NEW
+              return d.count;                                           // NEW
+            }));                                                        // NEW
+            var percent = Math.round(1000 * d.data.count / total) / 10; // NEW
+            tooltip.select('.labeldiagram').html(d.data.label);                // NEW
+            tooltip.select('.count').html(d.data.count);                // NEW
             tooltip.select('.percent').html(percent + '%');
-            console.log(tooltip);            
-            tooltip.style('display', 'block');                                    
-
+            console.log(tooltip);             // NEW
+            tooltip.style('display', 'block');                          // NEW
+          });                                                           // NEW
           
-          path.on('mouseout', function() {                             
-            tooltip.style('display', 'none');                          
-          });                                                          
+          path.on('mouseout', function() {                              // NEW
+            tooltip.style('display', 'none');                           // NEW
+          });                                                           // NEW
 
         var legend = svg.selectAll('.legend')                    
           .data(color.domain()).enter()                                                    
