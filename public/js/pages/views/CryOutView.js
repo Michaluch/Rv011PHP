@@ -3,6 +3,7 @@ define([
     "backbone",
     "jquery",
     "jQueryUI",
+    "colorbox",
     "Issue",
     "text!pages/templates/CryOutTemplate.html",
     "text!pages/templates/IssueDetails.html",
@@ -13,7 +14,7 @@ define([
     "Categories"
     ],
 
-    function(_, Backbone, $, jQueryUI, Issue, CryOutTemplate, IssueDetailsTemplate,
+    function(_, Backbone, $, jQueryUI, colorbox, Issue, CryOutTemplate, IssueDetailsTemplate,
                 NotificationSuccess, NotificationInfo, 
                 NotificationWarning, NotificationDanger, Categories){
         return Backbone.View.extend({
@@ -28,9 +29,11 @@ define([
                 "click .btn-next": "changeFormTab",
                 "change .fileUpload": "uploadImage",
                 "focusout .desc-data": "setDescription",
-                "click #resolve": "toResolve",
                 "click button.more-image": "addNewImage",
                 "click button.image-remove": "removeImage",
+                //issue details
+                "click #resolve": "toResolve",
+                "click .img-container img" : "colorboxImage",
             },
             initialize: function(){
                 //console.log(this.collection.toJSON());
@@ -193,6 +196,15 @@ define([
                 console.log(issue);
                 issue.save({"status": 2},{patch: true});
                 $('#resolve').remove();
+            },
+            
+            colorboxImage: function(){
+                this.$el.find('.image-slide').colorbox({
+                    open: true,
+                    photo: true,
+                    rel: 'image-slide',
+                    maxWidth: '60%',
+                });
             },
             
             uploadImage: function(e) {
