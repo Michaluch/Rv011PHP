@@ -136,7 +136,9 @@ define([
                             //$('#sidebar').html(template({message: response.message}));
                             var template1 = _.template(NotificationSuccess); // notification
                             $.colorbox({html:template1({message: "You've added user"}),height:"30%",width:"30%"});
-                            $( '#AddUserModal' ).modal('hide');
+                            $('#AddUserModal').modal('hide');
+                            self.showAllUsers();
+
                         },
                         error:function(model,response){     
                             var template2 = _.template(NotificationWarning);//notification
