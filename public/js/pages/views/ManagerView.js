@@ -99,8 +99,9 @@ define([
                 this.tableIssue = null;
                 this.path = "/categories";   
                 var self = this;
+                console.log(this);
                 self.collectionCategory = new Categories();
-                var editCategoriesTable = new EditCategoriesView({collection : self.collectionCategory});
+                var editCategoriesTable = new EditCategoriesView({collection : self.collectionCategory, managerView: this});
                 $.get(this.path, function(data){                  
                             self.collectionCategory.models = data;    
                             self.editCategoriesTable = editCategoriesTable;        

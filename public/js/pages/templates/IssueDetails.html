@@ -9,6 +9,7 @@
 	<div class="img-container">
 		<% _.each(attachments, function(attach){%>
 			<img src="<%= attach.url %>" width="100%" height="auto">
+			<a href="<%= attach.url %>" class="image-slide"></a>
 		<% }); %>
 	</div>
 	<div class="comments">

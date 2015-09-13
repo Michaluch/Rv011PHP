@@ -19,14 +19,13 @@ define([
 
            
 
-            initialize: function(){
-               
+            initialize: function(options){               
+                this.managerView = options.managerView;
              },
 
 
             render : function(){
                 var self=this;
-               
                 var templ = this.template({
                 categories: this.collection.models
                 });
@@ -38,7 +37,7 @@ define([
             onEditCategoryClick: function(e) {
                 e.preventDefault();
                 $categoryId = $(e.currentTarget).parent().parent().siblings(':first-child').html();
-                var editCategoryView = new EditCategoryView($categoryId);
+                var editCategoryView = new EditCategoryView($categoryId, this.managerView);
 
             }
 

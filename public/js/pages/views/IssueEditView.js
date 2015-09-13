@@ -155,7 +155,7 @@ define([
                                     managerView.universalshow(managerView.path);
                                     that.hint.setMessage('Issue saved successfully.');
                                     that.render(managerView);
-                                    console.log("saved");
+                                    console.log(response.message);
                                 },
                             });
                         }

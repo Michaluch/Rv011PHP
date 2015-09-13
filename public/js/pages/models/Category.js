@@ -17,6 +17,10 @@ define([
                 return "/categories/"+this.id;
             }
         },
+        idAttribute: "id",
+        initialize: function(){
+            
+        },
         });
         return Model;
     });

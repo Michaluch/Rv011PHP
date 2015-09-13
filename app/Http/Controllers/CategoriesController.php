@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\IssuesCategory as IssuesCategory;
+use Validator;
 
 class CategoriesController extends Controller {
 
@@ -75,7 +76,7 @@ class CategoriesController extends Controller {
 	public function update(Guard $auth, Request $request, $id)
 	{
 		//
-	/*	$user = $auth->user();
+		$user = $auth->user();
 		if (!is_null($user)){
 			$category = IssuesCategory::where('id', $id)->first();
 
@@ -99,8 +100,10 @@ class CategoriesController extends Controller {
 					'result' => $result,
 				];	
 			}
-			*/
-			return "yy";
+			
+			//$data = IssuesCategory::where('id', '=', $id)->first();
+			//return $data.id;
+			//return "yo";
 	}
 
 	/**

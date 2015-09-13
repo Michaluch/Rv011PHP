@@ -74,6 +74,9 @@ header #main-banner:hover {
 #main-container {
   padding-top: 80px;
 }
+#main-container #sb {
+  height: 100%;
+}
 #page,
 #main-container,
 #map-canvas {
@@ -285,6 +288,10 @@ header #main-banner:hover {
     display: block;
     cursor: pointer;
   }
+  #manager-panel,
+  #left-sidebar {
+    margin-top: 80px;
+  }
   .sidebar-mobile {
     display: none;
   }
@@ -314,6 +321,33 @@ header #main-banner:hover {
   }
 }
 /*End of manager page styles */
+/* Style for diagram*/
+.legend {
+  font-size: 12px;
+}
+rect {
+  stroke-width: 2;
+}
+#chart {
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+.tooltipp {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: -95px;
+  width: 80px;
+  z-index: 1000;
+  border: 1px solid black;
+}
 #issue-container {
   padding: 0 0 0 15px;
 }
@@ -380,4 +414,28 @@ header #main-banner:hover {
   display: block;
   border-bottom: 2px solid #E9E8E8;
   margin-top: 10px;
+}
+#cry-out-container {
+  padding: 0 0 0 20px;
+}
+#cry-out-container #description input {
+  width: 100%;
+}
+#cry-out-container #photo .image-item-wrapp {
+  padding: 10px;
+  border: 3px solid #DDDDDD;
+  border-radius: 5px;
+  margin: 10px;
+}
+#cry-out-container #photo .image-item-wrapp button {
+  margin: 5px 0 0 0;
+}
+#cry-out-container #photo .image-item-wrapp img {
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  width: 100%;
+  height: auto;
+}
+#cry-out-container #photo .image-item-wrapp input {
+  width: 100%;
 }

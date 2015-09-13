@@ -3,23 +3,22 @@ define([
         "jquery",
         "underscore",
         "backbone",
-        "Category",
-        "ManagerView"
+        "Category"
         ],
-        function(EditCategoryTemplate, $, _, Backbone, Category, ManagerView){
+        function(EditCategoryTemplate, $, _, Backbone, Category){
         var EditCategoryView=Backbone.View.extend({
         statuses:{},
         categories: {},
         
        
         
-        initialize: function(categoryId){
+        initialize: function(categoryId, parentView){
             var that = this;
             this.id = categoryId;
-            that.render();            
+            that.render(parentView);            
         },
     
-        render:function () {
+        render:function (parentView) {
             var categoryOld = new Category({id: this.id});
             var that = this;
             categoryOld.fetch({
@@ -64,7 +63,8 @@ define([
                         
                         if (_.escape($('#category-confirmed').val()) !== categoryOld.get('confirmed')){
                             if ($('#category-confirmed').val().length >= 1) {
-                                categoryNew.set('confirmed', _.escape($('#categoryNew').val()));
+                               // console.log("attention: " + _.escape($('#category-confirmed').val()));
+                                categoryNew.set('confirmed', _.escape($('#category-confirmed').val()));
                                 we_have_changes = true;
                             }
                             else {
@@ -80,15 +80,17 @@ define([
                         else if (!we_have_changes) {
                        //     that.hint.displayErrorHintMessage("Nothing to save.")
                         }
-                        else {
-                            console.log("we have changes");
+                        else {                           
                             categoryNew.save({patch: true}, {
                                 success: function(model, response){
+                                    console.log(response.message);
                                     $('#modal').modal('hide');
-                                    var managerView = new ManagerView();
-                                    managerView.editcategories();
+                                    parentView.editcategories();
                                     console.log("category saved");
                                 },
+                                error: function (model, response) {
+                                    console.log("error response text: " + response.responseText);
+                                }
                             });
                         }
                         
