@@ -15,12 +15,13 @@ define([
     "text!pages/templates/NotificationDanger.html",
     "hash",
     "signUpValidation",
-    "colorbox"   
+    "colorbox",
+    "EditUserView"   
     ],
     function(AdminTemplate,
             ChangePassword, TableUserTemplate, UserDeleteConfirmationVindowTemplate, $, _, Backbone,  Users, User, SimpleMessage,
                 NotificationSuccess, NotificationInfo, NotificationWarning, NotificationDanger,
-                hash, signUpValidation, colorbox){
+                hash, signUpValidation, colorbox, EditUserView){
         
     var AdminView = Backbone.View.extend({
         template:_.template(AdminTemplate),
@@ -44,6 +45,7 @@ define([
                 'focus input#confpass': 'focusConfpass',
            		"click #all-users" : "showAllUsers",
            		"click .user-remove-button" : "onUserRemoveButtonClick",
+                "click .user-edit-button" : "onUserEditButtonClick",
         },
         initialize:function(){
             that = this;
@@ -207,6 +209,12 @@ define([
                 $('#colorbox_close').click(function(){
                         $.colorbox.close();
                     });
+        },
+        onUserEditButtonClick: function(e){
+               e.preventDefault();
+               var user_id = $(e.target).closest('tr').attr('data-id');
+               var editUserView = new EditUserView(user_id, this);
+
         },
 
         onUserRemoveConfirm: function(user_id){

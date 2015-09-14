@@ -53,13 +53,12 @@ requirejs.config({
         EditIssueView   : 'pages/views/EditIssueView',
         IssueEditView   : 'pages/views/IssueEditView',
         AttachmentsEditView: 'pages/views/AttachmentsEditView',
-        EditCategoriesView: 'pages/views/EditCategoriesView',
-
+        EditCategoriesView: 'pages/views/EditCategoriesView',        
+        EditCategoryView: 'pages/views/EditCategoryView',
         StatisticView   : 'pages/views/StatisticView',
-
         RowCategoryView : 'pages/views/RowCategoryView',
         AdminView       : 'pages/views/AdminView',
-        EditCategoryView: 'pages/views/EditCategoryView'
+        EditUserView: 'pages/views/EditUserView'
 
 
     },

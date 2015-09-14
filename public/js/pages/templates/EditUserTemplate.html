@@ -1,0 +1,83 @@
+<div class="modal-dialog modal-md">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title">Edit User (ID: <%= user.id %>)</h3>
+		</div>
+		<div class="modal-body">
+
+
+<div class="row">
+
+<div class="col-xs-6">
+<div class="row">
+    <div class="col-xs-12 user-edit-form-group">
+    <label for="user-email">Email</label>
+    <input type="text" id="user-email" class="desc-data form-control" value="<%= user.email %>">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12 user-edit-form-group">
+    <label for="user-role">Role</label>
+        <select id="user-role" name="user-role-selector" class="user-role-selector form-control">
+           <option value="1"        
+           <%if(user.role_id == "1") {%>selected <%} %>
+           >
+            Visitor 
+            </option>
+            <option value="2"        
+              <%if(user.role_id == "2") {%>selected <%} %>
+              >
+            Manager 
+            </option>
+            <option value="3"        
+              <%if(user.role_id == "3") {%>selected <%} %>
+              >
+            Admin 
+            </option>      
+       </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 user-edit-form-group">
+    <label for="user-status">Status</label>
+        <select id="user-status" name="user-status-selector" class="user-status-selector form-control">
+           <option value="1"        
+           <%if(user.status_id == 1) {%>selected <%} %>
+           >
+            Not-active 
+            </option>
+            <option value="2"        
+              <%if(user.status_id == 2) {%>selected <%} %>
+              >
+            Active 
+            </option>
+            <option value="3"        
+              <%if(user.status_id == 3) {%>selected <%} %>
+              >
+            Deleted 
+            </option>      
+       </select>
+    </div>
+</div>
+
+</div>
+
+
+<div class="row">
+<div class="col-xs-12 user-edit-hint">
+<p id="user-edit-hint"></p>
+</div>
+</div>
+</div>
+			<div class="modal-footer">
+				<div class="col-sm-6">
+		<a id="user_edit_save" class="btn btn-default btn-sm btn-block" role="button"><span class="glyphicon glyphicon-save"></span> Save</a>
+	</div>
+	<div class="col-sm-6">
+		<button id="user_edit_cancel" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-ban-circle"></span> Close</button>
+	</div>
+			</div>
+		</div>
