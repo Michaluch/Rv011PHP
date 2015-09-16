@@ -86,6 +86,8 @@ class UserController extends Controller {
 	public function show($id)
 	{
 		//
+		$fetchSingleUSer = Users::where('id', '=', $id)->first();;
+		return $fetchSingleUSer;
 	}
 	/**
 	 * Show the form for editing the specified resource.
@@ -103,9 +105,36 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Guard $auth, Request $request, $id)
 	{
 		//
+		$user = $auth->user();
+		if (!is_null($user)){
+			$user = User::where('id', $id)->first();
+
+			$changed_fields = "";
+			
+			if(!is_null($request->input('email'))){
+				$user->email=$request->input('email');
+				$changed_fields .= "email, ";
+			}
+			if(!is_null($request->input('status_id'))){
+				$user->status_id=$request->input('status_id');
+				$changed_fields .= "status_id, ";
+			}
+			if(!is_null($request->input('role_id'))){
+				$user->role_id=$request->input('role_id');
+				$changed_fields .= "role_id, ";
+			}
+			$result=$user->save();
+			
+			$changed_fields = rtrim($changed_fields, ", ");
+			return [
+					'code' =>'12150', 
+					'message' => 'User fields ('.$changed_fields.') was updated',
+					'result' => $result,
+				];	
+			}
 	}
 	/**
 	 * Remove the specified resource from storage.
