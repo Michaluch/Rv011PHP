@@ -329,10 +329,24 @@ rect {
   stroke-width: 2;
 }
 #chart {
+  margin: 0 auto;
   height: 360px;
   position: relative;
   width: 360px;
 }
+#chart2 {
+  margin: 0 auto;
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+#chart3 {
+  margin: 0 auto;
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+.top-buffer { margin-top:40px; }
 .tooltipp {
   background: #eee;
   box-shadow: 0 0 5px #999999;
@@ -343,8 +357,9 @@ rect {
   padding: 10px;
   position: absolute;
   text-align: center;
-  top: -95px;
-  width: 80px;
+  top: 105px;
+  width: 100px;
+  height: 120px;
   z-index: 1000;
   border: 1px solid black;
 }
