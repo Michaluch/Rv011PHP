@@ -111,7 +111,7 @@ class IssuesController extends Controller {
             $this->throwValidationException($request, $validator);
         }
         $data = $request->all();
-        $issue = new Issues;
+        $issue = new Issue;
         $issue->name = $data['name'];
         if (isset($data['description'])){
             $issue->description = $data['description'];

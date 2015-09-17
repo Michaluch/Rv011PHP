@@ -21,7 +21,12 @@ class AttachmentController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$files = $request->file('attachments');
+		if (!is_array($request->file('attachments'))){
+			$files[0] = $request->file('attachments');
+		}
+		else {
+			$files = $request->file('attachments');
+		}
 		$allowed_mime = array('image/jpeg', 'image/gif', 'image/pjpeg', 'image/png');
 		$upload_dir = 'uploaded/';
 		$file_urls = array();
@@ -59,7 +64,7 @@ class AttachmentController extends Controller {
     	    	$attachment->save();
 		    }
 		}
-		return response()->json(['code' => $file, 'msg' => 'Stored!']);
+		return response()->json(['code' => $files, 'msg' => 'Stored!']);
 	}
 
 	/**
@@ -94,7 +99,7 @@ class AttachmentController extends Controller {
 	 */
 	public function destroy($id)
 	{
-	    $upload_dir = 'uploaded/';
+	    $upload_dir = '';
 		$attachment = Attachment::where('id', '=', $id)->first();
 		$url = $attachment->url;
 		try{

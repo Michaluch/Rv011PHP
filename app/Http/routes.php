@@ -26,6 +26,7 @@ Route::resource('issues', 'IssuesController');
 Route::get('categories/', 'CategoriesController@index');
 Route::get('categories/{id}', 'CategoriesController@show');
 Route::put('categories/{id}', 'CategoriesController@update');
+Route::post('categories/', 'CategoriesController@store');
 Route::post('issues/search', 'IssuesController@search');
 Route::get('issues/user/{user}', 'IssuesController@showUserIssues');
 Route::get('issues/statistic/{status}', 'IssuesController@getCategoryByStatus');
