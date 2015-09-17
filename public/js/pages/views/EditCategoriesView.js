@@ -6,15 +6,17 @@ define([
     "text!pages/templates/EditCategoriesTemplate.html",
     "RowCategoryView",
     "EditCategoryView",
+    "AddCategoryView",
     "Category"
     ],
-    function( $, _, Backbone, EditCategoriesTemplate, RowCategoryView, EditCategoryView, Category){
+    function( $, _, Backbone, EditCategoriesTemplate,  RowCategoryView, EditCategoryView, AddCategoryView, Category){
         var TableCategoriesView = Backbone.View.extend({
             template : _.template(EditCategoriesTemplate),
             tagName : "div",
 
             events:{
-                "click #edit-category": "onEditCategoryClick"
+                "click #edit-category": "onEditCategoryClick",
+                "click #add-category": "onAddCategoryClick"
             },
 
            
@@ -38,6 +40,12 @@ define([
                 e.preventDefault();
                 $categoryId = $(e.currentTarget).parent().parent().siblings(':first-child').html();
                 var editCategoryView = new EditCategoryView($categoryId, this.managerView);
+
+            },
+
+            onAddCategoryClick: function(e) {
+                e.preventDefault();
+                var addCategoryView = new AddCategoryView(this.managerView);
 
             }
 

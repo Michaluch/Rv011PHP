@@ -39,9 +39,28 @@ class CategoriesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		$data = $request->all();
+        $category_model = new IssuesCategory;
+        $input_category_name = $data['name'];
+        $input_category_confirmed = $data['confirmed'];
+        $category_to_check = $category_model->where('name', '=', $input_category_name)->first();        
+        if (is_null($category_to_check)){
+            $new_category = new IssuesCategory;
+            $new_category->name = $input_category_name;
+            $new_category->confirmed = $input_category_confirmed;
+            $new_category->save();
+            return [
+					'code' =>'13150', 
+					'message' => "Category succesfully created",
+					'result' => $new_category,
+				];	
+        } else {
+        	return "This category is already exist";
+        }
+            
 	}
 
 	/**
@@ -101,9 +120,6 @@ class CategoriesController extends Controller {
 				];	
 			}
 			
-			//$data = IssuesCategory::where('id', '=', $id)->first();
-			//return $data.id;
-			//return "yo";
 	}
 
 	/**

@@ -12,8 +12,10 @@ class VerifyCsrfToken extends BaseVerifier {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
+
 	public function handle($request, Closure $next)  
 	{
+
 	    if ($this->isReading($request) || $this->excludedRoutes($request) || $this->tokensMatch($request))
 	    {
 	        return $this->addCookieToResponse($request, $next($request));
@@ -24,21 +26,7 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected function excludedRoutes($request)  
 {
     $routes = [
-            'auth/facebook',
-            'auth/login',
-            'auth/register',
-            'auth/logged',
-            'auth/logout',
-            'attachment',
-            'issue',
-            'issues/search',
-            'issues/statuschange',
-            'issues/*',
-            'attachment/*',
-            'issues',
-            'users/*',
-            'users',
-            'categories/*',
+            $request->path()
     ];
 
     foreach($routes as $route)

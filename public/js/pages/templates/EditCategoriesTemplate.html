@@ -1,4 +1,7 @@
 <div class="table-responsive">
+  <div>
+  <button id="add-category">Add</button>
+</div>
 <table class="table table-bordered table-hover table-condensed">
    <thead>
      <tr>
@@ -12,7 +15,7 @@
      <tr>
        <td><%= category.id %></td>
        <td><%= category.name %></td>
-       <td><%= category.confirmed %></td>
+       <td><% if(category.confirmed == 1) {%> Confirmed<%} else {%> Not Confirmed <%} %></td>
        <td class="edit-icons">
        <a href="#"><i id="edit-category" class="fa fa-wrench"></i></a>
       </i></td>
