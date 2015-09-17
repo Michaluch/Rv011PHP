@@ -11,6 +11,9 @@ header {
   font-size: 24;
   width: 100%;
   text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 header a:link {
   color: #ffffff;
@@ -67,6 +70,12 @@ header #main-banner:hover {
 }
 .sb-show {
   width: 30%;
+}
+#main-container {
+  padding-top: 80px;
+}
+#main-container #sb {
+  height: 100%;
 }
 #page,
 #main-container,
@@ -216,15 +225,80 @@ header #main-banner:hover {
 #manager-panel .edit-icons a:hover {
   color: #63978c;
 }
+#manager-panel .table-responsive {
+  padding-top: 10px;
+}
+#manager-panel #input__clear {
+  opacity: 0.5;
+  font-size: 20px;
+  cursor: pointer;
+  visibility: hidden;
+  float: left;
+  margin-left: -30px;
+  width: 20px;
+  height: 20px;
+  padding-top: 5px;
+}
+/* Admin page Modal window style start*/
+#AddUserModal .modal-header {
+  background-color: #ea556f;
+}
+#AddUserModal .close {
+  margin: 0;
+  padding: 0;
+  font-size: 21px;
+  background-color: inherit;
+  color: white;
+  opacity: 1;
+}
+#AddUserModal .modal-title {
+  line-height: 1;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+#AddUserModal .form-horizontal .control-label {
+  padding-top: 0px;
+  font-weight: normal;
+}
+#AddUserModal .form-group {
+  margin-bottom: 0px;
+}
+#AddUserModal #add-user-form input {
+  border-radius: 0px;
+  height: 23px;
+  font-size: 10px;
+  line-height: 1;
+  box-shadow: none;
+  -webkit-box-shadow: border: 1px solid #F3EDED;
+}
+#AddUserModal .modal-footer {
+  padding: 0 0 15px 0;
+  text-align: center;
+  border: none;
+}
+#AddUserModal .modal-footer button {
+  border-radius: 0px;
+  font-size: 18px;
+  width: 120px;
+}
+/* Admin page Modal window styles end*/
 @media screen and (max-width: 990px) {
   #manager-panel .fa-align-justify {
     display: block;
     cursor: pointer;
   }
+  #manager-panel,
+  #left-sidebar {
+    margin-top: 80px;
+  }
   .sidebar-mobile {
     display: none;
   }
   .width50 {
+    width: 50%;
+  }
+  .col-xs-9 {
     width: 50%;
   }
   #manager-panel input {
@@ -242,42 +316,42 @@ header #main-banner:hover {
     margin: 0px;
     float: none;
   }
-  /*#left-sidebar{
-    display:none;
+  #main-container {
+    padding-top: 160px;
   }
-  */
 }
 /*End of manager page styles */
 /* Style for diagram*/
- .legend {
-    font-size: 12px;
-  }
-  rect {
-    stroke-width: 2;
-  }
-  #chart {                                                            
-    height: 360px;                                                  
-    position: relative;                                             
-    width: 360px;                                                   
-  }
-  #chart2 {                                                            
-    height: 360px;                                                  
-    position: relative;                                             
-    width: 360px;                                                   
-  }                                                                  
-  .tooltipp {                                                        
-    background: #eee;                                               
-    box-shadow: 0 0 5px #999999;                                    
-    color: #333;                                                    
-    display: none;                                                  
-    font-size: 12px;                                                
-    left: 130px;                                                    
-    padding: 10px;                                                  
-    position: absolute;                                             
-    text-align: center;                                             
-    top: -95px;                                                      
-    width: 80px;                                                    
-    z-index: 1000;
-    border: 1px solid black;                                                    
-  } 
-  /* End Style for diagram*/
+.legend {
+  font-size: 12px;
+}
+rect {
+  stroke-width: 2;
+}
+#chart {
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+#chart2 {
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+.tooltipp {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 105px;
+  width: 100px;
+  height: 1250px
+  z-index: 1000;
+  border: 1px solid black;
+}
+/* End Style for diagram*/

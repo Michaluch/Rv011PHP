@@ -3,7 +3,7 @@
 
 function readURL(input) {
 
-    alert(input[0]);
+  
     if (input[0].files && input[0].files[0]) {
         var reader = new FileReader();
 

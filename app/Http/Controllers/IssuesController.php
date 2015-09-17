@@ -1,5 +1,5 @@
 <?php namespace App\Http\Controllers;
-use App\Models\Issues;
+
 use App\Models\IssueStatus as Statuses;
 use App\Models\IssuesCategory as Categories;
 
@@ -188,7 +188,7 @@ class IssuesController extends Controller {
 	{
 		$user = $auth->user();
 		if (!is_null($user)){
-			$issue = Issues::where('id', $id)->first();
+			$issue = Issue::where('id', $id)->first();
 
 			$changed_fields = "";
 			
@@ -281,7 +281,8 @@ class IssuesController extends Controller {
 
         //$elemToSent = array()
         $data = Issue::with('historyUpToDate',"category","historyUpToDate.status")->get();
-        foreach ($data as $el) {   
+        foreach ($data as $el) {  
+
           $CatToSent[$el->category->name] += 1;
           $StatusToSent[$el->historyUpToDate->status->name] += 1;
 
@@ -312,27 +313,9 @@ class IssuesController extends Controller {
 
 	private function showById($id)
 	{
-		$result=Issues::where('id', '=', $id)
+		$result=Issue::where('id', '=', $id)
 		->with('category', 'history', 'history.status', 'attachments', 'historyUpToDate')->first();
 		return $result;
-
-		//$data = Issue::where('id', '=', $id)->first();
-		//if (!is_null($data)){
-		//	$atach = array();
-		//	$category = array();
-		//	foreach ($data->attachments->all() as $attachment)
-		//	{
-		//		$atach[] =  $attachment->url;
-		//	};
-		//	$issue_data = $data->toArray();
-		//	$issue_data['attachments'] = $atach;
-		//	//$issue_data['category'] = !is_null($cat = $data->category) ? $cat->name : null;
-		//	//$issue_data['status'] = $data->history->status->name;
-		//	$issue_data['author_id'] = $data->history->user_id;
-		//	return response()->json(['code' => '12202', 'data' => $issue_data]);
-		//} else {
-		//	return response()->json(['code' => '12501', 'msg' => 'Issue is not exist!']);
-		//}
 	}
 	
     public function showUserIssues($user)
@@ -360,6 +343,47 @@ class IssuesController extends Controller {
         }
 
         return $toSend;
+    }
+
+    public function getCategoryByStatus($status){
+
+        $CatToSent = array();
+        $categories=Categories::all();
+        foreach ($categories as $el) {
+            $CatToSent[$el->name] = 0;
+        }
+
+        $data = Issue::with('historyUpToDate',"category","historyUpToDate.status")->get();
+        foreach ($data as $el) {  
+        if($el->historyUpToDate->status->name == $status)
+          $CatToSent[$el->category->name] += 1;
+        }
+       
+        return [
+            'statuses' => $status,
+            'categories' => $CatToSent,
+        ];
+    }
+    public function getStatusByCategory($category){
+
+        $StatusToSent = array();
+        $statuses=Statuses::all();
+        foreach ($statuses as $el) {
+            $StatusToSent[$el->name] = 0;
+        }
+
+        $data = Issue::with('historyUpToDate',"category","historyUpToDate.status")->get();
+        foreach ($data as $el) {  
+          if ($el->category->name == $category)
+          {
+            $StatusToSent[$el->historyUpToDate->status->name] += 1;
+          }
+        }
+       
+        return [
+            'statuses' => $StatusToSent,
+            'categories' => $category,
+        ];
     }
 
 	public function getIssueStatusesAndCategories(){

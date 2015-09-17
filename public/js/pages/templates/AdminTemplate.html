@@ -77,29 +77,6 @@
  
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="manager-panel">
         <span class="fa fa-align-justify" id="left-sidebar-btn"></span>
-        <form  id="search-form" action="/issue/search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="search" value="<%= search %>" required minlength="2"> 
-                <button type="submit" id="search-btn">Search</button>
-            </div>
-            <div class="clearfix"></div>
-            <p class="text-info"></p>
-            <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="nameCheckbox" value="1">Name
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="descriptionCheckbox" value="1">Description
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="categoryCheckbox" value="1">Category
-                </label>
-            </div>            
-        </form>
         <div id="manager-panel-table"></div>
     </div>      
 </div>
