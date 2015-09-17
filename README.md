@@ -1,23 +1,89 @@
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+# Bawl #
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Bawl is an application that provides ability to manage different(ecological, social, municipal etc.) issues in city. 
 
-## Official Documentation
+​
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### Version
 
-## Contributing
+1.0.1
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+​
 
-### License
+### Installation
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+For installing required libs and frameworks execute next commands:
+
+```sh
+
+    git clone git@github.com:Michaluch/Rv011PHP.git -b devLaravel
+
+    curl -sS https://getcomposer.org/installer | php
+
+    cd $PROJECT 
+
+    composer update
+
+
+```
+
+​
+
+Next step you need to create .env file in root folder of the project.
+
+.env should contain next lines with yours setting:
+
+​
+
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomString
+
+DB_HOST=localhost
+DB_DATABASE=bawl
+DB_USERNAME=admin
+DB_PASSWORD=password
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+​
+
+//vadim add info about logger system
+
+​
+
+#### Fixtures
+
+In case you want to fill tables into database execute next command:
+
+```sh
+
+    php artisan migrate
+
+```
+
+If you  want to fill tables with data into database execute next command:
+
+```sh
+	composer dump-autolaod
+    php artisan db:seed
+
+```
+
+​
+
+License
+----
+
+GNU/GPL

@@ -42,7 +42,7 @@ define([
   
         render: function() {
         	this.$el.empty();
-                console.log(session.user.id);
+                console.log(session);
                 this.$el.html(this.template(
                     { 
                         logged_in: session.get("logged_in"),
@@ -62,7 +62,9 @@ define([
 
         userIssue: function(){
           var self = this;
-        $.get("/issues/user/" + session.user.id, function(data){
+          //session.get("user").id.toString()
+          //console.log("ys");
+        $.get("/issues/user/"+session.get("user").id , function(data){
                 self.$('#manager-panel').empty();
                 var templ = _.template(TableIssueUserTemplate);
                 var toTable = templ({
