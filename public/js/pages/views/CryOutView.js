@@ -154,16 +154,18 @@ define([
                                     contentType: false,
                                     type: 'POST',
                                     success: function(data){
-                                        console.log(data);
-                                    }
-                                });
-                            }
-                        }
-                        //self.map.setMarkers([self.issue]);
-                        // show message here
+                                        var template = _.template(NotificationSuccess); 
+                                        $.colorbox({html:template({message: 'The issue has been successfully created!'}),height:"30%",width:"30%"});
                         self.sidebar.turnOff();
                         window.location.hash = '#';
                     }
+                });        
+                            }
+                        } else {
+                            var template = _.template(NotificationWarning); 
+                            $.colorbox({html:template({message: response.msg}),height:"30%",width:"30%"});
+                        }
+                    },
                 });        
             },
             
@@ -174,7 +176,6 @@ define([
                         $new_image = $('<div class="img-container image_' + order_number + '"></div>');
                     $new_image.append(this.image_block.clone());
                     $last_image.after($new_image);
-                    console.log($('#sb').height() + $('#sb').scrollTop());
                     $('#sb').animate({
                       scrollTop: $('#sb').height() + $('#sb').scrollTop(),
                     },500);
@@ -193,9 +194,11 @@ define([
             toResolve: function(){
                 var issue = new Issue({id: this.issue.id});
                 issue.fetch();
-                console.log(issue);
                 issue.save({"status": 2},{patch: true});
-                $('#resolve').remove();
+                var template = _.template(NotificationSuccess); 
+                $.colorbox({html:template({message: 'Thank you for notification!'}),height:"30%",width:"30%"});
+                self.sidebar.turnOff();
+                window.location.hash = '#';
             },
             
             colorboxImage: function(){

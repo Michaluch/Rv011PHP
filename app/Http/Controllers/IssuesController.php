@@ -103,6 +103,7 @@ class IssuesController extends Controller {
 	public function store(Guard $auth, Request $request)
 	{
 	    $user = $auth->user();
+	    if (!is_null($user )){
         // validation block
 	    $validator = $this->validator($request->all());
 
@@ -139,6 +140,8 @@ class IssuesController extends Controller {
         $history->date = date('Y-m-d H:i:s');
         $issue->history()->save($history);
         return response()->json(['code' => '12201', 'msg' => 'Created!', 'data' => array('issue_id' => $issue->id)]);
+	}
+	    return response()->json(['code' => '15201', 'msg' => 'You are not a registered user!']);
 	}
 	/**
 	 * Display the specified resource.
